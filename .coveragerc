@@ -1,0 +1,10 @@
+[run]
+branch = True
+data_file = .coverage
+source=super_csv
+omit =
+    test_settings
+    *migrations*
+    *admin.py
+    *static*
+    *templates*
