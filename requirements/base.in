@@ -3,3 +3,6 @@
 
 Django>=1.11,<2.0          # Web application framework
 celery
+django-model-utils         # Provides TimeStampedModel abstract base class
+django-celery
+django-crum

@@ -92,4 +92,9 @@ setup(
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.6',
     ],
+    entry_points={
+        'lms.djangoapp': [
+            "super_csv = super_csv.apps:SuperCSVConfig",
+        ],
+    }
 )

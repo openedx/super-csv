@@ -9,9 +9,8 @@ import ddt
 # could use BytesIO, but this adds a size attribute
 from django.core.files.base import ContentFile
 from django.test import TestCase
-import pytest
 
-from super_csv import csv_processor
+from super_csv import csv_processor, models
 
 
 class DummyProcessor(csv_processor.CSVProcessor):
@@ -46,7 +45,7 @@ class DummyDeferrableProcessor(csv_processor.DeferrableMixin, DummyProcessor):
     size_to_defer = 1
 
     def get_unique_path(self):
-        return 'csv/test'
+        return 'test'
 
 
 @ddt.ddt
@@ -54,6 +53,12 @@ class CSVTestCase(TestCase):
     def setUp(self):
         super(CSVTestCase, self).setUp()
         self.dummy_csv = b'foo,bar\r\n1,1\r\n2,2\r\n'
+
+    def tearDown(self):
+        super(CSVTestCase, self).tearDown()
+        for operation in models.CSVOperation.objects.all():
+            operation.data.delete()
+            operation.delete()
 
     def test_write(self):
         buf = io.BytesIO()
@@ -108,19 +113,17 @@ class CSVTestCase(TestCase):
         assert status['saved'] == 1
         assert status['error_messages'][0] == '4 is not allowed'
 
-    def xtest_defer(self):
+    def test_defer(self):
         processor = DummyDeferrableProcessor()
         processor.test_set = set((1, 2, 3))
         processor.process_file(ContentFile(self.dummy_csv))
         status = processor.status()
-        assert status['waiting']
-        result_id = status['result_id']
-        results = processor.get_deferred_result(result_id)
-        results.get()
-        assert results
+        assert status['saved'] == 2
 
     def test_defer_too_small(self):
         processor = DummyDeferrableProcessor()
         processor.process_file(ContentFile(b'foo,bar\r\n1,2\r\n'))
         status = processor.status()
         assert not status['waiting']
+        operation = models.CSVOperation.get_latest(processor, processor.get_unique_path())
+        assert operation is not None

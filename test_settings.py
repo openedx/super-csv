@@ -32,6 +32,7 @@ INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'super_csv',
+    'djcelery',
 )
 
 LOCALE_PATHS = [
@@ -41,3 +42,12 @@ LOCALE_PATHS = [
 ROOT_URLCONF = 'super_csv.urls'
 
 SECRET_KEY = 'insecure-secret-key'
+CELERY_ALWAYS_EAGER = True
+CELERY_RESULT_BACKEND = 'djcelery.backends.cache:CacheBackend'
+CELERY_EAGER_PROPAGATES_EXCEPTIONS = False
+CELERY_BROKER_URL = BROKER_URL = 'memory://'
+CELERY_BROKER_TRANSPORT = 'memory://'
+CELERY_BROKER_HOSTNAME = 'localhost'
+
+import djcelery
+djcelery.setup_loader()

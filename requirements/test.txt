@@ -4,18 +4,22 @@
 #
 #    make upgrade
 #
-amqp==2.4.2
+amqp==1.4.9
+anyjson==0.3.3
 atomicwrites==1.3.0       # via pytest
 attrs==19.1.0             # via pytest
-billiard==3.6.0.0
-celery==4.3.0
+billiard==3.3.0.23
+celery==3.1.26.post2
 click==7.0                # via code-annotations
 code-annotations==0.3.1
 coverage==4.5.3           # via pytest-cov
 ddt==1.2.1
+django-celery==3.3.0
+django-crum==0.7.3
+django-model-utils==3.1.2
 funcsigs==1.0.2           # via pytest
 jinja2==2.10.1            # via code-annotations
-kombu==4.5.0
+kombu==3.0.37
 markupsafe==1.1.1         # via jinja2
 more-itertools==5.0.0     # via pytest
 pathlib2==2.3.3           # via pytest, pytest-django
@@ -32,5 +36,4 @@ scandir==1.10.0           # via pathlib2
 six==1.12.0               # via more-itertools, pathlib2, pytest, stevedore
 stevedore==1.30.1         # via code-annotations
 text-unidecode==1.2       # via python-slugify
-vine==1.3.0
 wcwidth==0.1.7            # via pytest

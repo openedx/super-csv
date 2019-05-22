@@ -1,18 +1,18 @@
 """
+Generic class-based CSV Processor.
 """
-from __future__ import unicode_literals, print_function
+from __future__ import absolute_import, unicode_literals, print_function
 import csv
 import hashlib
-import importlib
 import json
 import logging
 
-from celery import task
 from celery.result import AsyncResult
 from django.conf import settings
-from django.core.files.base import ContentFile
-from django.core.files.storage import default_storage
 from django.utils.translation import ugettext_lazy as _
+
+from .models import CSVOperation
+from .tasks import do_deferred_commit
 
 log = logging.getLogger(__name__)
 
@@ -246,22 +246,6 @@ class ChecksumMixin(object):
         return self._get_checksum(row) == row[self.checksum_fieldname]
 
 
-@task(bind=True)
-def do_deferred_commit(self, state_file):
-    log.info('Loading CSV state %s', state_file)
-    with default_storage.open(state_file, 'r') as statefile:
-        state = json.loads(statefile.read())
-    module_name, classname = state.pop('__class__')
-
-    instance = getattr(importlib.import_module(module_name), classname)(**state)
-    instance.commit(running_task=True)
-    status = instance.status()
-    log.info('Commit succeeded %r %s', instance, status)
-    filename = instance.save()
-    log.info('Saved CSV state %r %s', instance, filename)
-    return status
-
-
 class DeferrableMixin(object):
     """
     Mixin that automatically commits data using celery.
@@ -289,7 +273,9 @@ class DeferrableMixin(object):
             if isinstance(v, set):
                 state[k] = list(v)
         state['__class__'] = (self.__class__.__module__, self.__class__.__name__)
-        return default_storage.save(self.get_unique_path(), ContentFile(json.dumps(state)))
+        op_name = 'stage' if self.can_commit else 'commit'
+        operation = CSVOperation.record_operation(self, self.get_unique_path(), op_name, json.dumps(state))
+        return operation
 
     @classmethod
     def get_deferred_result(cls, result_id):
@@ -302,6 +288,7 @@ class DeferrableMixin(object):
         status = super(DeferrableMixin, self).status()
         status['result_id'] = getattr(self, 'result_id', None)
         status['waiting'] = bool(status['result_id'])
+        status.update(getattr(self, '_status', {}))
         return status
 
     def commit(self, running_task=None):
@@ -309,13 +296,16 @@ class DeferrableMixin(object):
         Automatically defer the commit to a celery task
         if the number of rows is greater than self.size_to_defer
         """
+        operation = self.save()
         if running_task or len(self.stage) <= self.size_to_defer:
             # called by the async task
             # or small enough to commit now
             super(DeferrableMixin, self).commit()
         else:
             # run asynchronously
-            filename = self.save()
-            result = do_deferred_commit.delay(filename)
-            self.result_id = result.id
-            log.info('Queued task %s %r', filename, result)
+            result = do_deferred_commit.delay(operation.id)
+            if not result.ready():
+                self.result_id = result.id
+                log.info('Queued task %s %r', operation.id, result)
+            else:
+                self._status = result.get()

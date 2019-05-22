@@ -14,3 +14,4 @@ class SuperCSVConfig(AppConfig):
     """
 
     name = 'super_csv'
+    plugin_app = {}

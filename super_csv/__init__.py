@@ -3,7 +3,6 @@ CSV Processor.
 """
 
 from __future__ import absolute_import, unicode_literals
-from .csv_processor import *
 
 __version__ = '0.1.0'
 
