@@ -25,10 +25,11 @@ django-celery==3.3.0
 django-crum==0.7.3
 django-model-utils==3.1.2
 django==1.11.20
-edx-lint==1.2.0
+edx-lint==1.2.1
 enum34==1.1.6             # via astroid
 funcsigs==1.0.2
 futures==3.2.0 ; python_version == "2.7"  # via caniusepython3, isort
+importlib-metadata==0.15
 isort==4.3.20
 jinja2==2.10.1
 kombu==3.0.37
@@ -39,7 +40,7 @@ more-itertools==5.0.0
 packaging==19.0           # via caniusepython3
 pathlib2==2.3.3
 pbr==5.2.0
-pluggy==0.11.0
+pluggy==0.12.0
 py==1.8.0
 pycodestyle==2.5.0
 pydocstyle==3.0.0

@@ -7,7 +7,7 @@
 amqp==1.4.9               # via kombu
 anyjson==0.3.3            # via kombu
 billiard==3.3.0.23        # via celery
-celery==3.1.26.post2
+celery==3.1.26.post2      # via django-celery
 django-celery==3.3.0
 django-crum==0.7.3
 django-model-utils==3.1.2
