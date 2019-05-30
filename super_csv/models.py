@@ -26,6 +26,9 @@ class CSVOperation(TimeStampedModel):
     user = models.ForeignKey(get_user_model(), null=True, on_delete=models.SET_NULL)
     data = models.FileField(upload_to=csv_class_path, max_length=255)
 
+    class Meta(object):
+        app_label = "super_csv"
+
     @classmethod
     def _get_class_name(cls, obj):
         if not isinstance(obj, six.string_types):

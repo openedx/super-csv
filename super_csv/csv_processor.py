@@ -60,6 +60,13 @@ class CSVProcessor(object):
         """
         self.error_messages.setdefault(message, 1)
 
+    def write_file(self, thefile, rows=None):
+        """
+        Write the rows to the file.
+        """
+        for row in self.get_iterator(rows):
+            thefile.write(row)
+
     def get_iterator(self, rows=None):
         """
         Export the CSV as an iterator.
@@ -71,22 +78,13 @@ class CSVProcessor(object):
             def write(self, value):
                 """Write the value by returning it, instead of storing in a buffer."""
                 return value
-        return self.write_file(Echo(), rows=rows, make_iterator=True)
-
-    def write_file(self, thefile, rows=None, make_iterator=False):
-        """
-        Write the rows to the file.
-        """
         rows = rows or self.get_rows_to_export()
-        writer = csv.DictWriter(thefile, self.columns)
+        writer = csv.DictWriter(Echo(), self.columns)
         header = writer.writerow(dict(zip(writer.fieldnames, writer.fieldnames)))
-        if make_iterator:
-            yield header
+        yield header
         for row in rows:
             self.preprocess_export_row(row)
-            result = writer.writerow(row)
-            if make_iterator:
-                yield result
+            yield writer.writerow(row)
 
     def process_file(self, thefile, autocommit=True):
         """
