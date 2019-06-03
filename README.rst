@@ -4,19 +4,14 @@ super-csv
 |pypi-badge| |travis-badge| |codecov-badge| |doc-badge| |pyversions-badge|
 |license-badge|
 
-The ``README.rst`` file should start with a brief description of the repository,
-which sets it in the context of other repositories under the ``edx``
-organization. It should make clear where this fits in to the overall edX
-codebase.
+Generic CSV Processing for Django Apps
 
-CSV Processor
-
-Overview (please modify)
+Overview
 ------------------------
 
-The ``README.rst`` file should then provide an overview of the code in this
-repository, including the main components and useful entry points for starting
-to understand the code in more detail.
+This library provides a `CSVProcessor <https://github.com/edx/super-csv/blob/master/super_csv/csv_processor.py>`_ class which should be subclassed to implement your own per-row processing of CSV files. At minimum, override `process_row(row)`.
+
+The mixins support optional checksums of arbitrary columns, and asynchronous processing of files using Celery.
 
 Documentation
 -------------
