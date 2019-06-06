@@ -15,6 +15,9 @@ log = logging.getLogger(__name__)
 
 @task(bind=True)
 def do_deferred_commit(self, operation_id):
+    """
+    Commit the CSV Operation, asynchronously.
+    """
     operation = CSVOperation.objects.get(pk=operation_id)
     log.info('Loading CSV state %s', operation.data.name)
     state = json.loads(operation.data.read())

@@ -25,7 +25,9 @@ class DummyProcessor(csv_processor.CSVProcessor):
         yield {'foo': 2, 'bar': 2}
 
     def validate_row(self, row):
-        return super(DummyProcessor, self).validate_row(row) and row['foo'] != '3'
+        super(DummyProcessor, self).validate_row(row)
+        if row['foo'] == '3':
+            raise csv_processor.ValidationError("3 not allowed")
 
     def process_row(self, row):
         if row['foo'] == '4':
@@ -100,9 +102,10 @@ class CSVTestCase(TestCase):
         }
         processor.preprocess_export_row(row)
         assert row['csum'] == 'cfb0'
-        assert processor.validate_row(row)
+        assert processor.validate_row(row) is None
         row['csum'] = 'def'
-        assert not processor.validate_row(row)
+        with self.assertRaises(csv_processor.ValidationError):
+            processor.validate_row(row)
 
     def test_rollback(self):
         processor = DummyProcessor()
