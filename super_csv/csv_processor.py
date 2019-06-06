@@ -7,6 +7,8 @@ import hashlib
 import json
 import logging
 
+from collections import defaultdict
+
 from celery.result import AsyncResult
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
@@ -16,7 +18,10 @@ from .tasks import do_deferred_commit
 
 log = logging.getLogger(__name__)
 
-__all__ = ('CSVProcessor', 'ChecksumMixin', 'DeferrableMixin')
+__all__ = ('CSVProcessor', 'ChecksumMixin', 'DeferrableMixin', 'ValidationError')
+
+class ValidationError(ValueError):
+    pass
 
 
 class CSVProcessor(object):
@@ -50,15 +55,15 @@ class CSVProcessor(object):
         self.stage = []
         self.rollback_rows = []
         self.rowerrors = []
-        self.error_messages = {}
+        self.error_messages = defaultdict(list)
         for key, value in kwargs.items():
             setattr(self, key, value)
 
-    def add_error(self, message):
+    def add_error(self, message, row=0):
         """
         Add an error message. Does not store duplicates.
         """
-        self.error_messages.setdefault(message, 1)
+        self.error_messages[message].append(row)
 
     def write_file(self, thefile, rows=None):
         """
@@ -71,7 +76,7 @@ class CSVProcessor(object):
         """
         Export the CSV as an iterator.
         """
-        class Echo:
+        class Echo(object):
             """An object that implements just the write method of the file-like
             interface.
             """
@@ -115,12 +120,14 @@ class CSVProcessor(object):
         """
         rownum = processed_rows = 0
         for rownum, row in enumerate(reader, 1):
-            if self.validate_row(row):
+            try:
+                self.validate_row(row)
                 row = self.preprocess_row(row)
                 if row:
-                    self.stage.append(row)
+                    self.stage.append((rownum, row))
                     processed_rows += 1
-            else:
+            except ValidationError as e:
+                self.add_error(e.message, rownum)
                 self.rowerrors.append(rownum)
         self.total_rows = rownum
         self.processed_rows = processed_rows
@@ -143,7 +150,7 @@ class CSVProcessor(object):
     def validate_row(self, row):
         """
         Validate the fields in the row.
-        Returns bool.
+        Raise ValidationError for invalid rows.
         """
         return True
 
@@ -179,16 +186,16 @@ class CSVProcessor(object):
         """
         saved = 0
         while self.stage:
-            row = self.stage.pop(0)
+            rownum, row = self.stage.pop(0)
             try:
                 did_save, rollback_row = self.process_row(row)
                 if did_save:
                     saved += 1
                     if rollback_row:
-                        self.rollback_rows.append(rollback_row)
+                        self.rollback_rows.append((rownum, rollback_row))
             except Exception as e:
                 log.exception('Committing %r', self)
-                self.add_error(str(e))
+                self.add_error(str(e), row=rownum)
         self.saved_rows = saved
         log.info('%r committed %d rows', self, saved)
 
@@ -198,14 +205,14 @@ class CSVProcessor(object):
         """
         saved = 0
         while self.rollback_rows:
-            row = self.rollback_rows.pop(0)
+            rownum, row = self.rollback_rows.pop(0)
             try:
                 did_save, __ = self.process_row(row)
                 if did_save:
                     saved += 1
             except Exception as e:
                 log.exception('Rolling back %r', self)
-                self.add_error(str(e))
+                self.add_error(str(e), row=rownum)
         self.saved_rows = saved
 
     def status(self):
@@ -258,7 +265,8 @@ class ChecksumMixin(object):
         """
         Verifies that the calculated checksum matches the stored checksum.
         """
-        return self._get_checksum(row) == row[self.checksum_fieldname]
+        if self._get_checksum(row) != row[self.checksum_fieldname]:
+            raise ValidationError(_("Checksum mismatch"))
 
 
 class DeferrableMixin(object):
@@ -300,6 +308,9 @@ class DeferrableMixin(object):
         return AsyncResult(result_id)
 
     def status(self):
+        """
+        Return a status dict.
+        """
         status = super(DeferrableMixin, self).status()
         status['result_id'] = getattr(self, 'result_id', None)
         status['waiting'] = bool(status['result_id'])

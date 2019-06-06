@@ -11,6 +11,7 @@ from crum import get_current_user
 from django.contrib.auth import get_user_model
 from django.core.files.base import ContentFile
 from django.db import models
+from django.utils.encoding import python_2_unicode_compatible
 
 from model_utils.models import TimeStampedModel
 
@@ -19,6 +20,7 @@ def csv_class_path(instance, filename):
     return 'csv/{0}/{1}/{2}'.format(instance.class_name, instance.unique_id, filename)
 
 
+@python_2_unicode_compatible
 class CSVOperation(TimeStampedModel):
     class_name = models.CharField(max_length=255, db_index=True)
     unique_id = models.CharField(max_length=255, db_index=True)
