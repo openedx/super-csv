@@ -4,6 +4,7 @@ Generic class-based CSV Processor.
 from __future__ import absolute_import, unicode_literals, print_function
 import csv
 import hashlib
+import importlib
 import json
 import logging
 
@@ -11,7 +12,8 @@ from collections import defaultdict
 
 from celery.result import AsyncResult
 from django.conf import settings
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext as _
+from six import text_type
 
 from .models import CSVOperation
 from .tasks import do_deferred_commit
@@ -19,6 +21,24 @@ from .tasks import do_deferred_commit
 log = logging.getLogger(__name__)
 
 __all__ = ('CSVProcessor', 'ChecksumMixin', 'DeferrableMixin', 'ValidationError')
+
+
+class ResultDict(dict):
+    def __init__(self, *args, **kwargs):
+        super(ResultDict, self).__init__(*args, **kwargs)
+        if 'error' not in self:
+            self['error'] = ''
+            self['status'] = _('Success')
+
+
+class Echo(object):
+    """An object that implements just the write method of the file-like
+    interface.
+    """
+    def write(self, value):
+        """Write the value by returning it, instead of storing in a buffer."""
+        return value
+
 
 class ValidationError(ValueError):
     pass
@@ -54,7 +74,7 @@ class CSVProcessor(object):
         self.saved_rows = 0
         self.stage = []
         self.rollback_rows = []
-        self.rowerrors = []
+        self.result_data = []
         self.error_messages = defaultdict(list)
         for key, value in kwargs.items():
             setattr(self, key, value)
@@ -72,19 +92,18 @@ class CSVProcessor(object):
         for row in self.get_iterator(rows):
             thefile.write(row)
 
-    def get_iterator(self, rows=None):
+    def get_iterator(self, rows=None, columns=None, error_data=False):
         """
         Export the CSV as an iterator.
         """
-        class Echo(object):
-            """An object that implements just the write method of the file-like
-            interface.
-            """
-            def write(self, value):
-                """Write the value by returning it, instead of storing in a buffer."""
-                return value
-        rows = rows or self.get_rows_to_export()
-        writer = csv.DictWriter(Echo(), self.columns)
+        if error_data:
+            # return an iterator of the original data with an added error column
+            rows = self.result_data
+            columns = self.columns + ['status', 'error']
+        else:
+            rows = rows or self.get_rows_to_export()
+            columns = columns or self.columns
+        writer = csv.DictWriter(Echo(), columns)
         header = writer.writerow(dict(zip(writer.fieldnames, writer.fieldnames)))
         yield header
         for row in rows:
@@ -109,26 +128,37 @@ class CSVProcessor(object):
         Create a CSV reader and validate the file.
         Returns the reader.
         """
-        reader = csv.DictReader(thefile)
-        if not self.validate_file(thefile, reader):
-            return
-        return reader
+        try:
+            reader = csv.DictReader(thefile)
+            self.validate_file(thefile, reader)
+            return reader
+        except ValidationError as exc:
+            self.add_error(text_type(exc))
 
     def preprocess_file(self, reader):
         """
         Preprocess the rows, saving them to the staging list.
         """
         rownum = processed_rows = 0
+        snapshot = []
+        failure = _('Failure')
+        no_action = _('No Action')
         for rownum, row in enumerate(reader, 1):
+            result = ResultDict(row)
             try:
                 self.validate_row(row)
                 row = self.preprocess_row(row)
                 if row:
                     self.stage.append((rownum, row))
                     processed_rows += 1
+                else:
+                    result['status'] = no_action
             except ValidationError as e:
-                self.add_error(e.message, rownum)
-                self.rowerrors.append(rownum)
+                self.add_error(text_type(e), rownum)
+                result['error'] = text_type(e)
+                result['status'] = failure
+            snapshot.append(result)
+        self.result_data = snapshot
         self.total_rows = rownum
         self.processed_rows = processed_rows
 
@@ -138,14 +168,11 @@ class CSVProcessor(object):
         Returns bool.
         """
         if hasattr(thefile, 'size') and self.max_file_size and thefile.size > self.max_file_size:
-            self.add_error(_("The CSV file must be under {} bytes").format(self.max_file_size))
-            return False
+            raise ValidationError(_("The CSV file must be under {} bytes").format(self.max_file_size))
         elif self.required_columns:
             for field in self.required_columns:
                 if field not in reader.fieldnames:
-                    self.add_error(_("Missing column: {}").format(field))
-                    return False
-        return True
+                    raise ValidationError(_("Missing column: {}").format(field))
 
     def validate_row(self, row):
         """
@@ -178,7 +205,7 @@ class CSVProcessor(object):
         """
         Return whether there's data to commit.
         """
-        return bool(self.stage and not self.rowerrors)
+        return bool(self.stage and not self.error_messages)
 
     def commit(self):
         """
@@ -195,7 +222,10 @@ class CSVProcessor(object):
                         self.rollback_rows.append((rownum, rollback_row))
             except Exception as e:
                 log.exception('Committing %r', self)
-                self.add_error(str(e), row=rownum)
+                self.add_error(text_type(e), row=rownum)
+                if self.result_data:
+                    self.result_data[rownum - 1]['error'] = text_type(e)
+                    self.result_data[rownum - 1]['status'] = _('Failure')
         self.saved_rows = saved
         log.info('%r committed %d rows', self, saved)
 
@@ -212,7 +242,7 @@ class CSVProcessor(object):
                     saved += 1
             except Exception as e:
                 log.exception('Rolling back %r', self)
-                self.add_error(str(e), row=rownum)
+                self.add_error(text_type(e), row=rownum)
         self.saved_rows = saved
 
     def status(self):
@@ -223,7 +253,7 @@ class CSVProcessor(object):
             'total': self.total_rows,
             'processed': self.processed_rows,
             'saved': self.saved_rows,
-            'error_rows': self.rowerrors,
+            'error_rows': [row for row in self.result_data if row.get('error')],
             'error_messages': list(self.error_messages.keys()),
             'percentage': format(self.saved_rows / float(self.total_rows or 1), '.1%'),
             'can_commit': self.can_commit,
@@ -251,7 +281,7 @@ class ChecksumMixin(object):
     checksum_size = 4
 
     def _get_checksum(self, row):
-        to_check = ''.join(str(row[key] or '') for key in self.checksum_columns)
+        to_check = ''.join(text_type(row[key] or '') for key in self.checksum_columns)
         to_check += self.secret
         return hashlib.md5(to_check).hexdigest()[:self.checksum_size]
 
@@ -287,18 +317,39 @@ class DeferrableMixin(object):
     def get_unique_path(self):
         raise NotImplementedError()
 
-    def save(self):
+    def save(self, op_name=None):
         """
         Save the state of this object to django storage.
         """
         state = self.__dict__.copy()
         for k, v in state.items():
-            if isinstance(v, set):
+            if k.startswith('_'):
+                del state[k]
+            elif isinstance(v, set):
                 state[k] = list(v)
         state['__class__'] = (self.__class__.__module__, self.__class__.__name__)
-        op_name = 'stage' if self.can_commit else 'commit'
+        if not op_name:
+            op_name = 'stage' if self.can_commit else 'commit'
         operation = CSVOperation.record_operation(self, self.get_unique_path(), op_name, json.dumps(state))
         return operation
+
+    @classmethod
+    def load(cls, operation_id, load_subclasses=False):
+        """
+        Load the CSVProcessor from the saved state.
+        """
+        operation = CSVOperation.objects.get(pk=operation_id)
+        log.info('Loading CSV state %s', operation.data.name)
+        state = json.loads(operation.data.read())
+        module_name, classname = state.pop('__class__')
+        if classname != cls.__name__:
+            if not load_subclasses:
+                # this could indicate tampering
+                raise ValueError("%s != %s" % (classname, cls.__name__))
+            else:
+                cls = getattr(importlib.import_module(module_name), classname)
+        instance = cls(**state)
+        return instance
 
     @classmethod
     def get_deferred_result(cls, result_id):
@@ -313,9 +364,16 @@ class DeferrableMixin(object):
         """
         status = super(DeferrableMixin, self).status()
         status['result_id'] = getattr(self, 'result_id', None)
+        status['saved_error_id'] = getattr(self, 'saved_error_id', None)
         status['waiting'] = bool(status['result_id'])
         status.update(getattr(self, '_status', {}))
         return status
+
+    def preprocess_file(self, reader):
+        super(DeferrableMixin, self).preprocess_file(reader)
+        if self.error_messages:
+            operation = self.save('error')
+            self.saved_error_id = operation.id
 
     def commit(self, running_task=None):
         """
