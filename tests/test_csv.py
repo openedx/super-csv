@@ -58,9 +58,7 @@ class CSVTestCase(TestCase):
 
     def tearDown(self):
         super(CSVTestCase, self).tearDown()
-        for operation in models.CSVOperation.objects.all():
-            operation.data.delete()
-            operation.delete()
+        models.CSVOperation.objects.all().delete()
 
     def test_write(self):
         buf = io.BytesIO()
@@ -79,10 +77,10 @@ class CSVTestCase(TestCase):
         assert status['processed'] == 2
 
     @ddt.data(
-        (b'foo,baz\r\n', None, 'Missing column: bar'),
-        (b'foo,bar\r\n1,2\r\n3,3\r\n', [2], None),
-        (b'foo,bar\r\n1,2\r\n4,4\r\n', [], '4 is not allowed'),
-        (b'foo,bar\r\n1,2\r\n4,4\r\n5,5\r\n', [], 'The CSV file must be under 20 bytes'),
+        (b'foo,baz\r\n', 0, 'Missing column: bar'),
+        (b'foo,bar\r\n1,2\r\n3,3\r\n', 1, None),
+        (b'foo,bar\r\n1,2\r\n4,4\r\n', 0, '4 is not allowed'),
+        (b'foo,bar\r\n1,2\r\n4,4\r\n5,5\r\n', 0, 'The CSV file must be under 20 bytes'),
     )
     @ddt.unpack
     def test_file_errors(self, contents, error_rows, message):
@@ -90,7 +88,7 @@ class CSVTestCase(TestCase):
         processor.process_file(ContentFile(contents))
         status = processor.status()
         if error_rows:
-            assert status["error_rows"] == error_rows
+            assert len(status["error_rows"]) == error_rows
         if message:
             assert status["error_messages"][0] == message
 

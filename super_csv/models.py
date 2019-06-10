@@ -53,3 +53,7 @@ class CSVOperation(TimeStampedModel):
 
     def __str__(self):
         return 'Operation for {} {}'.format(self.class_name, self.unique_id)
+
+    def delete(self):
+        self.data.delete()
+        super(CSVOperation, self).delete()
