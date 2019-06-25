@@ -283,7 +283,7 @@ class ChecksumMixin(object):
     def _get_checksum(self, row):
         to_check = ''.join(text_type(row[key] or '') for key in self.checksum_columns)
         to_check += self.secret
-        return hashlib.md5(to_check).hexdigest()[:self.checksum_size]
+        return hashlib.md5(to_check.encode('utf-8')).hexdigest()[:self.checksum_size]
 
     def preprocess_export_row(self, row):
         """
