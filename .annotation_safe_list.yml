@@ -17,3 +17,19 @@ auth.User:
   ".. pii_retirement:" : consumer_api
 contenttypes.ContentType:
   ".. no_pii:": "This model has no PII"
+djcelery.CrontabSchedule:
+  ".. no_pii:": "This model has no PII"
+djcelery.IntervalSchedule:
+  ".. no_pii:": "This model has no PII"
+djcelery.PeriodicTask:
+  ".. no_pii:": "This model has no PII"
+djcelery.PeriodicTasks:
+  ".. no_pii:": "This model has no PII"
+djcelery.TaskMeta:
+  ".. no_pii:": "This model has no PII"
+djcelery.TaskSetMeta:
+  ".. no_pii:": "This model has no PII"
+djcelery.TaskState:
+  ".. no_pii:": "This model has no PII"
+djcelery.WorkerState:
+  ".. no_pii:": "This model has no PII"
