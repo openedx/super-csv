@@ -4,15 +4,15 @@ Database models for super_csv.
 """
 
 from __future__ import absolute_import, unicode_literals
-import uuid
-import six
 
+import uuid
+
+import six
 from crum import get_current_user
 from django.contrib.auth import get_user_model
 from django.core.files.base import ContentFile
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
-
 from model_utils.models import TimeStampedModel
 
 
@@ -22,6 +22,11 @@ def csv_class_path(instance, filename):
 
 @python_2_unicode_compatible
 class CSVOperation(TimeStampedModel):
+    """
+    Store processing operations/results.
+
+    .. no_pii:
+    """
     class_name = models.CharField(max_length=255, db_index=True)
     unique_id = models.CharField(max_length=255, db_index=True)
     operation = models.CharField(max_length=255)
@@ -40,20 +45,28 @@ class CSVOperation(TimeStampedModel):
     @classmethod
     def get_latest(cls, class_name_or_obj, unique_id):
         try:
-            return cls.objects.filter(class_name=cls._get_class_name(class_name_or_obj), unique_id=unique_id).order_by('-modified')[0]
+            return cls.objects.filter(
+                class_name=cls._get_class_name(class_name_or_obj),
+                unique_id=unique_id).order_by('-modified')[0]
         except IndexError:
             return None
 
     @classmethod
     def record_operation(cls, class_name_or_obj, unique_id, operation, data):
+        """
+        Save a CSVOperation
+        """
         instance = cls(class_name=cls._get_class_name(class_name_or_obj), unique_id=unique_id, operation=operation)
         instance.user = get_current_user()
+        # pylint: disable=no-member
         instance.data.save(uuid.uuid4(), ContentFile(data))
         return instance
 
     def __str__(self):
         return 'Operation for {} {}'.format(self.class_name, self.unique_id)
 
-    def delete(self):
+    # pylint: disable=arguments-differ
+    def delete(self, *args):
+        # pylint: disable=no-member
         self.data.delete()
-        super(CSVOperation, self).delete()
+        super(CSVOperation, self).delete(*args)

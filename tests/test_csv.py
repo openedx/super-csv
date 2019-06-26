@@ -54,14 +54,14 @@ class DummyDeferrableProcessor(csv_processor.DeferrableMixin, DummyProcessor):
 class CSVTestCase(TestCase):
     def setUp(self):
         super(CSVTestCase, self).setUp()
-        self.dummy_csv = b'foo,bar\r\n1,1\r\n2,2\r\n'
+        self.dummy_csv = 'foo,bar\r\n1,1\r\n2,2\r\n'
 
     def tearDown(self):
         super(CSVTestCase, self).tearDown()
         models.CSVOperation.objects.all().delete()
 
     def test_write(self):
-        buf = io.BytesIO()
+        buf = io.StringIO()
         processor = DummyProcessor(dummy_arg=True)
         assert processor.dummy_arg is True
         processor.write_file(buf)
@@ -77,10 +77,10 @@ class CSVTestCase(TestCase):
         assert status['processed'] == 2
 
     @ddt.data(
-        (b'foo,baz\r\n', 0, 'Missing column: bar'),
-        (b'foo,bar\r\n1,2\r\n3,3\r\n', 1, None),
-        (b'foo,bar\r\n1,2\r\n4,4\r\n', 0, '4 is not allowed'),
-        (b'foo,bar\r\n1,2\r\n4,4\r\n5,5\r\n', 0, 'The CSV file must be under 20 bytes'),
+        ('foo,baz\r\n', 0, 'Missing column: bar'),
+        ('foo,bar\r\n1,2\r\n3,3\r\n', 1, None),
+        ('foo,bar\r\n1,2\r\n4,4\r\n', 0, '4 is not allowed'),
+        ('foo,bar\r\n1,2\r\n4,4\r\n5,5\r\n', 0, 'The CSV file must be under 20 bytes'),
     )
     @ddt.unpack
     def test_file_errors(self, contents, error_rows, message):
@@ -96,7 +96,7 @@ class CSVTestCase(TestCase):
         processor = DummyChecksumProcessor()
         row = {
             'foo': 1,
-            'bar': b'hello',
+            'bar': 'hello',
         }
         processor.preprocess_export_row(row)
         assert row['csum'] == 'cfb0'
@@ -123,7 +123,7 @@ class CSVTestCase(TestCase):
 
     def test_defer_too_small(self):
         processor = DummyDeferrableProcessor()
-        processor.process_file(ContentFile(b'foo,bar\r\n1,2\r\n'))
+        processor.process_file(ContentFile('foo,bar\r\n1,2\r\n'))
         status = processor.status()
         assert not status['waiting']
         operation = models.CSVOperation.get_latest(processor, processor.get_unique_path())

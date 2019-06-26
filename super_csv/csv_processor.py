@@ -1,26 +1,80 @@
 """
 Generic class-based CSV Processor.
 """
-from __future__ import absolute_import, unicode_literals, print_function
-import csv
-import hashlib
-import importlib
-import json
-import logging
+from __future__ import absolute_import, print_function, unicode_literals
 
+import csv
+import logging
 from collections import defaultdict
 
-from celery.result import AsyncResult
-from django.conf import settings
 from django.utils.translation import ugettext as _
-from six import text_type
+from six import PY2, text_type
 
-from .models import CSVOperation
-from .tasks import do_deferred_commit
+from .exceptions import ValidationError
+from .mixins import ChecksumMixin, DeferrableMixin
 
 log = logging.getLogger(__name__)
 
 __all__ = ('CSVProcessor', 'ChecksumMixin', 'DeferrableMixin', 'ValidationError')
+
+
+class UnicodeWriter(object):
+    """
+    A CSV writer which will write rows to CSV file "f",
+    which is encoded in the given encoding.
+
+    https://docs.python.org/2/library/csv.html
+    """
+
+    def __init__(self, f, dialect=csv.excel, **kwds):
+        # Redirect output to a queue
+        try:
+            from cStringIO import StringIO
+        except ImportError:
+            from StringIO import StringIO
+        self.queue = StringIO()
+        self.writer = csv.writer(self.queue, dialect=dialect, **kwds)
+        self.stream = f
+
+    def writerow(self, row):
+        """
+        Write the row
+        """
+        newrow = []
+        for col in row:
+            if not isinstance(col, text_type):
+                col = text_type(col)
+            newrow.append(col.encode('utf8'))
+        self.writer.writerow(newrow)
+        # Fetch UTF-8 output from the queue ...
+        data = self.queue.getvalue()
+        data = data.decode("utf-8")
+        # write to the target stream
+        self.stream.write(data)
+        # empty queue
+        self.queue.truncate(0)
+        return data
+
+    def writerows(self, rows):
+        for row in rows:
+            self.writerow(row)
+
+
+class UnicodeDictWriter(csv.DictWriter):
+    """
+    A CSV writer which will write rows to CSV file "f",
+    which is encoded in the given encoding.
+    """
+
+    # pylint: disable=super-init-not-called
+    def __init__(self, f, fieldnames, restval="", extrasaction="raise",
+                 dialect="excel", *args, **kwds):
+        self.fieldnames = fieldnames    # list of keys for the dict
+        self.restval = restval          # for writing short dicts
+        if extrasaction.lower() not in ("raise", "ignore"):
+            raise ValueError("extrasaction (%s) must be 'raise' or 'ignore'" % extrasaction)
+        self.extrasaction = extrasaction
+        self.writer = UnicodeWriter(f, dialect, *args, **kwds)
 
 
 class ResultDict(dict):
@@ -38,10 +92,6 @@ class Echo(object):
     def write(self, value):
         """Write the value by returning it, instead of storing in a buffer."""
         return value
-
-
-class ValidationError(ValueError):
-    pass
 
 
 class CSVProcessor(object):
@@ -103,7 +153,10 @@ class CSVProcessor(object):
         else:
             rows = rows or self.get_rows_to_export()
             columns = columns or self.columns
-        writer = csv.DictWriter(Echo(), columns)
+        if PY2:
+            writer = UnicodeDictWriter(Echo(), columns)
+        else:
+            writer = csv.DictWriter(Echo(), columns)
         header = writer.writerow(dict(zip(writer.fieldnames, writer.fieldnames)))
         yield header
         for row in rows:
@@ -127,6 +180,8 @@ class CSVProcessor(object):
         """
         Create a CSV reader and validate the file.
         Returns the reader.
+
+        file must be open in binary mode
         """
         try:
             reader = csv.DictReader(thefile)
@@ -174,6 +229,7 @@ class CSVProcessor(object):
                 if field not in reader.fieldnames:
                     raise ValidationError(_("Missing column: {}").format(field))
 
+    # pylint: disable=unused-argument
     def validate_row(self, row):
         """
         Validate the fields in the row.
@@ -181,6 +237,7 @@ class CSVProcessor(object):
         """
         return True
 
+    # pylint: disable=unused-argument
     def preprocess_export_row(self, row):
         """
         Preprocess row just before writing to CSV.
@@ -220,7 +277,7 @@ class CSVProcessor(object):
                     saved += 1
                     if rollback_row:
                         self.rollback_rows.append((rownum, rollback_row))
-            except Exception as e:
+            except Exception as e:  # pylint: disable=broad-except
                 log.exception('Committing %r', self)
                 self.add_error(text_type(e), row=rownum)
                 if self.result_data:
@@ -240,7 +297,7 @@ class CSVProcessor(object):
                 did_save, __ = self.process_row(row)
                 if did_save:
                     saved += 1
-            except Exception as e:
+            except Exception as e:  # pylint: disable=broad-except
                 log.exception('Rolling back %r', self)
                 self.add_error(text_type(e), row=rownum)
         self.saved_rows = saved
@@ -268,128 +325,3 @@ class CSVProcessor(object):
         At minimun should implement this method.
         """
         return False, None
-
-
-class ChecksumMixin(object):
-    """
-    CSV mixin that will create and verify a checksum column in the CSV file
-    Specify a list checksum_columns in the subclass.
-    """
-    secret = settings.SECRET_KEY
-    checksum_columns = []
-    checksum_fieldname = 'csum'
-    checksum_size = 4
-
-    def _get_checksum(self, row):
-        to_check = ''.join(text_type(row[key] or '') for key in self.checksum_columns)
-        to_check += self.secret
-        return hashlib.md5(to_check).hexdigest()[:self.checksum_size]
-
-    def preprocess_export_row(self, row):
-        """
-        Set the checksum column in the row.
-        """
-        row[self.checksum_fieldname] = self._get_checksum(row)
-
-    def validate_row(self, row):
-        """
-        Verifies that the calculated checksum matches the stored checksum.
-        """
-        if self._get_checksum(row) != row[self.checksum_fieldname]:
-            raise ValidationError(_("Checksum mismatch"))
-
-
-class DeferrableMixin(object):
-    """
-    Mixin that automatically commits data using celery.
-
-    Subclasses should specify `size_to_defer` to tune when to
-    run the commit synchronously or asynchronously
-
-    Subclasses must override get_unique_path to uniquely identify
-    this task
-    """
-    # if the number of rows is greater than size_to_defer,
-    # run the task asynchonously. Otherwise, commit immediately.
-    # 0 means: always run in a celery task
-    size_to_defer = 0
-
-    def get_unique_path(self):
-        raise NotImplementedError()
-
-    def save(self, op_name=None):
-        """
-        Save the state of this object to django storage.
-        """
-        state = self.__dict__.copy()
-        for k, v in state.items():
-            if k.startswith('_'):
-                del state[k]
-            elif isinstance(v, set):
-                state[k] = list(v)
-        state['__class__'] = (self.__class__.__module__, self.__class__.__name__)
-        if not op_name:
-            op_name = 'stage' if self.can_commit else 'commit'
-        operation = CSVOperation.record_operation(self, self.get_unique_path(), op_name, json.dumps(state))
-        return operation
-
-    @classmethod
-    def load(cls, operation_id, load_subclasses=False):
-        """
-        Load the CSVProcessor from the saved state.
-        """
-        operation = CSVOperation.objects.get(pk=operation_id)
-        log.info('Loading CSV state %s', operation.data.name)
-        state = json.loads(operation.data.read())
-        module_name, classname = state.pop('__class__')
-        if classname != cls.__name__:
-            if not load_subclasses:
-                # this could indicate tampering
-                raise ValueError("%s != %s" % (classname, cls.__name__))
-            else:
-                cls = getattr(importlib.import_module(module_name), classname)
-        instance = cls(**state)
-        return instance
-
-    @classmethod
-    def get_deferred_result(cls, result_id):
-        """
-        Return the celery result for the given id.
-        """
-        return AsyncResult(result_id)
-
-    def status(self):
-        """
-        Return a status dict.
-        """
-        status = super(DeferrableMixin, self).status()
-        status['result_id'] = getattr(self, 'result_id', None)
-        status['saved_error_id'] = getattr(self, 'saved_error_id', None)
-        status['waiting'] = bool(status['result_id'])
-        status.update(getattr(self, '_status', {}))
-        return status
-
-    def preprocess_file(self, reader):
-        super(DeferrableMixin, self).preprocess_file(reader)
-        if self.error_messages:
-            operation = self.save('error')
-            self.saved_error_id = operation.id
-
-    def commit(self, running_task=None):
-        """
-        Automatically defer the commit to a celery task
-        if the number of rows is greater than self.size_to_defer
-        """
-        operation = self.save()
-        if running_task or len(self.stage) <= self.size_to_defer:
-            # called by the async task
-            # or small enough to commit now
-            super(DeferrableMixin, self).commit()
-        else:
-            # run asynchronously
-            result = do_deferred_commit.delay(operation.id)
-            if not result.ready():
-                self.result_id = result.id
-                log.info('Queued task %s %r', operation.id, result)
-            else:
-                self._status = result.get()

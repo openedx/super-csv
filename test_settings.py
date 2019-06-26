@@ -9,6 +9,8 @@ from __future__ import absolute_import, unicode_literals
 
 from os.path import abspath, dirname, join
 
+import djcelery
+
 
 def root(*args):
     """
@@ -49,5 +51,4 @@ CELERY_BROKER_URL = BROKER_URL = 'memory://'
 CELERY_BROKER_TRANSPORT = 'memory://'
 CELERY_BROKER_HOSTNAME = 'localhost'
 
-import djcelery
 djcelery.setup_loader()
