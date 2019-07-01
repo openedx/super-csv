@@ -42,7 +42,9 @@ class UnicodeWriter(object):
         """
         newrow = []
         for col in row:
-            if not isinstance(col, text_type):
+            if col is None:
+                col = ''
+            elif not isinstance(col, text_type):
                 col = text_type(col)
             newrow.append(col.encode('utf8'))
         self.writer.writerow(newrow)
