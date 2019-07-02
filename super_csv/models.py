@@ -43,11 +43,15 @@ class CSVOperation(TimeStampedModel):
         return obj
 
     @classmethod
+    def get_all_history(cls, class_name_or_obj, unique_id):
+        return cls.objects.filter(
+            class_name=cls._get_class_name(class_name_or_obj),
+            unique_id=unique_id)
+
+    @classmethod
     def get_latest(cls, class_name_or_obj, unique_id):
         try:
-            return cls.objects.filter(
-                class_name=cls._get_class_name(class_name_or_obj),
-                unique_id=unique_id).order_by('-modified')[0]
+            return cls.get_all_history(class_name_or_obj, unique_id).order_by('-modified')[0]
         except IndexError:
             return None
 

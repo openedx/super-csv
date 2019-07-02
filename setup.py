@@ -3,11 +3,12 @@
 """
 Package metadata for super_csv.
 """
-from __future__ import absolute_import, print_function
+from __future__ import absolute_import, print_function, unicode_literals
 
 import os
 import re
 import sys
+from io import open as open_as_of_py3
 
 from setuptools import setup
 
@@ -17,7 +18,7 @@ def get_version(*file_paths):
     Extract the version string from the file at the given relative path fragments.
     """
     filename = os.path.join(os.path.dirname(__file__), *file_paths)
-    version_file = open(filename).read()
+    version_file = open_as_of_py3(filename, encoding='utf-8').read()
     version_match = re.search(r"^__version__ = ['\"]([^'\"]*)['\"]",
                               version_file, re.M)
     if version_match:
@@ -35,7 +36,7 @@ def load_requirements(*requirements_paths):
     requirements = set()
     for path in requirements_paths:
         requirements.update(
-            line.split('#')[0].strip() for line in open(path).readlines()
+            line.split('#')[0].strip() for line in open_as_of_py3(path, encoding='utf-8').readlines()
             if is_requirement(line.strip())
         )
     return list(requirements)
@@ -59,8 +60,8 @@ if sys.argv[-1] == 'tag':
     os.system("git push --tags")
     sys.exit()
 
-README = open(os.path.join(os.path.dirname(__file__), 'README.rst')).read()
-CHANGELOG = open(os.path.join(os.path.dirname(__file__), 'CHANGELOG.rst')).read()
+README = open_as_of_py3(os.path.join(os.path.dirname(__file__), 'README.rst'), encoding='utf-8').read()
+CHANGELOG = open_as_of_py3(os.path.join(os.path.dirname(__file__), 'CHANGELOG.rst'), encoding='utf-8').read()
 
 setup(
     name='super-csv',
