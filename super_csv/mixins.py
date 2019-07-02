@@ -5,6 +5,7 @@ ChecksumMixin generates and validates checksums on arbitrary columns.
 
 DeferrableMixin handles asynchronous processing.
 """
+from __future__ import absolute_import, unicode_literals
 
 import hashlib
 import importlib
@@ -19,6 +20,7 @@ from six import text_type
 
 from .exceptions import ValidationError
 from .models import CSVOperation
+from .serializers import CSVOperationSerializer
 
 log = logging.getLogger(__name__)
 
@@ -160,3 +162,14 @@ class DeferrableMixin(object):
                 log.info('Queued task %s %r', operation.id, result)
             else:
                 self._status = result.get()
+
+    def get_committed_history(self):
+        """
+        Get the history of all committed CSV upload operations.
+
+        Returns a list of dictionaries.
+        """
+        all_history = CSVOperation.get_all_history(self, self.get_unique_path())
+        committed_history = all_history.filter(operation='commit')
+        history_with_users = CSVOperationSerializer.get_related_queryset(committed_history)
+        return CSVOperationSerializer(history_with_users, many=True).data

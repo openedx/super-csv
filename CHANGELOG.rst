@@ -16,6 +16,11 @@ Unreleased
 
 *
 
+[0.5.0] - 2019-07-02
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* Exposes methods for serializing history of operations for particular processors.
+
 [0.1.0] - 2019-05-15
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
