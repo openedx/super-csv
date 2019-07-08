@@ -19,7 +19,6 @@ ddt==1.2.1
 django-celery==3.3.0
 django-crum==0.7.3
 django-model-utils==3.2.0
-django-rest-framework==0.1.0
 djangorestframework==3.9.4
 funcsigs==1.0.2           # via pytest
 importlib-metadata==0.18  # via pluggy, pytest
@@ -29,13 +28,13 @@ markupsafe==1.1.1         # via jinja2
 more-itertools==5.0.0     # via pytest
 packaging==19.0           # via pytest
 pathlib2==2.3.4           # via importlib-metadata, pytest, pytest-django
-pbr==5.3.1                # via stevedore
+pbr==5.4.0                # via stevedore
 pluggy==0.12.0            # via pytest
 py==1.8.0                 # via pytest
 pyparsing==2.4.0          # via packaging
 pytest-cov==2.7.1
-pytest-django==3.5.0
-pytest==4.6.3             # via pytest-cov, pytest-django
+pytest-django==3.5.1
+pytest==4.6.4             # via pytest-cov, pytest-django
 python-slugify==3.0.2     # via code-annotations
 pytz==2019.1
 pyyaml==5.1.1             # via code-annotations
@@ -44,4 +43,4 @@ six==1.12.0               # via packaging, pathlib2, pytest, stevedore
 stevedore==1.30.1         # via code-annotations
 text-unidecode==1.2       # via python-slugify
 wcwidth==0.1.7            # via pytest
-zipp==0.5.1               # via importlib-metadata
+zipp==0.5.2               # via importlib-metadata
