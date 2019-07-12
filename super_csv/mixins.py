@@ -99,7 +99,12 @@ class DeferrableMixin(object):
         state['__class__'] = (self.__class__.__module__, self.__class__.__name__)
         if not op_name:
             op_name = 'stage' if self.can_commit else 'commit'
-        operation = CSVOperation.record_operation(self, self.get_unique_path(), op_name, json.dumps(state))
+        operation = CSVOperation.record_operation(
+                        self,
+                        self.get_unique_path(),
+                        op_name,
+                        json.dumps(state),
+                        original_filename=state.get('filename', ''))
         return operation
 
     @classmethod

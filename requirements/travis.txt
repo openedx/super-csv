@@ -4,14 +4,11 @@
 #
 #    make upgrade
 #
-certifi==2019.6.16        # via requests
-chardet==3.0.4            # via requests
 codecov==2.0.15
 configparser==3.7.4       # via importlib-metadata
 contextlib2==0.5.5        # via importlib-metadata
 coverage==4.5.3           # via codecov
 filelock==3.0.12          # via tox
-idna==2.8                 # via requests
 importlib-metadata==0.18  # via pluggy, tox
 packaging==19.0           # via tox
 pathlib2==2.3.4           # via importlib-metadata
@@ -24,6 +21,5 @@ six==1.12.0               # via packaging, pathlib2, tox
 toml==0.10.0              # via tox
 tox-battery==0.5.1
 tox==3.13.2
-urllib3==1.25.3           # via requests
 virtualenv==16.6.1        # via tox
 zipp==0.5.2               # via importlib-metadata
