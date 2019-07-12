@@ -99,9 +99,9 @@ class CSVTestCase(TestCase):
             'bar': 'hello',
         }
         processor.preprocess_export_row(row)
-        assert row['csum'] == 'cfb0'
+        assert row['csum'] == '"cfb0"'
         assert processor.validate_row(row) is None
-        row['csum'] = 'def'
+        row['csum'] = '"def"'
         with self.assertRaises(csv_processor.ValidationError):
             processor.validate_row(row)
 
