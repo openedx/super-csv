@@ -14,8 +14,6 @@ backports.functools-lru-cache==1.5
 billiard==3.3.0.23
 caniusepython3==7.1.0
 celery==3.1.26.post2
-certifi==2019.6.16
-chardet==3.0.4
 click-log==0.3.2
 click==7.0
 code-annotations==0.3.2
@@ -37,7 +35,6 @@ enum34==1.1.6
 filelock==3.0.12
 funcsigs==1.0.2
 futures==3.2.0 ; python_version == "2.7"
-idna==2.8
 importlib-metadata==0.18
 inflect==2.1.0            # via jinja2-pluralize
 isort==4.3.21
@@ -80,7 +77,6 @@ text-unidecode==1.2
 toml==0.10.0
 tox-battery==0.5.1
 tox==3.13.2
-urllib3==1.25.3
 virtualenv==16.6.1
 wcwidth==0.1.7
 wrapt==1.11.2

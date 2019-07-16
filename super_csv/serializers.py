@@ -21,7 +21,7 @@ class CSVOperationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CSVOperation
-        fields = ('class_name', 'unique_id', 'operation', 'user', 'modified')
+        fields = ('class_name', 'unique_id', 'operation', 'user', 'modified', 'original_filename')
 
     @classmethod
     def get_related_queryset(cls, queryset):

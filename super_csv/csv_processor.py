@@ -121,6 +121,7 @@ class CSVProcessor(object):
     max_file_size = 2 * 1024 * 1024
 
     def __init__(self, **kwargs):
+        self.filename = ''  # represents original imported file
         self.total_rows = 0
         self.processed_rows = 0
         self.saved_rows = 0
@@ -186,6 +187,7 @@ class CSVProcessor(object):
         file must be open in binary mode
         """
         try:
+            self.filename = getattr(thefile, 'name', '') or ''
             reader = csv.DictReader(thefile)
             self.validate_file(thefile, reader)
             return reader

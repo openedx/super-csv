@@ -30,6 +30,7 @@ class CSVOperation(TimeStampedModel):
     class_name = models.CharField(max_length=255, db_index=True)
     unique_id = models.CharField(max_length=255, db_index=True)
     operation = models.CharField(max_length=255)
+    original_filename = models.CharField(max_length=255, blank=True, default='')
     user = models.ForeignKey(get_user_model(), null=True, on_delete=models.SET_NULL)
     data = models.FileField(upload_to=csv_class_path, max_length=255)
 
@@ -56,11 +57,14 @@ class CSVOperation(TimeStampedModel):
             return None
 
     @classmethod
-    def record_operation(cls, class_name_or_obj, unique_id, operation, data):
+    def record_operation(cls, class_name_or_obj, unique_id, operation, data, original_filename=''):
         """
         Save a CSVOperation
         """
-        instance = cls(class_name=cls._get_class_name(class_name_or_obj), unique_id=unique_id, operation=operation)
+        instance = cls(class_name=cls._get_class_name(class_name_or_obj),
+                       unique_id=unique_id,
+                       operation=operation,
+                       original_filename=original_filename)
         instance.user = get_current_user()
         # pylint: disable=no-member
         instance.data.save(uuid.uuid4(), ContentFile(data))
