@@ -12,3 +12,4 @@ from .models import CSVOperation
 class OperationAdmin(admin.ModelAdmin):
     list_display = ('id', 'class_name', 'unique_id', 'created')
     readonly_fields = ('created', 'modified')
+    raw_id_fields = ('user', )

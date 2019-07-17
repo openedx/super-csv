@@ -105,6 +105,22 @@ class CSVTestCase(TestCase):
         with self.assertRaises(csv_processor.ValidationError):
             processor.validate_row(row)
 
+    def test_checksum_zero(self):
+        processor = DummyChecksumProcessor()
+        row = {
+            'foo': 0,
+            'bar': None,
+        }
+        processor.preprocess_export_row(row)
+        assert row['csum'] == '"fc43"'
+        assert processor.validate_row(row) is None
+        equiv_row = {
+            'foo': '0',
+            'bar': '',
+            'csum': '"fc43"'
+        }
+        assert processor.validate_row(equiv_row) is None
+
     def test_rollback(self):
         processor = DummyProcessor()
         processor.process_file(ContentFile(self.dummy_csv))

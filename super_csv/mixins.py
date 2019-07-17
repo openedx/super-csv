@@ -36,7 +36,7 @@ class ChecksumMixin(object):
     checksum_size = 4
 
     def _get_checksum(self, row):
-        to_check = ''.join(text_type(row[key] or '') for key in self.checksum_columns)
+        to_check = ''.join(text_type(row[key] if row[key] is not None else '') for key in self.checksum_columns)
         to_check += self.secret
         return '"%s"' % hashlib.md5(to_check.encode('utf8')).hexdigest()[:self.checksum_size]
 
