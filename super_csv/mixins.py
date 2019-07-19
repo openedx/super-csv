@@ -114,7 +114,7 @@ class DeferrableMixin(object):
         """
         operation = CSVOperation.objects.get(pk=operation_id)
         log.info('Loading CSV state %s', operation.data.name)
-        state = json.loads(operation.data.read())
+        state = json.load(operation.data)
         module_name, classname = state.pop('__class__')
         if classname != cls.__name__:
             if not load_subclasses:

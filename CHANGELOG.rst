@@ -16,6 +16,11 @@ Unreleased
 
 *
 
+[0.7.1] - 2019-07-19
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* Exposes additional fields in serialized history of operations re:degree of success of the operation
+
 [0.5.0] - 2019-07-02
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
