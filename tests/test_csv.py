@@ -41,6 +41,7 @@ class DummyProcessor(csv_processor.CSVProcessor):
 
 class DummyChecksumProcessor(csv_processor.ChecksumMixin, DummyProcessor):
     checksum_columns = ['foo', 'bar']
+    columns = ['foo', 'bar', 'csum']
 
 
 class DummyDeferrableProcessor(csv_processor.DeferrableMixin, DummyProcessor):
@@ -76,6 +77,15 @@ class CSVTestCase(TestCase):
         assert status['saved'] == 2
         assert status['processed'] == 2
 
+    def test_write_read(self):
+        buf = io.StringIO()
+        processor = DummyChecksumProcessor()
+        processor.write_file(buf)
+        buf.seek(0)
+        processor.process_file(buf)
+        status = processor.status()
+        assert status['processed'] == 2
+
     @ddt.data(
         ('foo,baz\r\n', 0, 'Missing column: bar'),
         ('foo,bar\r\n1,2\r\n3,3\r\n', 1, None),
@@ -99,9 +109,9 @@ class CSVTestCase(TestCase):
             'bar': 'hello',
         }
         processor.preprocess_export_row(row)
-        assert row['csum'] == '"cfb0"'
+        assert row['csum'] == '@cfb0'
         assert processor.validate_row(row) is None
-        row['csum'] = '"def"'
+        row['csum'] = '@def'
         with self.assertRaises(csv_processor.ValidationError):
             processor.validate_row(row)
 
@@ -112,12 +122,12 @@ class CSVTestCase(TestCase):
             'bar': None,
         }
         processor.preprocess_export_row(row)
-        assert row['csum'] == '"fc43"'
+        assert row['csum'] == '@fc43'
         assert processor.validate_row(row) is None
         equiv_row = {
             'foo': '0',
             'bar': '',
-            'csum': '"fc43"'
+            'csum': '@fc43'
         }
         assert processor.validate_row(equiv_row) is None
 
