@@ -38,7 +38,7 @@ class ChecksumMixin(object):
     def _get_checksum(self, row):
         to_check = ''.join(text_type(row[key] if row[key] is not None else '') for key in self.checksum_columns)
         to_check += self.secret
-        return '"%s"' % hashlib.md5(to_check.encode('utf8')).hexdigest()[:self.checksum_size]
+        return '@%s' % hashlib.md5(to_check.encode('utf8')).hexdigest()[:self.checksum_size]
 
     def preprocess_export_row(self, row):
         """
@@ -51,7 +51,11 @@ class ChecksumMixin(object):
         Verifies that the calculated checksum matches the stored checksum.
         """
         if self._get_checksum(row) != row[self.checksum_fieldname]:
-            raise ValidationError(_("Checksum mismatch"))
+            raise ValidationError(
+                _("Checksum mismatch. Required columns cannot be edited: {}").format(
+                    ','.join(self.checksum_columns)
+                )
+            )
 
 
 @task(bind=True)
