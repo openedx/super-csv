@@ -42,6 +42,8 @@ LOCALE_PATHS = [
 ]
 
 ROOT_URLCONF = 'super_csv.urls'
+CSV_EXPIRATION_DAYS = 1
+
 
 SECRET_KEY = 'insecure-secret-key'
 CELERY_ALWAYS_EAGER = True

@@ -5,7 +5,9 @@ Database models for super_csv.
 
 from __future__ import absolute_import, unicode_literals
 
+import logging
 import uuid
+from datetime import timedelta
 
 import six
 from crum import get_current_user
@@ -13,7 +15,10 @@ from django.contrib.auth import get_user_model
 from django.core.files.base import ContentFile
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
+from django.utils.timezone import now
 from model_utils.models import TimeStampedModel
+
+log = logging.getLogger(__name__)
 
 
 def csv_class_path(instance, filename):
@@ -69,6 +74,17 @@ class CSVOperation(TimeStampedModel):
         # pylint: disable=no-member
         instance.data.save(uuid.uuid4(), ContentFile(data))
         return instance
+
+    @classmethod
+    def expire_data(cls, expiration_days):
+        """
+        Delete data older than expiration_time (days)
+        """
+        if expiration_days:
+            expiration = now() - timedelta(days=expiration_days)
+            for obj in cls.objects.filter(modified__lte=expiration):
+                log.info('Expiring %r', obj.data)
+                obj.data.delete()
 
     def __str__(self):
         return 'Operation for {} {}'.format(self.class_name, self.unique_id)
