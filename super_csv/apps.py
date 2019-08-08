@@ -14,4 +14,14 @@ class SuperCSVConfig(AppConfig):
     """
 
     name = 'super_csv'
-    plugin_app = {}
+    plugin_app = {
+        u'settings_config': {
+            u'lms.djangoapp': {
+                u'common': {'relative_path': u'common_settings'},
+            },
+        },
+
+    }
+
+    def ready(self):
+        from . import signals  # pylint: disable=unused-variable

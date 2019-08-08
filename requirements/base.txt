@@ -11,7 +11,7 @@ celery==3.1.26.post2      # via django-celery
 django-celery==3.3.0
 django-crum==0.7.3
 django-model-utils==3.2.0
-django==1.11.22
+django==1.11.23
 djangorestframework==3.9.4
 kombu==3.0.37             # via celery
-pytz==2019.1              # via celery, django
+pytz==2019.2              # via celery, django
