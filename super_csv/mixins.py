@@ -180,5 +180,5 @@ class DeferrableMixin(object):
         """
         all_history = CSVOperation.get_all_history(self, self.get_unique_path())
         committed_history = all_history.filter(operation='commit')
-        history_with_users = CSVOperationSerializer.get_related_queryset(committed_history)
+        history_with_users = CSVOperationSerializer.get_related_queryset(committed_history).order_by('-created')
         return CSVOperationSerializer(history_with_users, many=True).data
