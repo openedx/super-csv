@@ -4,11 +4,14 @@ Tests for CSVProcessor
 from __future__ import absolute_import, print_function, unicode_literals
 
 import io
+import mock
 
 import ddt
 # could use BytesIO, but this adds a size attribute
 from django.core.files.base import ContentFile
 from django.test import TestCase
+from django.contrib.auth import get_user_model
+
 
 from super_csv import csv_processor, models
 
@@ -154,3 +157,17 @@ class CSVTestCase(TestCase):
         assert not status['waiting']
         operation = models.CSVOperation.get_latest(processor, processor.get_unique_path())
         assert operation is not None
+
+    @mock.patch('super_csv.models.get_current_user')
+    def test_user(self, patch_get_user):
+        user = get_user_model().objects.create_user(username='testuser', password='12345')
+        buf = ContentFile(self.dummy_csv)
+        processor = DummyDeferrableProcessor()
+        patch_get_user.side_effect = (user, None, None)
+        processor._user = user
+        processor.process_file(buf)
+        csv_operations = models.CSVOperation.objects.all()
+        assert len(csv_operations) == 3
+        assert csv_operations[0].user == user
+        assert csv_operations[1].user is None
+        assert csv_operations[2].user is None
