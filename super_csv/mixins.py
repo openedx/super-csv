@@ -81,6 +81,9 @@ class DeferrableMixin(object):
 
     Subclasses must override get_unique_path to uniquely identify
     this task
+
+    Subclasses can define a field `_user` which will be used when creating CSVOperations in `save`
+    and will be passed as a kwarg to the subclass's constructor when loading CSVOperations in `load`
     """
     # if the number of rows is greater than size_to_defer,
     # run the task asynchonously. Otherwise, commit immediately.
