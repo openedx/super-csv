@@ -62,7 +62,7 @@ class CSVOperation(TimeStampedModel):
             return None
 
     @classmethod
-    def record_operation(cls, class_name_or_obj, unique_id, operation, data, original_filename=''):
+    def record_operation(cls, class_name_or_obj, unique_id, operation, data, original_filename='', user=None):
         """
         Save a CSVOperation
         """
@@ -70,7 +70,7 @@ class CSVOperation(TimeStampedModel):
                        unique_id=unique_id,
                        operation=operation,
                        original_filename=original_filename)
-        instance.user = get_current_user()
+        instance.user = user or get_current_user()
         # pylint: disable=no-member
         instance.data.save(uuid.uuid4(), ContentFile(data))
         return instance

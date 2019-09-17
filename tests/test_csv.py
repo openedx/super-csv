@@ -168,6 +168,5 @@ class CSVTestCase(TestCase):
         processor.process_file(buf)
         csv_operations = models.CSVOperation.objects.all()
         assert len(csv_operations) == 3
-        assert csv_operations[0].user == user
-        assert csv_operations[1].user is None
-        assert csv_operations[2].user is None
+        for csv_operation in csv_operations:
+            assert csv_operation.user == user

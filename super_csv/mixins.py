@@ -95,6 +95,7 @@ class DeferrableMixin(object):
         Save the state of this object to django storage.
         """
         state = self.__dict__.copy()
+        user = state.get('_user')
         for k, v in state.items():
             if k.startswith('_'):
                 del state[k]
@@ -108,7 +109,9 @@ class DeferrableMixin(object):
                         self.get_unique_path(),
                         op_name,
                         json.dumps(state),
-                        original_filename=state.get('filename', ''))
+                        original_filename=state.get('filename', ''),
+                        user=user,
+                    )
         return operation
 
     @classmethod
@@ -119,6 +122,7 @@ class DeferrableMixin(object):
         operation = CSVOperation.objects.get(pk=operation_id)
         log.info('Loading CSV state %s', operation.data.name)
         state = json.load(operation.data)
+        state['_user'] = operation.user
         module_name, classname = state.pop('__class__')
         if classname != cls.__name__:
             if not load_subclasses:
