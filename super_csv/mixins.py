@@ -96,7 +96,9 @@ class DeferrableMixin(object):
         """
         state = self.__dict__.copy()
         user = state.get('_user')
-        for k, v in state.items():
+
+        for k in list(state):
+            v = state[k]
             if k.startswith('_'):
                 del state[k]
             elif isinstance(v, set):
