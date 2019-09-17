@@ -4,14 +4,13 @@ Tests for CSVProcessor
 from __future__ import absolute_import, print_function, unicode_literals
 
 import io
-import mock
 
 import ddt
+import mock
+from django.contrib.auth import get_user_model
 # could use BytesIO, but this adds a size attribute
 from django.core.files.base import ContentFile
 from django.test import TestCase
-from django.contrib.auth import get_user_model
-
 
 from super_csv import csv_processor, models
 
