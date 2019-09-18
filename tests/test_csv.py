@@ -163,7 +163,7 @@ class CSVTestCase(TestCase):
         buf = ContentFile(self.dummy_csv)
         processor = DummyDeferrableProcessor()
         patch_get_user.side_effect = (user, None, None)
-        processor._user = user
+        processor.user_id = user.id
         processor.process_file(buf)
         csv_operations = models.CSVOperation.objects.all()
         assert len(csv_operations) == 3

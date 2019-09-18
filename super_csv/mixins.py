@@ -14,7 +14,9 @@ import logging
 
 from celery import task
 from celery.result import AsyncResult
+from crum import get_current_user
 from django.conf import settings
+from django.contrib.auth import get_user_model
 from django.utils.translation import ugettext as _
 from six import text_type
 
@@ -98,8 +100,6 @@ class DeferrableMixin(object):
         Save the state of this object to django storage.
         """
         state = self.__dict__.copy()
-        user = state.get('_user')
-
         for k in list(state):
             v = state[k]
             if k.startswith('_'):
@@ -109,6 +109,13 @@ class DeferrableMixin(object):
         state['__class__'] = (self.__class__.__module__, self.__class__.__name__)
         if not op_name:
             op_name = 'stage' if self.can_commit else 'commit'
+
+        user_id = state.get('user_id')
+        if user_id:
+            user = get_user_model().objects.get(id=user_id)
+        else:
+            user = get_current_user()
+
         operation = CSVOperation.record_operation(
                         self,
                         self.get_unique_path(),
@@ -127,7 +134,6 @@ class DeferrableMixin(object):
         operation = CSVOperation.objects.get(pk=operation_id)
         log.info('Loading CSV state %s', operation.data.name)
         state = json.load(operation.data)
-        state['_user'] = operation.user
         module_name, classname = state.pop('__class__')
         if classname != cls.__name__:
             if not load_subclasses:
