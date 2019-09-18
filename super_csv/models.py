@@ -10,7 +10,6 @@ import uuid
 from datetime import timedelta
 
 import six
-from crum import get_current_user
 from django.contrib.auth import get_user_model
 from django.core.files.base import ContentFile
 from django.db import models
@@ -62,15 +61,17 @@ class CSVOperation(TimeStampedModel):
             return None
 
     @classmethod
-    def record_operation(cls, class_name_or_obj, unique_id, operation, data, original_filename=''):
+    def record_operation(cls, class_name_or_obj, unique_id, operation, data, original_filename='', user=None):
         """
         Save a CSVOperation
         """
-        instance = cls(class_name=cls._get_class_name(class_name_or_obj),
-                       unique_id=unique_id,
-                       operation=operation,
-                       original_filename=original_filename)
-        instance.user = get_current_user()
+        instance = cls(
+            class_name=cls._get_class_name(class_name_or_obj),
+            unique_id=unique_id,
+            operation=operation,
+            original_filename=original_filename,
+            user=user,
+        )
         # pylint: disable=no-member
         instance.data.save(uuid.uuid4(), ContentFile(data))
         return instance

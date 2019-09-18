@@ -14,7 +14,9 @@ import logging
 
 from celery import task
 from celery.result import AsyncResult
+from crum import get_current_user
 from django.conf import settings
+from django.contrib.auth import get_user_model
 from django.utils.translation import ugettext as _
 from six import text_type
 
@@ -81,6 +83,9 @@ class DeferrableMixin(object):
 
     Subclasses must override get_unique_path to uniquely identify
     this task
+
+    Subclasses can define a field `user_id` which will be loaded and saved in the CSVOperation.
+    Otherwise, the current request (if any) user will be used.
     """
     # if the number of rows is greater than size_to_defer,
     # run the task asynchonously. Otherwise, commit immediately.
@@ -95,7 +100,8 @@ class DeferrableMixin(object):
         Save the state of this object to django storage.
         """
         state = self.__dict__.copy()
-        for k, v in state.items():
+        for k in list(state):
+            v = state[k]
             if k.startswith('_'):
                 del state[k]
             elif isinstance(v, set):
@@ -103,12 +109,21 @@ class DeferrableMixin(object):
         state['__class__'] = (self.__class__.__module__, self.__class__.__name__)
         if not op_name:
             op_name = 'stage' if self.can_commit else 'commit'
+
+        user_id = state.get('user_id')
+        if user_id:
+            user = get_user_model().objects.get(id=user_id)
+        else:
+            user = get_current_user()
+
         operation = CSVOperation.record_operation(
                         self,
                         self.get_unique_path(),
                         op_name,
                         json.dumps(state),
-                        original_filename=state.get('filename', ''))
+                        original_filename=state.get('filename', ''),
+                        user=user,
+                    )
         return operation
 
     @classmethod

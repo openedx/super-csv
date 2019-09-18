@@ -6,6 +6,8 @@ from __future__ import absolute_import, print_function, unicode_literals
 import io
 
 import ddt
+import mock
+from django.contrib.auth import get_user_model
 # could use BytesIO, but this adds a size attribute
 from django.core.files.base import ContentFile
 from django.test import TestCase
@@ -154,3 +156,16 @@ class CSVTestCase(TestCase):
         assert not status['waiting']
         operation = models.CSVOperation.get_latest(processor, processor.get_unique_path())
         assert operation is not None
+
+    @mock.patch('super_csv.mixins.get_current_user')
+    def test_user(self, patch_get_user):
+        user = get_user_model().objects.create_user(username='testuser', password='12345')
+        buf = ContentFile(self.dummy_csv)
+        processor = DummyDeferrableProcessor()
+        patch_get_user.side_effect = (user, None, None)
+        processor.user_id = user.id
+        processor.process_file(buf)
+        csv_operations = models.CSVOperation.objects.all()
+        assert len(csv_operations) == 3
+        for csv_operation in csv_operations:
+            assert csv_operation.user == user
