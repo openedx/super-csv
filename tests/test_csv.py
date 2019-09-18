@@ -157,7 +157,7 @@ class CSVTestCase(TestCase):
         operation = models.CSVOperation.get_latest(processor, processor.get_unique_path())
         assert operation is not None
 
-    @mock.patch('super_csv.models.get_current_user')
+    @mock.patch('super_csv.mixins.get_current_user')
     def test_user(self, patch_get_user):
         user = get_user_model().objects.create_user(username='testuser', password='12345')
         buf = ContentFile(self.dummy_csv)
