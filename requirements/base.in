@@ -6,3 +6,4 @@ django-model-utils         # Provides TimeStampedModel abstract base class
 django-celery
 django-crum
 djangorestframework
+edx-celeryutils

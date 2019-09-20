@@ -20,6 +20,7 @@ django-celery==3.3.0
 django-crum==0.7.3
 django-model-utils==3.2.0
 djangorestframework==3.9.4
+edx-celeryutils==0.3.0
 freezegun==0.3.12
 funcsigs==1.0.2           # via mock, pytest
 importlib-metadata==0.19  # via pluggy, pytest

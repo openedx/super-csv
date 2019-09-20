@@ -14,9 +14,11 @@ import logging
 
 from celery import task
 from celery.result import AsyncResult
+from celery_utils.logged_task import LoggedTask
 from crum import get_current_user
 from django.conf import settings
 from django.contrib.auth import get_user_model
+from django.db import DatabaseError, transaction
 from django.utils.translation import ugettext as _
 from six import text_type
 
@@ -60,7 +62,7 @@ class ChecksumMixin(object):
             )
 
 
-@task(bind=True)
+@task(bind=True, base=LoggedTask)
 def do_deferred_commit(self, operation_id):  # pylint: disable=unused-argument
     """
     Commit the CSV Operation, asynchronously.
@@ -173,13 +175,26 @@ class DeferrableMixin(object):
         Automatically defer the commit to a celery task
         if the number of rows is greater than self.size_to_defer
         """
-        operation = self.save()
         if running_task or len(self.stage) <= self.size_to_defer:
-            # called by the async task
-            # or small enough to commit now
+            # Either an async task is already in process,
+            # or the size of the request is small enough to commit synchronously
+            self.save()
             super(DeferrableMixin, self).commit()
         else:
-            # run asynchronously
+            # We'll enqueue an async celery task.
+            try:
+                with transaction.atomic():
+                    # We have to make sure that a CSVOperation record
+                    # is created and committed before the task starts,
+                    # because the task will look for that CSVOperation
+                    # in the database outside of the context of the
+                    # current transaction.
+                    operation = self.save()
+            except DatabaseError:
+                log.exception('Error saving DeferrableMixin {}'.format(self))
+                raise
+
+            # Now enqueue the async task.
             result = do_deferred_commit.delay(operation.id)
             if not result.ready():
                 self.result_id = result.id

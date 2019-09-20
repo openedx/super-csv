@@ -77,3 +77,9 @@ tests/__init__.py
 
 # Development task artifacts
 default.db
+
+# local virtualenvs
+supercsv-env/
+
+# test output
+csv/
