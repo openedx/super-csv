@@ -16,6 +16,9 @@ from super_csv import csv_processor, models
 
 
 class DummyProcessor(csv_processor.CSVProcessor):
+    """
+    Fixture class the inherits from CSVProcessor.
+    """
     max_file_size = 20
     columns = ['foo', 'bar']
     required_columns = ['foo', 'bar']
@@ -48,6 +51,28 @@ class DummyChecksumProcessor(csv_processor.ChecksumMixin, DummyProcessor):
 
 class DummyDeferrableProcessor(csv_processor.DeferrableMixin, DummyProcessor):
     size_to_defer = 1
+    test_set = set()
+
+    def get_unique_path(self):
+        return 'test'
+
+
+USERNAME_FROM_SUBCLASS = 'user_specified_by_client'
+
+
+class DummyDeferrableProcessorSavingUser(csv_processor.DeferrableMixin, DummyProcessor):
+    """
+    Fixture that inherits from DeferrableMixin and overrides a save() method,
+    which calls the parent save() method with a non-null ``operating_user`` kwarg.
+    """
+    size_to_defer = 1
+
+    def save(self, operation_name=None, operating_user=None):
+        user = get_user_model().objects.get(username=USERNAME_FROM_SUBCLASS)
+        return super(DummyDeferrableProcessorSavingUser, self).save(
+            operation_name=operation_name,
+            operating_user=user,
+        )
 
     def get_unique_path(self):
         return 'test'
@@ -55,9 +80,15 @@ class DummyDeferrableProcessor(csv_processor.DeferrableMixin, DummyProcessor):
 
 @ddt.ddt
 class CSVTestCase(TestCase):
-    def setUp(self):
-        super(CSVTestCase, self).setUp()
-        self.dummy_csv = 'foo,bar\r\n1,1\r\n2,2\r\n'
+    """
+    Test class for CSVProcessor and DeferrableMixin classes.
+    """
+    @classmethod
+    def setUpTestData(cls):
+        super(CSVTestCase, cls).setUpTestData()
+        cls.dummy_csv = 'foo,bar\r\n1,1\r\n2,2\r\n'
+        cls.user = get_user_model().objects.create_user(username='testuser', password='12345')
+        cls.user_from_subclass = get_user_model().objects.create(username=USERNAME_FROM_SUBCLASS, password='12345')
 
     def tearDown(self):
         super(CSVTestCase, self).tearDown()
@@ -66,7 +97,7 @@ class CSVTestCase(TestCase):
     def test_write(self):
         buf = io.StringIO()
         processor = DummyProcessor(dummy_arg=True)
-        assert processor.dummy_arg is True
+        assert processor.dummy_arg is True  # pylint: disable=no-member
         processor.write_file(buf)
         data = buf.getvalue()
         assert data == self.dummy_csv
@@ -158,14 +189,20 @@ class CSVTestCase(TestCase):
         assert operation is not None
 
     @mock.patch('super_csv.mixins.get_current_user')
-    def test_user(self, patch_get_user):
-        user = get_user_model().objects.create_user(username='testuser', password='12345')
-        buf = ContentFile(self.dummy_csv)
+    def test_operating_user_is_recorded_from_request(self, patch_get_user):
         processor = DummyDeferrableProcessor()
-        patch_get_user.side_effect = (user, None, None)
-        processor.user_id = user.id
-        processor.process_file(buf)
+        patch_get_user.return_value = self.user
+        processor.process_file(ContentFile(self.dummy_csv))
         csv_operations = models.CSVOperation.objects.all()
         assert len(csv_operations) == 3
         for csv_operation in csv_operations:
-            assert csv_operation.user == user
+            assert csv_operation.user == self.user
+
+    @mock.patch('super_csv.mixins.get_current_user', return_value=None)
+    def test_operating_user_is_recorded_by_subclass(self, patch_get_user):  # pylint: disable=unused-argument
+        processor = DummyDeferrableProcessorSavingUser()
+        processor.process_file(ContentFile(self.dummy_csv))
+        csv_operations = models.CSVOperation.objects.all()
+        assert len(csv_operations) == 3
+        for csv_operation in csv_operations:
+            assert csv_operation.user == self.user_from_subclass

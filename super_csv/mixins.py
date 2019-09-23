@@ -17,7 +17,6 @@ from celery.result import AsyncResult
 from celery_utils.logged_task import LoggedTask
 from crum import get_current_user
 from django.conf import settings
-from django.contrib.auth import get_user_model
 from django.db import DatabaseError, transaction
 from django.utils.translation import ugettext as _
 from six import text_type
@@ -81,13 +80,10 @@ class DeferrableMixin(object):
     Mixin that automatically commits data using celery.
 
     Subclasses should specify `size_to_defer` to tune when to
-    run the commit synchronously or asynchronously
+    run the commit synchronously or asynchronously.
 
     Subclasses must override get_unique_path to uniquely identify
-    this task
-
-    Subclasses can define a field `user_id` which will be loaded and saved in the CSVOperation.
-    Otherwise, the current request (if any) user will be used.
+    this task.
     """
     # if the number of rows is greater than size_to_defer,
     # run the task asynchonously. Otherwise, commit immediately.
@@ -97,9 +93,13 @@ class DeferrableMixin(object):
     def get_unique_path(self):
         raise NotImplementedError()
 
-    def save(self, op_name=None):
+    def save(self, operation_name=None, operating_user=None):
         """
         Save the state of this object to django storage.
+
+        Clients may pass an optional ``operating_user`` kwarg to
+        indicate the ``auth.User`` who is saving this operation state.
+        Otherwise, the current request's (if any) user will be recorded.
         """
         state = self.__dict__.copy()
         for k in list(state):
@@ -108,24 +108,20 @@ class DeferrableMixin(object):
                 del state[k]
             elif isinstance(v, set):
                 state[k] = list(v)
-        state['__class__'] = (self.__class__.__module__, self.__class__.__name__)
-        if not op_name:
-            op_name = 'stage' if self.can_commit else 'commit'
 
-        user_id = state.get('user_id')
-        if user_id:
-            user = get_user_model().objects.get(id=user_id)
-        else:
-            user = get_current_user()
+        state['__class__'] = (self.__class__.__module__, self.__class__.__name__)
+
+        if not operation_name:
+            operation_name = 'stage' if self.can_commit else 'commit'
 
         operation = CSVOperation.record_operation(
-                        self,
-                        self.get_unique_path(),
-                        op_name,
-                        json.dumps(state),
-                        original_filename=state.get('filename', ''),
-                        user=user,
-                    )
+            self,
+            self.get_unique_path(),
+            operation_name,
+            json.dumps(state),
+            original_filename=state.get('filename', ''),
+            user=operating_user or get_current_user(),
+        )
         return operation
 
     @classmethod
