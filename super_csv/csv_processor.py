@@ -96,6 +96,15 @@ class Echo(object):
         return value
 
 
+def decode_utf8(input_iterator):
+    """
+    Generator that decodes a utf-8 encoded
+    input line by line
+    """
+    for l in input_iterator:
+        yield l if isinstance(l, str) else l.decode('utf-8')
+
+
 class CSVProcessor(object):
     """
     Generic CSV processor.
@@ -188,7 +197,7 @@ class CSVProcessor(object):
         """
         try:
             self.filename = getattr(thefile, 'name', '') or ''
-            reader = csv.DictReader(thefile)
+            reader = csv.DictReader(decode_utf8(thefile))
             self.validate_file(thefile, reader)
             return reader
         except ValidationError as exc:
