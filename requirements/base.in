@@ -1,9 +1,10 @@
 # Core requirements for using this application
 -c constraints.txt
 
-Django>=1.11,<2.0          # Web application framework
+Django>=1.11               # Web application framework
 django-model-utils         # Provides TimeStampedModel abstract base class
 django-celery
 django-crum
 djangorestframework
 edx-celeryutils
+simplejson

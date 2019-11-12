@@ -3,8 +3,7 @@ Serializers for CSV operation data.
 """
 from __future__ import absolute_import, unicode_literals
 
-import json
-
+import simplejson as json
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
 

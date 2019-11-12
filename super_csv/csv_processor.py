@@ -68,7 +68,7 @@ class UnicodeDictWriter(csv.DictWriter):
     which is encoded in the given encoding.
     """
 
-    # pylint: disable=super-init-not-called
+    # pylint: disable=super-init-not-called, keyword-arg-before-vararg
     def __init__(self, f, fieldnames, restval="", extrasaction="raise",
                  dialect="excel", *args, **kwds):
         self.fieldnames = fieldnames    # list of keys for the dict
@@ -80,6 +80,7 @@ class UnicodeDictWriter(csv.DictWriter):
 
 
 class ResultDict(dict):
+    """ Resut Dict. """
     def __init__(self, *args, **kwargs):
         super(ResultDict, self).__init__(*args, **kwargs)
         if 'error' not in self:
