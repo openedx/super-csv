@@ -7,12 +7,15 @@
 amqp==1.4.9               # via kombu
 anyjson==0.3.3            # via kombu
 billiard==3.3.0.23        # via celery
-celery==3.1.26.post2      # via django-celery
-django-celery==3.3.0
-django-crum==0.7.3
-django-model-utils==3.2.0
-django==1.11.23
+celery==3.1.26.post2      # via django-celery, edx-celeryutils
+django-celery==3.3.1
+django-crum==0.7.4
+django-model-utils==3.0.0
+django==1.11.26
 djangorestframework==3.9.4
 edx-celeryutils==0.3.0
+future==0.18.2            # via edx-celeryutils
+jsonfield==2.0.2          # via edx-celeryutils
 kombu==3.0.37             # via celery
-pytz==2019.2              # via celery, django
+pytz==2019.3              # via celery, django
+simplejson==3.16.0

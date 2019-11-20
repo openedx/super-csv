@@ -9,9 +9,9 @@ from __future__ import absolute_import, unicode_literals
 
 import hashlib
 import importlib
-import json
 import logging
 
+import simplejson as json
 from celery import task
 from celery.result import AsyncResult
 from celery_utils.logged_task import LoggedTask

@@ -71,6 +71,7 @@ docs/super_csv.*.rst
 # Private requirements
 requirements/private.in
 requirements/private.txt
+requirements/test.txt.tmp
 
 # tox environment temporary artifacts
 tests/__init__.py

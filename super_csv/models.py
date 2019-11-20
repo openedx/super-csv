@@ -55,6 +55,9 @@ class CSVOperation(TimeStampedModel):
 
     @classmethod
     def get_latest(cls, class_name_or_obj, unique_id):
+        """
+        Get the latest Entry.
+        """
         try:
             return cls.get_all_history(class_name_or_obj, unique_id).order_by('-modified')[0]
         except IndexError:
@@ -72,7 +75,6 @@ class CSVOperation(TimeStampedModel):
             original_filename=original_filename,
             user=user,
         )
-        # pylint: disable=no-member
         instance.data.save(uuid.uuid4(), ContentFile(data))
         return instance
 
@@ -92,6 +94,5 @@ class CSVOperation(TimeStampedModel):
 
     # pylint: disable=arguments-differ
     def delete(self, *args):
-        # pylint: disable=no-member
         self.data.delete()
         super(CSVOperation, self).delete(*args)
