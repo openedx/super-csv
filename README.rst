@@ -26,7 +26,7 @@ Testing
 
     make requirements
 
-Will install all pre-requisuites. ::
+Will install all prerequisites. ::
 
     make test
 

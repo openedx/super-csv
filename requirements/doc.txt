@@ -4,61 +4,74 @@
 #
 #    make upgrade
 #
-amqp==1.4.9
-anyjson==0.3.3
-atomicwrites==1.3.0
-attrs==19.3.0
-billiard==3.3.0.23
-bleach==3.1.0             # via readme-renderer
-celery==3.1.26.post2
-chardet==3.0.4            # via doc8
-click==7.0
-code-annotations==0.3.2
-configparser==4.0.2
-contextlib2==0.6.0.post1
-coverage==4.5.4
-ddt==1.2.1
-django-celery==3.3.1
-django-crum==0.7.4
-django-model-utils==3.0.0
-django==1.11.26
-djangorestframework==3.9.4
-doc8==0.8.0
-docutils==0.15.2          # via doc8, readme-renderer, restructuredtext-lint
-edx-celeryutils==0.3.0
-edx-sphinx-theme==1.5.0
-freezegun==0.3.12
-funcsigs==1.0.2
-future==0.18.2
-importlib-metadata==0.23
-jinja2==2.10.3
-jsonfield==2.0.2
-kombu==3.0.37
-markupsafe==1.1.1
-mock==3.0.5
-more-itertools==5.0.0
-packaging==19.2
-pathlib2==2.3.5
-pbr==5.4.3
-pluggy==0.13.0
-py==1.8.0
-pygments==2.4.2           # via readme-renderer
-pyparsing==2.4.5
-pytest-cov==2.8.1
-pytest-django==3.7.0
-pytest==4.6.6
-python-dateutil==2.8.1
-python-slugify==4.0.0
-pytz==2019.3
-pyyaml==5.1.2
-readme-renderer==24.0
+alabaster==0.7.12         # via sphinx
+amqp==1.4.9               # via -r requirements/test.txt, kombu
+anyjson==0.3.3            # via -r requirements/test.txt, kombu
+atomicwrites==1.3.0       # via -r requirements/test.txt, pytest
+attrs==19.3.0             # via -r requirements/test.txt, pytest
+babel==2.8.0              # via sphinx
+billiard==3.3.0.23        # via -r requirements/test.txt, celery
+bleach==3.1.1             # via readme-renderer
+celery==3.1.26.post2      # via -r requirements/test.txt, django-celery, edx-celeryutils
+certifi==2019.11.28       # via requests
+chardet==3.0.4            # via doc8, requests
+click==7.0                # via -r requirements/test.txt, code-annotations
+code-annotations==0.3.3   # via -r requirements/test.txt
+configparser==4.0.2       # via -r requirements/test.txt, importlib-metadata
+contextlib2==0.6.0.post1  # via -r requirements/test.txt, importlib-metadata, zipp
+coverage==5.0.3           # via -r requirements/test.txt, pytest-cov
+ddt==1.2.2                # via -r requirements/test.txt
+django-celery==3.3.1      # via -r requirements/test.txt, edx-celeryutils
+django-crum==0.7.5        # via -r requirements/test.txt
+django-model-utils==3.0.0  # via -c requirements/constraints.txt, -r requirements/test.txt, edx-celeryutils
+django==1.11.29           # via -r requirements/test.txt, code-annotations, django-celery, django-crum, django-model-utils, edx-celeryutils, jsonfield2
+djangorestframework==3.9.4  # via -r requirements/test.txt
+doc8==0.8.0               # via -r requirements/doc.in
+docutils==0.16            # via doc8, readme-renderer, restructuredtext-lint, sphinx
+edx-celeryutils==0.3.2    # via -r requirements/test.txt
+edx-sphinx-theme==1.5.0   # via -r requirements/doc.in
+freezegun==0.3.15         # via -r requirements/test.txt
+funcsigs==1.0.2           # via -r requirements/test.txt, mock, pytest
+future==0.18.2            # via -r requirements/test.txt, edx-celeryutils
+idna==2.9                 # via requests
+imagesize==1.2.0          # via sphinx
+importlib-metadata==1.5.0  # via -r requirements/test.txt, pluggy, pytest
+jinja2==2.11.1            # via -r requirements/test.txt, code-annotations, sphinx
+jsonfield2==3.0.0         # via -c requirements/constraints.txt, -r requirements/test.txt, edx-celeryutils
+kombu==3.0.37             # via -r requirements/test.txt, celery
+markupsafe==1.1.1         # via -r requirements/test.txt, jinja2
+mock==3.0.5               # via -r requirements/test.txt
+more-itertools==5.0.0     # via -c requirements/constraints.txt, -r requirements/test.txt, pytest
+packaging==20.1           # via -r requirements/test.txt, pytest, sphinx
+pathlib2==2.3.5           # via -r requirements/test.txt, importlib-metadata, pytest, pytest-django
+pbr==5.4.4                # via -r requirements/test.txt, stevedore
+pluggy==0.13.1            # via -r requirements/test.txt, pytest
+py==1.8.1                 # via -r requirements/test.txt, pytest
+pygments==2.5.2           # via readme-renderer, sphinx
+pyparsing==2.4.6          # via -r requirements/test.txt, packaging
+pytest-cov==2.8.1         # via -r requirements/test.txt
+pytest-django==3.8.0      # via -r requirements/test.txt
+pytest==4.6.9             # via -r requirements/test.txt, pytest-cov, pytest-django
+python-dateutil==2.8.1    # via -r requirements/test.txt, freezegun
+python-slugify==4.0.0     # via -r requirements/test.txt, code-annotations
+pytz==2019.3              # via -r requirements/test.txt, babel, celery, django
+pyyaml==5.3               # via -r requirements/test.txt, code-annotations
+readme-renderer==24.0     # via -r requirements/doc.in
+requests==2.23.0          # via sphinx
 restructuredtext-lint==1.3.0  # via doc8
-scandir==1.10.0
-simplejson==3.16.0
-six==1.13.0
-sphinx==1.8.4
-stevedore==1.31.0
-text-unidecode==1.3
-wcwidth==0.1.7
+scandir==1.10.0           # via -r requirements/test.txt, pathlib2
+simplejson==3.17.0        # via -r requirements/test.txt
+six==1.14.0               # via -r requirements/test.txt, bleach, doc8, edx-sphinx-theme, freezegun, mock, more-itertools, packaging, pathlib2, pytest, python-dateutil, readme-renderer, sphinx, stevedore
+snowballstemmer==2.0.0    # via sphinx
+sphinx==1.8.4             # via -c requirements/constraints.txt, -r requirements/doc.in, edx-sphinx-theme
+sphinxcontrib-websupport==1.1.2  # via sphinx
+stevedore==1.32.0         # via -r requirements/test.txt, code-annotations, doc8
+text-unidecode==1.3       # via -r requirements/test.txt, python-slugify
+typing==3.7.4.1           # via sphinx
+urllib3==1.25.8           # via requests
+wcwidth==0.1.8            # via -r requirements/test.txt, pytest
 webencodings==0.5.1       # via bleach
-zipp==0.6.0
+zipp==1.2.0               # via -r requirements/test.txt, importlib-metadata
+
+# The following packages are considered to be unsafe in a requirements file:
+# setuptools
