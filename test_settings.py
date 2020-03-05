@@ -9,7 +9,7 @@ from __future__ import absolute_import, unicode_literals
 
 from os.path import abspath, dirname, join
 
-import djcelery
+from celery import Celery
 
 
 def root(*args):
@@ -34,7 +34,6 @@ INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'super_csv',
-    'djcelery',
 )
 
 LOCALE_PATHS = [
@@ -46,11 +45,11 @@ CSV_EXPIRATION_DAYS = 1
 
 
 SECRET_KEY = 'insecure-secret-key'
-CELERY_ALWAYS_EAGER = True
-CELERY_RESULT_BACKEND = 'djcelery.backends.cache:CacheBackend'
-CELERY_EAGER_PROPAGATES_EXCEPTIONS = False
-CELERY_BROKER_URL = BROKER_URL = 'memory://'
-CELERY_BROKER_TRANSPORT = 'memory://'
-CELERY_BROKER_HOSTNAME = 'localhost'
 
-djcelery.setup_loader()
+APP = Celery()
+APP.conf.CELERY_ALWAYS_EAGER = True
+APP.conf.CELERY_RESULT_BACKEND = 'db+sqlite:///:memory:'
+APP.conf.CELERY_EAGER_PROPAGATES_EXCEPTIONS = False
+APP.conf.CELERY_BROKER_URL = BROKER_URL = 'memory://'
+APP.conf.CELERY_BROKER_TRANSPORT = 'memory://'
+APP.conf.CELERY_BROKER_HOSTNAME = 'localhost'
