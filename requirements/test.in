@@ -9,3 +9,4 @@ code-annotations          # provides commands used by the pii_check make target.
 ddt
 freezegun
 mock
+sqlalchemy                # For SQLite in-memory Celery results DB
