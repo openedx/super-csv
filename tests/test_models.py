@@ -22,4 +22,4 @@ class TestModel(TestCase):
             operation.id = 3
             operation.save()
         operation = CSVOperation.objects.get(pk=operation_id)
-        assert operation.data.name is ''
+        assert operation.data.name == ''
