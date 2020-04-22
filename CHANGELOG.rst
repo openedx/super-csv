@@ -14,6 +14,11 @@ Change Log
 Unreleased
 ~~~~~~~~~~
 
+[0.9.8] - 2020-05-04
+~~~~~~~~~~~~~~~~~~~~
+
+* dropped support for Django version less than 2.2 and Added support for python 3.8
+
 [0.9.7] - 2020-03-05
 ~~~~~~~~~~~~~~~~~~~~
 

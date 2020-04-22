@@ -38,7 +38,7 @@ class CSVOperation(TimeStampedModel):
     user = models.ForeignKey(get_user_model(), null=True, on_delete=models.SET_NULL)
     data = models.FileField(upload_to=csv_class_path, max_length=255)
 
-    class Meta(object):
+    class Meta:
         app_label = "super_csv"
 
     @classmethod
