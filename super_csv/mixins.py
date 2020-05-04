@@ -28,7 +28,7 @@ from .serializers import CSVOperationSerializer
 log = logging.getLogger(__name__)
 
 
-class ChecksumMixin(object):
+class ChecksumMixin:
     """
     CSV mixin that will create and verify a checksum column in the CSV file
     Specify a list checksum_columns in the subclass.
@@ -75,7 +75,7 @@ def do_deferred_commit(self, operation_id):  # pylint: disable=unused-argument
     return status
 
 
-class DeferrableMixin(object):
+class DeferrableMixin:
     """
     Mixin that automatically commits data using celery.
 
@@ -137,8 +137,7 @@ class DeferrableMixin(object):
             if not load_subclasses:
                 # this could indicate tampering
                 raise ValueError("%s != %s" % (classname, cls.__name__))
-            else:
-                cls = getattr(importlib.import_module(module_name), classname)
+            cls = getattr(importlib.import_module(module_name), classname)  # pylint: disable=self-cls-assignment
         instance = cls(**state)
         return instance
 

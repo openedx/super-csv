@@ -18,7 +18,7 @@ log = logging.getLogger(__name__)
 __all__ = ('CSVProcessor', 'ChecksumMixin', 'DeferrableMixin', 'ValidationError')
 
 
-class UnicodeWriter(object):
+class UnicodeWriter:
     """
     A CSV writer which will write rows to CSV file "f",
     which is encoded in the given encoding.
@@ -88,7 +88,7 @@ class ResultDict(dict):
             self['status'] = _('Success')
 
 
-class Echo(object):
+class Echo:
     """An object that implements just the write method of the file-like
     interface.
     """
@@ -106,7 +106,7 @@ def decode_utf8(input_iterator):
         yield l if isinstance(l, str) else l.decode('utf-8')
 
 
-class CSVProcessor(object):
+class CSVProcessor:
     """
     Generic CSV processor.
 
@@ -238,7 +238,7 @@ class CSVProcessor(object):
         """
         if hasattr(thefile, 'size') and self.max_file_size and thefile.size > self.max_file_size:
             raise ValidationError(_("The CSV file must be under {} bytes").format(self.max_file_size))
-        elif self.required_columns:
+        if self.required_columns:
             for field in self.required_columns:
                 if field not in reader.fieldnames:
                     raise ValidationError(_("Missing column: {}").format(field))
