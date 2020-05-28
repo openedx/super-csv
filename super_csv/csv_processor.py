@@ -102,8 +102,8 @@ def decode_utf8(input_iterator):
     Generator that decodes a utf-8 encoded
     input line by line
     """
-    for l in input_iterator:
-        yield l if isinstance(l, str) else l.decode('utf-8')
+    for line in input_iterator:
+        yield line if isinstance(line, str) else line.decode('utf-8')
 
 
 class CSVProcessor:
