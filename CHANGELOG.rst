@@ -6,13 +6,18 @@ Change Log
    in this file.  It adheres to the structure of http://keepachangelog.com/ ,
    but in reStructuredText instead of Markdown (for ease of incorporation into
    Sphinx documentation and the PyPI description).
-   
+
    This project adheres to Semantic Versioning (http://semver.org/).
 
 .. There should always be an "Unreleased" section for changes pending release.
 
 Unreleased
 ~~~~~~~~~~
+
+[0.9.9] - 2020-05-28
+~~~~~~~~~~~~~~~~~~~~
+
+* Removed caniusepython3 & python_2_unicode_compatible packages
 
 [0.9.8] - 2020-05-04
 ~~~~~~~~~~~~~~~~~~~~
