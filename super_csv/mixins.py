@@ -5,7 +5,6 @@ ChecksumMixin generates and validates checksums on arbitrary columns.
 
 DeferrableMixin handles asynchronous processing.
 """
-from __future__ import absolute_import, unicode_literals
 
 import hashlib
 import importlib

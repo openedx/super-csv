@@ -3,7 +3,6 @@
 """
 Package metadata for super_csv.
 """
-from __future__ import absolute_import, print_function, unicode_literals
 
 import os
 import re
