@@ -4,8 +4,6 @@
 Tests for the `super-csv` models module.
 """
 
-from __future__ import absolute_import, unicode_literals
-
 from django.conf import settings
 from django.test import TestCase
 from mock import patch
