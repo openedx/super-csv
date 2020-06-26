@@ -18,7 +18,6 @@ from crum import get_current_user
 from django.conf import settings
 from django.db import DatabaseError, transaction
 from django.utils.translation import ugettext as _
-from six import text_type
 
 from .exceptions import ValidationError
 from .models import CSVOperation
@@ -38,7 +37,7 @@ class ChecksumMixin:
     checksum_size = 4
 
     def _get_checksum(self, row):
-        to_check = ''.join(text_type(row[key] if row[key] is not None else '') for key in self.checksum_columns)
+        to_check = ''.join(str(row[key] if row[key] is not None else '') for key in self.checksum_columns)
         to_check += self.secret
         return '@%s' % hashlib.md5(to_check.encode('utf8')).hexdigest()[:self.checksum_size]
 
