@@ -5,9 +5,9 @@ Generic class-based CSV Processor.
 import csv
 import logging
 from collections import defaultdict
+from io import StringIO
 
 from django.utils.translation import ugettext as _
-from six import PY2, text_type
 
 from .exceptions import ValidationError
 from .mixins import ChecksumMixin, DeferrableMixin
@@ -27,10 +27,6 @@ class UnicodeWriter:
 
     def __init__(self, f, dialect=csv.excel, **kwds):
         # Redirect output to a queue
-        try:
-            from cStringIO import StringIO
-        except ImportError:
-            from StringIO import StringIO
         self.queue = StringIO()
         self.writer = csv.writer(self.queue, dialect=dialect, **kwds)
         self.stream = f
@@ -43,8 +39,8 @@ class UnicodeWriter:
         for col in row:
             if col is None:
                 col = ''
-            elif not isinstance(col, text_type):
-                col = text_type(col)
+            elif not isinstance(col, str):
+                col = str(col)
             newrow.append(col.encode('utf8'))
         self.writer.writerow(newrow)
         # Fetch UTF-8 output from the queue ...
@@ -165,10 +161,7 @@ class CSVProcessor:
         else:
             rows = rows or self.get_rows_to_export()
             columns = columns or self.columns
-        if PY2:
-            writer = UnicodeDictWriter(Echo(), columns)
-        else:
-            writer = csv.DictWriter(Echo(), columns)
+        writer = csv.DictWriter(Echo(), columns)
         header = writer.writerow(dict(zip(writer.fieldnames, writer.fieldnames)))
         yield header
         for row in rows:
@@ -201,7 +194,7 @@ class CSVProcessor:
             self.validate_file(thefile, reader)
             return reader
         except ValidationError as exc:
-            self.add_error(text_type(exc))
+            self.add_error(str(exc))
 
     def preprocess_file(self, reader):
         """
@@ -222,8 +215,8 @@ class CSVProcessor:
                 else:
                     result['status'] = no_action
             except ValidationError as e:
-                self.add_error(text_type(e), rownum)
-                result['error'] = text_type(e)
+                self.add_error(str(e), rownum)
+                result['error'] = str(e)
                 result['status'] = failure
             snapshot.append(result)
         self.result_data = snapshot
@@ -292,9 +285,9 @@ class CSVProcessor:
                         self.rollback_rows.append((rownum, rollback_row))
             except Exception as e:  # pylint: disable=broad-except
                 log.exception('Committing %r', self)
-                self.add_error(text_type(e), row=rownum)
+                self.add_error(str(e), row=rownum)
                 if self.result_data:
-                    self.result_data[rownum - 1]['error'] = text_type(e)
+                    self.result_data[rownum - 1]['error'] = str(e)
                     self.result_data[rownum - 1]['status'] = _('Failure')
         self.saved_rows = saved
         log.info('%r committed %d rows', self, saved)
@@ -312,7 +305,7 @@ class CSVProcessor:
                     saved += 1
             except Exception as e:  # pylint: disable=broad-except
                 log.exception('Rolling back %r', self)
-                self.add_error(text_type(e), row=rownum)
+                self.add_error(str(e), row=rownum)
         self.saved_rows = saved
 
     def status(self):

@@ -7,7 +7,6 @@ import logging
 import uuid
 from datetime import timedelta
 
-import six
 from django.contrib.auth import get_user_model
 from django.core.files.base import ContentFile
 from django.db import models
@@ -39,7 +38,7 @@ class CSVOperation(TimeStampedModel):
 
     @classmethod
     def _get_class_name(cls, obj):
-        if not isinstance(obj, six.string_types):
+        if not isinstance(obj, str):
             obj = '%s.%s' % (obj.__class__.__module__, obj.__class__.__name__)
         return obj
 
