@@ -10,7 +10,6 @@ from django.contrib.auth import get_user_model
 # could use BytesIO, but this adds a size attribute
 from django.core.files.base import ContentFile
 from django.test import TestCase
-
 from super_csv import csv_processor, models
 
 
