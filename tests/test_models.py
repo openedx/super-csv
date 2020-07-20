@@ -7,7 +7,6 @@ Tests for the `super-csv` models module.
 from django.conf import settings
 from django.test import TestCase
 from mock import patch
-
 from super_csv.models import CSVOperation
 
 
