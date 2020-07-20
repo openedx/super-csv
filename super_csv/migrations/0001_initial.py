@@ -4,9 +4,8 @@
 
 import django.utils.timezone
 import model_utils.fields
-from django.db import migrations, models
-
 import super_csv.models
+from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
