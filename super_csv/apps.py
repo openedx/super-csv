@@ -11,14 +11,11 @@ class SuperCSVConfig(AppConfig):
     Configuration for the super_csv Django application.
     """
 
-    name = 'super_csv'
+    name = "super_csv"
     plugin_app = {
-        u'settings_config': {
-            u'lms.djangoapp': {
-                u'common': {'relative_path': u'common_settings'},
-            },
+        "settings_config": {
+            "lms.djangoapp": {"common": {"relative_path": "common_settings"},},
         },
-
     }
 
     def ready(self):
