@@ -8,13 +8,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('super_csv', '0002_csvoperation_user'),
+        ("super_csv", "0002_csvoperation_user"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='csvoperation',
-            name='original_filename',
-            field=models.CharField(blank=True, default='', max_length=255),
+            model_name="csvoperation",
+            name="original_filename",
+            field=models.CharField(blank=True, default="", max_length=255),
         ),
     ]

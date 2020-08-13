@@ -7,6 +7,7 @@ import io
 import ddt
 import mock
 from django.contrib.auth import get_user_model
+
 # could use BytesIO, but this adds a size attribute
 from django.core.files.base import ContentFile
 from django.test import TestCase
@@ -18,34 +19,35 @@ class DummyProcessor(csv_processor.CSVProcessor):
     """
     Fixture class the inherits from CSVProcessor.
     """
+
     max_file_size = 20
-    columns = ['foo', 'bar']
-    required_columns = ['foo', 'bar']
+    columns = ["foo", "bar"]
+    required_columns = ["foo", "bar"]
 
     def get_rows_to_export(self):
         for row in super(DummyProcessor, self).get_rows_to_export():
             yield row
-        yield {'foo': 1, 'bar': 1}
-        yield {'foo': 2, 'bar': 2}
+        yield {"foo": 1, "bar": 1}
+        yield {"foo": 2, "bar": 2}
 
     def validate_row(self, row):
         super(DummyProcessor, self).validate_row(row)
-        if row['foo'] == '3':
+        if row["foo"] == "3":
             raise csv_processor.ValidationError("3 not allowed")
 
     def process_row(self, row):
-        if row['foo'] == '4':
-            raise ValueError('4 is not allowed')
+        if row["foo"] == "4":
+            raise ValueError("4 is not allowed")
         undo = row.copy()
-        undo['undo'] = True
-        if row['foo'] == '2':
-            undo['foo'] = '4'
+        undo["undo"] = True
+        if row["foo"] == "2":
+            undo["foo"] = "4"
         return True, undo
 
 
 class DummyChecksumProcessor(csv_processor.ChecksumMixin, DummyProcessor):
-    checksum_columns = ['foo', 'bar']
-    columns = ['foo', 'bar', 'csum']
+    checksum_columns = ["foo", "bar"]
+    columns = ["foo", "bar", "csum"]
 
 
 class DummyDeferrableProcessor(csv_processor.DeferrableMixin, DummyProcessor):
@@ -53,10 +55,10 @@ class DummyDeferrableProcessor(csv_processor.DeferrableMixin, DummyProcessor):
     test_set = set()
 
     def get_unique_path(self):
-        return 'test'
+        return "test"
 
 
-USERNAME_FROM_SUBCLASS = 'user_specified_by_client'
+USERNAME_FROM_SUBCLASS = "user_specified_by_client"
 
 
 class DummyDeferrableProcessorSavingUser(csv_processor.DeferrableMixin, DummyProcessor):
@@ -64,17 +66,17 @@ class DummyDeferrableProcessorSavingUser(csv_processor.DeferrableMixin, DummyPro
     Fixture that inherits from DeferrableMixin and overrides a save() method,
     which calls the parent save() method with a non-null ``operating_user`` kwarg.
     """
+
     size_to_defer = 1
 
     def save(self, operation_name=None, operating_user=None):
         user = get_user_model().objects.get(username=USERNAME_FROM_SUBCLASS)
         return super(DummyDeferrableProcessorSavingUser, self).save(
-            operation_name=operation_name,
-            operating_user=user,
+            operation_name=operation_name, operating_user=user,
         )
 
     def get_unique_path(self):
-        return 'test'
+        return "test"
 
 
 @ddt.ddt
@@ -82,12 +84,17 @@ class CSVTestCase(TestCase):
     """
     Test class for CSVProcessor and DeferrableMixin classes.
     """
+
     @classmethod
     def setUpTestData(cls):
         super(CSVTestCase, cls).setUpTestData()
-        cls.dummy_csv = 'foo,bar\r\n1,1\r\n2,2\r\n'
-        cls.user = get_user_model().objects.create_user(username='testuser', password='12345')
-        cls.user_from_subclass = get_user_model().objects.create(username=USERNAME_FROM_SUBCLASS, password='12345')
+        cls.dummy_csv = "foo,bar\r\n1,1\r\n2,2\r\n"
+        cls.user = get_user_model().objects.create_user(
+            username="testuser", password="12345"
+        )
+        cls.user_from_subclass = get_user_model().objects.create(
+            username=USERNAME_FROM_SUBCLASS, password="12345"
+        )
 
     def tearDown(self):
         super(CSVTestCase, self).tearDown()
@@ -106,8 +113,8 @@ class CSVTestCase(TestCase):
         processor = DummyProcessor()
         processor.process_file(buf)
         status = processor.status()
-        assert status['saved'] == 2
-        assert status['processed'] == 2
+        assert status["saved"] == 2
+        assert status["processed"] == 2
 
     def test_write_read(self):
         buf = io.StringIO()
@@ -116,13 +123,13 @@ class CSVTestCase(TestCase):
         buf.seek(0)
         processor.process_file(buf)
         status = processor.status()
-        assert status['processed'] == 2
+        assert status["processed"] == 2
 
     @ddt.data(
-        ('foo,baz\r\n', 0, 'Missing column: bar'),
-        ('foo,bar\r\n1,2\r\n3,3\r\n', 1, None),
-        ('foo,bar\r\n1,2\r\n4,4\r\n', 0, '4 is not allowed'),
-        ('foo,bar\r\n1,2\r\n4,4\r\n5,5\r\n', 0, 'The CSV file must be under 20 bytes'),
+        ("foo,baz\r\n", 0, "Missing column: bar"),
+        ("foo,bar\r\n1,2\r\n3,3\r\n", 1, None),
+        ("foo,bar\r\n1,2\r\n4,4\r\n", 0, "4 is not allowed"),
+        ("foo,bar\r\n1,2\r\n4,4\r\n5,5\r\n", 0, "The CSV file must be under 20 bytes"),
     )
     @ddt.unpack
     def test_file_errors(self, contents, error_rows, message):
@@ -137,57 +144,55 @@ class CSVTestCase(TestCase):
     def test_checksum(self):
         processor = DummyChecksumProcessor()
         row = {
-            'foo': 1,
-            'bar': 'hello',
+            "foo": 1,
+            "bar": "hello",
         }
         processor.preprocess_export_row(row)
-        assert row['csum'] == '@cfb0'
+        assert row["csum"] == "@cfb0"
         assert processor.validate_row(row) is None
-        row['csum'] = '@def'
+        row["csum"] = "@def"
         with self.assertRaises(csv_processor.ValidationError):
             processor.validate_row(row)
 
     def test_checksum_zero(self):
         processor = DummyChecksumProcessor()
         row = {
-            'foo': 0,
-            'bar': None,
+            "foo": 0,
+            "bar": None,
         }
         processor.preprocess_export_row(row)
-        assert row['csum'] == '@fc43'
+        assert row["csum"] == "@fc43"
         assert processor.validate_row(row) is None
-        equiv_row = {
-            'foo': '0',
-            'bar': '',
-            'csum': '@fc43'
-        }
+        equiv_row = {"foo": "0", "bar": "", "csum": "@fc43"}
         assert processor.validate_row(equiv_row) is None
 
     def test_rollback(self):
         processor = DummyProcessor()
         processor.process_file(ContentFile(self.dummy_csv))
-        assert processor.status()['saved'] == 2
+        assert processor.status()["saved"] == 2
         processor.rollback()
         status = processor.status()
-        assert status['saved'] == 1
-        assert status['error_messages'][0] == '4 is not allowed'
+        assert status["saved"] == 1
+        assert status["error_messages"][0] == "4 is not allowed"
 
     def test_defer(self):
         processor = DummyDeferrableProcessor()
         processor.test_set = set((1, 2, 3))
         processor.process_file(ContentFile(self.dummy_csv))
         status = processor.status()
-        assert status['saved'] == 2
+        assert status["saved"] == 2
 
     def test_defer_too_small(self):
         processor = DummyDeferrableProcessor()
-        processor.process_file(ContentFile('foo,bar\r\n1,2\r\n'))
+        processor.process_file(ContentFile("foo,bar\r\n1,2\r\n"))
         status = processor.status()
-        assert not status['waiting']
-        operation = models.CSVOperation.get_latest(processor, processor.get_unique_path())
+        assert not status["waiting"]
+        operation = models.CSVOperation.get_latest(
+            processor, processor.get_unique_path()
+        )
         assert operation is not None
 
-    @mock.patch('super_csv.mixins.get_current_user')
+    @mock.patch("super_csv.mixins.get_current_user")
     def test_operating_user_is_recorded_from_request(self, patch_get_user):
         processor = DummyDeferrableProcessor()
         patch_get_user.return_value = self.user
@@ -197,8 +202,10 @@ class CSVTestCase(TestCase):
         for csv_operation in csv_operations:
             assert csv_operation.user == self.user
 
-    @mock.patch('super_csv.mixins.get_current_user', return_value=None)
-    def test_operating_user_is_recorded_by_subclass(self, patch_get_user):  # pylint: disable=unused-argument
+    @mock.patch("super_csv.mixins.get_current_user", return_value=None)
+    def test_operating_user_is_recorded_by_subclass(
+        self, patch_get_user
+    ):  # pylint: disable=unused-argument
         processor = DummyDeferrableProcessorSavingUser()
         processor.process_file(ContentFile(self.dummy_csv))
         csv_operations = models.CSVOperation.objects.all()

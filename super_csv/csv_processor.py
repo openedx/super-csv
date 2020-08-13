@@ -14,7 +14,7 @@ from .mixins import ChecksumMixin, DeferrableMixin
 
 log = logging.getLogger(__name__)
 
-__all__ = ('CSVProcessor', 'ChecksumMixin', 'DeferrableMixin', 'ValidationError')
+__all__ = ("CSVProcessor", "ChecksumMixin", "DeferrableMixin", "ValidationError")
 
 
 class UnicodeWriter:
@@ -38,10 +38,10 @@ class UnicodeWriter:
         newrow = []
         for col in row:
             if col is None:
-                col = ''
+                col = ""
             elif not isinstance(col, str):
                 col = str(col)
-            newrow.append(col.encode('utf8'))
+            newrow.append(col.encode("utf8"))
         self.writer.writerow(newrow)
         # Fetch UTF-8 output from the queue ...
         data = self.queue.getvalue()
@@ -64,29 +64,41 @@ class UnicodeDictWriter(csv.DictWriter):
     """
 
     # pylint: disable=super-init-not-called, keyword-arg-before-vararg
-    def __init__(self, f, fieldnames, restval="", extrasaction="raise",
-                 dialect="excel", *args, **kwds):
-        self.fieldnames = fieldnames    # list of keys for the dict
-        self.restval = restval          # for writing short dicts
+    def __init__(
+        self,
+        f,
+        fieldnames,
+        restval="",
+        extrasaction="raise",
+        dialect="excel",
+        *args,
+        **kwds,
+    ):
+        self.fieldnames = fieldnames  # list of keys for the dict
+        self.restval = restval  # for writing short dicts
         if extrasaction.lower() not in ("raise", "ignore"):
-            raise ValueError("extrasaction (%s) must be 'raise' or 'ignore'" % extrasaction)
+            raise ValueError(
+                "extrasaction (%s) must be 'raise' or 'ignore'" % extrasaction
+            )
         self.extrasaction = extrasaction
         self.writer = UnicodeWriter(f, dialect, *args, **kwds)
 
 
 class ResultDict(dict):
     """ Resut Dict. """
+
     def __init__(self, *args, **kwargs):
         super(ResultDict, self).__init__(*args, **kwargs)
-        if 'error' not in self:
-            self['error'] = ''
-            self['status'] = _('Success')
+        if "error" not in self:
+            self["error"] = ""
+            self["status"] = _("Success")
 
 
 class Echo:
     """An object that implements just the write method of the file-like
     interface.
     """
+
     def write(self, value):
         """Write the value by returning it, instead of storing in a buffer."""
         return value
@@ -98,7 +110,7 @@ def decode_utf8(input_iterator):
     input line by line
     """
     for line in input_iterator:
-        yield line if isinstance(line, str) else line.decode('utf-8')
+        yield line if isinstance(line, str) else line.decode("utf-8")
 
 
 class CSVProcessor:
@@ -121,12 +133,13 @@ class CSVProcessor:
     If the subclass saves rows to self.rollback_rows, it's possible to
     rollback the saved items by calling processor.rollback()
     """
+
     columns = []
     required_columns = []
     max_file_size = 2 * 1024 * 1024
 
     def __init__(self, **kwargs):
-        self.filename = ''  # represents original imported file
+        self.filename = ""  # represents original imported file
         self.total_rows = 0
         self.processed_rows = 0
         self.saved_rows = 0
@@ -157,7 +170,7 @@ class CSVProcessor:
         if error_data:
             # return an iterator of the original data with an added error column
             rows = self.result_data
-            columns = self.columns + ['status', 'error']
+            columns = self.columns + ["status", "error"]
         else:
             rows = rows or self.get_rows_to_export()
             columns = columns or self.columns
@@ -189,7 +202,7 @@ class CSVProcessor:
         file must be open in binary mode
         """
         try:
-            self.filename = getattr(thefile, 'name', '') or ''
+            self.filename = getattr(thefile, "name", "") or ""
             reader = csv.DictReader(decode_utf8(thefile))
             self.validate_file(thefile, reader)
             return reader
@@ -202,8 +215,8 @@ class CSVProcessor:
         """
         rownum = processed_rows = 0
         snapshot = []
-        failure = _('Failure')
-        no_action = _('No Action')
+        failure = _("Failure")
+        no_action = _("No Action")
         for rownum, row in enumerate(reader, 1):
             result = ResultDict(row)
             try:
@@ -213,11 +226,11 @@ class CSVProcessor:
                     self.stage.append((rownum, row))
                     processed_rows += 1
                 else:
-                    result['status'] = no_action
+                    result["status"] = no_action
             except ValidationError as e:
                 self.add_error(str(e), rownum)
-                result['error'] = str(e)
-                result['status'] = failure
+                result["error"] = str(e)
+                result["status"] = failure
             snapshot.append(result)
         self.result_data = snapshot
         self.total_rows = rownum
@@ -228,8 +241,14 @@ class CSVProcessor:
         Validate the file.
         Returns bool.
         """
-        if hasattr(thefile, 'size') and self.max_file_size and thefile.size > self.max_file_size:
-            raise ValidationError(_("The CSV file must be under {} bytes").format(self.max_file_size))
+        if (
+            hasattr(thefile, "size")
+            and self.max_file_size
+            and thefile.size > self.max_file_size
+        ):
+            raise ValidationError(
+                _("The CSV file must be under {} bytes").format(self.max_file_size)
+            )
         if self.required_columns:
             for field in self.required_columns:
                 if field not in reader.fieldnames:
@@ -284,13 +303,13 @@ class CSVProcessor:
                     if rollback_row:
                         self.rollback_rows.append((rownum, rollback_row))
             except Exception as e:  # pylint: disable=broad-except
-                log.exception('Committing %r', self)
+                log.exception("Committing %r", self)
                 self.add_error(str(e), row=rownum)
                 if self.result_data:
-                    self.result_data[rownum - 1]['error'] = str(e)
-                    self.result_data[rownum - 1]['status'] = _('Failure')
+                    self.result_data[rownum - 1]["error"] = str(e)
+                    self.result_data[rownum - 1]["status"] = _("Failure")
         self.saved_rows = saved
-        log.info('%r committed %d rows', self, saved)
+        log.info("%r committed %d rows", self, saved)
 
     def rollback(self):
         """
@@ -304,7 +323,7 @@ class CSVProcessor:
                 if did_save:
                     saved += 1
             except Exception as e:  # pylint: disable=broad-except
-                log.exception('Rolling back %r', self)
+                log.exception("Rolling back %r", self)
                 self.add_error(str(e), row=rownum)
         self.saved_rows = saved
 
@@ -313,13 +332,13 @@ class CSVProcessor:
         Return a status dict.
         """
         result = {
-            'total': self.total_rows,
-            'processed': self.processed_rows,
-            'saved': self.saved_rows,
-            'error_rows': [row for row in self.result_data if row.get('error')],
-            'error_messages': list(self.error_messages.keys()),
-            'percentage': format(self.saved_rows / float(self.total_rows or 1), '.1%'),
-            'can_commit': self.can_commit,
+            "total": self.total_rows,
+            "processed": self.processed_rows,
+            "saved": self.saved_rows,
+            "error_rows": [row for row in self.result_data if row.get("error")],
+            "error_messages": list(self.error_messages.keys()),
+            "percentage": format(self.saved_rows / float(self.total_rows or 1), ".1%"),
+            "can_commit": self.can_commit,
         }
         return result
 
