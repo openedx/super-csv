@@ -8,14 +8,14 @@ amqp==1.4.9               # via kombu
 anyjson==0.3.3            # via kombu
 billiard==3.3.0.23        # via celery
 celery==3.1.26.post2      # via edx-celeryutils
-django-crum==0.7.6        # via -r requirements/base.in
+django-crum==0.7.7        # via -r requirements/base.in
 django-model-utils==4.0.0  # via -r requirements/base.in, edx-celeryutils
-django==2.2.12            # via -c requirements/constraints.txt, -r requirements/base.in, django-crum, django-model-utils, djangorestframework, edx-celeryutils, jsonfield2
-djangorestframework==3.11.0  # via -r requirements/base.in
-edx-celeryutils==0.5.0    # via -r requirements/base.in
+django==2.2.15            # via -c requirements/constraints.txt, -r requirements/base.in, django-crum, django-model-utils, djangorestframework, edx-celeryutils, jsonfield2
+djangorestframework==3.11.1  # via -r requirements/base.in
+edx-celeryutils==0.5.1    # via -r requirements/base.in
 future==0.18.2            # via edx-celeryutils
 jsonfield2==3.0.3         # via -c requirements/constraints.txt, edx-celeryutils
 kombu==3.0.37             # via celery
 pytz==2020.1              # via celery, django
-simplejson==3.17.0        # via -r requirements/base.in
+simplejson==3.17.2        # via -r requirements/base.in
 sqlparse==0.3.1           # via django
