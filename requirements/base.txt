@@ -4,7 +4,6 @@
 #
 #    make upgrade
 #
--e git+https://github.com/edx/edx-celeryutils.git@7ec43c5a9f5611b03d9b64b163a5c76165191162#egg=edx-celeryutils==0.5.2  # via -r requirements/base.in
 amqp==2.6.1               # via kombu
 billiard==3.5.0.5         # via celery
 celery==4.2.2             # via -c requirements/constraints.txt, edx-celeryutils
@@ -12,6 +11,7 @@ django-crum==0.7.7        # via -r requirements/base.in
 django-model-utils==4.0.0  # via -r requirements/base.in, edx-celeryutils
 django==2.2.16            # via -c requirements/constraints.txt, -r requirements/base.in, django-crum, django-model-utils, djangorestframework, edx-celeryutils, jsonfield2
 djangorestframework==3.11.1  # via -r requirements/base.in
+edx-celeryutils==0.5.2    # via -r requirements/base.in
 future==0.18.2            # via edx-celeryutils
 jsonfield2==3.0.3         # via -c requirements/constraints.txt, edx-celeryutils
 kombu==4.3.0              # via celery

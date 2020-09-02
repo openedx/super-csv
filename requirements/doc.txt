@@ -4,7 +4,6 @@
 #
 #    make upgrade
 #
--e git+https://github.com/edx/edx-celeryutils.git@7ec43c5a9f5611b03d9b64b163a5c76165191162#egg=edx-celeryutils==0.5.2  # via -r requirements/test.txt
 alabaster==0.7.12         # via sphinx
 amqp==2.6.1               # via -r requirements/test.txt, kombu
 attrs==20.1.0             # via -r requirements/test.txt, pytest
@@ -24,6 +23,7 @@ django==2.2.16            # via -c requirements/constraints.txt, -r requirements
 djangorestframework==3.11.1  # via -r requirements/test.txt
 doc8==0.8.1               # via -r requirements/doc.in
 docutils==0.16            # via doc8, readme-renderer, restructuredtext-lint, sphinx
+edx-celeryutils==0.5.2    # via -r requirements/test.txt
 edx-sphinx-theme==1.5.0   # via -r requirements/doc.in
 freezegun==0.3.15         # via -r requirements/test.txt
 future==0.18.2            # via -r requirements/test.txt, edx-celeryutils
