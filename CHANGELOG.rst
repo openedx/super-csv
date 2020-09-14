@@ -14,6 +14,10 @@ Change Log
 Unreleased
 ~~~~~~~~~~
 
+[1.0.1] - 2020-09-14
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+* Minor updates to attrs, code-annotations, and freezegun dependencies
+
 [1.0.0] - 2020-09-02
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 * Upgrade celery to 4.2.2
