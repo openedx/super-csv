@@ -14,6 +14,11 @@ Change Log
 Unreleased
 ~~~~~~~~~~
 
+[1.0.2] - 2020-09-14
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+* Move to Apache License
+>>>>>>> c6ba1e3... v1.0.2
+
 [1.0.1] - 2020-09-14
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 * Minor updates to attrs, code-annotations, and freezegun dependencies
