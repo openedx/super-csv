@@ -75,7 +75,7 @@ setup(
     ],
     include_package_data=True,
     install_requires=load_requirements('requirements/base.in'),
-    license="AGPL 3.0",
+    license="Apache",
     zip_safe=False,
     keywords='Django edx',
     classifiers=[
@@ -83,7 +83,7 @@ setup(
         'Framework :: Django',
         'Framework :: Django :: 2.2',
         'Intended Audience :: Developers',
-        'License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)',
+        'License :: OSI Approved :: Apache Software License',
         'Natural Language :: English',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.5',
