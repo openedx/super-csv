@@ -75,7 +75,7 @@ setup(
     ],
     include_package_data=True,
     install_requires=load_requirements('requirements/base.in'),
-    license="Apache",
+    license="Apache 2.0",
     zip_safe=False,
     keywords='Django edx',
     classifiers=[

@@ -60,7 +60,7 @@ and are on a command prompt inside the LMS container.
 License
 -------
 
-The code in this repository is licensed under the Apache unless
+The code in this repository is licensed under the Apache v2 unless
 otherwise noted.
 
 Please see ``LICENSE.txt`` for details.
