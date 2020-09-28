@@ -16,3 +16,6 @@ django < 2.3
 
 
 celery<4.3     # Python 3.8 isn't officially supported until 4.4. Its a first steps towards latest celery version upgrade.
+
+# Needed as long as tox constrains this to <2
+importlib-metadata<2
