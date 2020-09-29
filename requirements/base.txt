@@ -10,7 +10,7 @@ celery==4.2.2             # via -c requirements/constraints.txt, edx-celeryutils
 django-crum==0.7.7        # via -r requirements/base.in
 django-model-utils==4.0.0  # via -r requirements/base.in, edx-celeryutils
 django==2.2.16            # via -c requirements/constraints.txt, -r requirements/base.in, django-crum, django-model-utils, djangorestframework, edx-celeryutils, jsonfield2
-djangorestframework==3.11.1  # via -r requirements/base.in
+djangorestframework==3.12.1  # via -r requirements/base.in
 edx-celeryutils==0.5.2    # via -r requirements/base.in
 future==0.18.2            # via edx-celeryutils
 jsonfield2==3.0.3         # via -c requirements/constraints.txt, edx-celeryutils
