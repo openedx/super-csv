@@ -99,8 +99,8 @@ refer to this `list of resources`_ if you need any assistance.
     :target: https://pypi.python.org/pypi/super-csv/
     :alt: PyPI
 
-.. |travis-badge| image:: https://travis-ci.org/edx/super-csv.svg?branch=master
-    :target: https://travis-ci.org/edx/super-csv
+.. |travis-badge| image:: https://travis-ci.com/edx/super-csv.svg?branch=master
+    :target: https://travis-ci.com/edx/super-csv
     :alt: Travis
 
 .. |codecov-badge| image:: http://codecov.io/github/edx/super-csv/coverage.svg?branch=master
