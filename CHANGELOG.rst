@@ -14,6 +14,11 @@ Change Log
 Unreleased
 ~~~~~~~~~~
 
+[1.1.0] - 2020-12-02
+~~~~~~~~~~~~~~~~~~~~
+
+* Add code_owner custom attribute for monitoring celery tasks.
+
 [1.0.2] - 2020-09-14
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 * Move to Apache License
