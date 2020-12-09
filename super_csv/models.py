@@ -87,7 +87,7 @@ class CSVOperation(TimeStampedModel):
     def __str__(self):
         return 'Operation for {} {}'.format(self.class_name, self.unique_id)
 
-    # pylint: disable=arguments-differ
+    # pylint: disable=signature-differs
     def delete(self, *args):
         self.data.delete()
-        super(CSVOperation, self).delete(*args)
+        super().delete(*args)
