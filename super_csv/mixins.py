@@ -18,6 +18,7 @@ from crum import get_current_user
 from django.conf import settings
 from django.db import DatabaseError, transaction
 from django.utils.translation import ugettext as _
+from edx_django_utils.monitoring import set_code_owner_attribute
 
 from .exceptions import ValidationError
 from .models import CSVOperation
@@ -60,6 +61,7 @@ class ChecksumMixin:
 
 
 @task(bind=True, base=LoggedTask)
+@set_code_owner_attribute
 def do_deferred_commit(self, operation_id):  # pylint: disable=unused-argument
     """
     Commit the CSV Operation, asynchronously.

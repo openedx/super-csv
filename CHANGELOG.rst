@@ -14,6 +14,11 @@ Change Log
 Unreleased
 ~~~~~~~~~~
 
+[1.1.0] - 2020-12-02
+~~~~~~~~~~~~~~~~~~~~
+
+* Add code_owner custom attribute for monitoring celery tasks.
+
 [1.0.3] - 2020-11-20
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 * Updated travis badge in README.rst to point to travis-ci.com
