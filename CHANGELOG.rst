@@ -19,6 +19,10 @@ Unreleased
 
 * Add code_owner custom attribute for monitoring celery tasks.
 
+[1.0.3] - 2020-11-20
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+* Updated travis badge in README.rst to point to travis-ci.com
+
 [1.0.2] - 2020-09-14
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 * Move to Apache License
