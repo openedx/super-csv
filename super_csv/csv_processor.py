@@ -77,7 +77,7 @@ class UnicodeDictWriter(csv.DictWriter):
 class ResultDict(dict):
     """ Resut Dict. """
     def __init__(self, *args, **kwargs):
-        super(ResultDict, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         if 'error' not in self:
             self['error'] = ''
             self['status'] = _('Success')

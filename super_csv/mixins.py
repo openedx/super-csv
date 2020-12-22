@@ -11,7 +11,7 @@ import importlib
 import logging
 
 import simplejson as json
-from celery import task
+from celery import shared_task
 from celery.result import AsyncResult
 from celery_utils.logged_task import LoggedTask
 from crum import get_current_user
@@ -60,7 +60,7 @@ class ChecksumMixin:
             )
 
 
-@task(bind=True, base=LoggedTask)
+@shared_task(bind=True, base=LoggedTask)
 @set_code_owner_attribute
 def do_deferred_commit(self, operation_id):  # pylint: disable=unused-argument
     """
@@ -152,7 +152,7 @@ class DeferrableMixin:
         """
         Return a status dict.
         """
-        status = super(DeferrableMixin, self).status()
+        status = super().status()
         status['result_id'] = getattr(self, 'result_id', None)
         status['saved_error_id'] = getattr(self, 'saved_error_id', None)
         status['waiting'] = bool(status['result_id'])
@@ -160,7 +160,7 @@ class DeferrableMixin:
         return status
 
     def preprocess_file(self, reader):
-        super(DeferrableMixin, self).preprocess_file(reader)
+        super().preprocess_file(reader)
         if self.error_messages:
             operation = self.save('error')
             self.saved_error_id = operation.id
@@ -174,7 +174,7 @@ class DeferrableMixin:
             # Either an async task is already in process,
             # or the size of the request is small enough to commit synchronously
             self.save()
-            super(DeferrableMixin, self).commit()
+            super().commit()
         else:
             # We'll enqueue an async celery task.
             try:
