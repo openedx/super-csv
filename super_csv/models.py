@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Database models for super_csv.
 """
@@ -17,7 +16,7 @@ log = logging.getLogger(__name__)
 
 
 def csv_class_path(instance, filename):
-    return 'csv/{0}/{1}/{2}'.format(instance.class_name, instance.unique_id, filename)
+    return f'csv/{instance.class_name}/{instance.unique_id}/{filename}'
 
 
 class CSVOperation(TimeStampedModel):
@@ -85,7 +84,7 @@ class CSVOperation(TimeStampedModel):
                 obj.data.delete()
 
     def __str__(self):
-        return 'Operation for {} {}'.format(self.class_name, self.unique_id)
+        return f'Operation for {self.class_name} {self.unique_id}'
 
     # pylint: disable=signature-differs
     def delete(self, *args):
