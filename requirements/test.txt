@@ -12,7 +12,7 @@ ddt==1.4.1                # via -r requirements/test.in
 django-crum==0.7.9        # via -r requirements/base.txt, edx-django-utils
 django-model-utils==4.1.1  # via -r requirements/base.txt, edx-celeryutils
 django-waffle==2.0.0      # via -r requirements/base.txt, edx-django-utils
-edx-celeryutils==0.5.2    # via -r requirements/base.txt
+edx-celeryutils==0.5.7    # via -r requirements/base.txt
 edx-django-utils==3.13.0  # via -r requirements/base.txt
 freezegun==1.0.0          # via -r requirements/test.in
 future==0.18.2            # via -r requirements/base.txt, edx-celeryutils
@@ -28,12 +28,12 @@ pluggy==0.13.1            # via pytest
 psutil==5.8.0             # via -r requirements/base.txt, edx-django-utils
 py==1.10.0                # via pytest
 pyparsing==2.4.7          # via packaging
-pytest-cov==2.10.1        # via -r requirements/test.in
+pytest-cov==2.11.0        # via -r requirements/test.in
 pytest-django==4.1.0      # via -r requirements/test.in
 pytest==6.2.1             # via pytest-cov, pytest-django
 python-dateutil==2.8.1    # via freezegun
 python-slugify==4.0.1     # via code-annotations
-pytz==2020.4              # via -r requirements/base.txt, celery, django
+pytz==2020.5              # via -r requirements/base.txt, celery, django
 pyyaml==5.3.1             # via code-annotations
 simplejson==3.17.2        # via -r requirements/base.txt
 six==1.15.0               # via python-dateutil

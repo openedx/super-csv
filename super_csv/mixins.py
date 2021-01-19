@@ -186,7 +186,7 @@ class DeferrableMixin:
                     # current transaction.
                     operation = self.save()
             except DatabaseError:
-                log.exception(f'Error saving DeferrableMixin {self}')
+                log.exception('Error saving DeferrableMixin {}'.format(self))
                 raise
 
             # Now enqueue the async task.
