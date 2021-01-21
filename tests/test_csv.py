@@ -3,9 +3,9 @@ Tests for CSVProcessor
 """
 
 import io
+from unittest import mock
 
 import ddt
-import mock
 from django.contrib.auth import get_user_model
 # could use BytesIO, but this adds a size attribute
 from django.core.files.base import ContentFile
@@ -23,13 +23,12 @@ class DummyProcessor(csv_processor.CSVProcessor):
     required_columns = ['foo', 'bar']
 
     def get_rows_to_export(self):
-        for row in super(DummyProcessor, self).get_rows_to_export():
-            yield row
+        yield from super().get_rows_to_export()
         yield {'foo': 1, 'bar': 1}
         yield {'foo': 2, 'bar': 2}
 
     def validate_row(self, row):
-        super(DummyProcessor, self).validate_row(row)
+        super().validate_row(row)
         if row['foo'] == '3':
             raise csv_processor.ValidationError("3 not allowed")
 
@@ -68,7 +67,7 @@ class DummyDeferrableProcessorSavingUser(csv_processor.DeferrableMixin, DummyPro
 
     def save(self, operation_name=None, operating_user=None):
         user = get_user_model().objects.get(username=USERNAME_FROM_SUBCLASS)
-        return super(DummyDeferrableProcessorSavingUser, self).save(
+        return super().save(
             operation_name=operation_name,
             operating_user=user,
         )
@@ -84,13 +83,13 @@ class CSVTestCase(TestCase):
     """
     @classmethod
     def setUpTestData(cls):
-        super(CSVTestCase, cls).setUpTestData()
+        super().setUpTestData()
         cls.dummy_csv = 'foo,bar\r\n1,1\r\n2,2\r\n'
         cls.user = get_user_model().objects.create_user(username='testuser', password='12345')
         cls.user_from_subclass = get_user_model().objects.create(username=USERNAME_FROM_SUBCLASS, password='12345')
 
     def tearDown(self):
-        super(CSVTestCase, self).tearDown()
+        super().tearDown()
         models.CSVOperation.objects.all().delete()
 
     def test_write(self):
@@ -174,7 +173,7 @@ class CSVTestCase(TestCase):
 
     def test_defer(self):
         processor = DummyDeferrableProcessor()
-        processor.test_set = set((1, 2, 3))
+        processor.test_set = {1, 2, 3}
         processor.process_file(ContentFile(self.dummy_csv))
         status = processor.status()
         assert status['saved'] == 2

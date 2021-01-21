@@ -1,12 +1,12 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 """
 Tests for the `super-csv` models module.
 """
 
+from unittest.mock import patch
+
 from django.conf import settings
 from django.test import TestCase
-from mock import patch
 
 from super_csv.models import CSVOperation
 
@@ -20,4 +20,4 @@ class TestModel(TestCase):
             operation.id = 3
             operation.save()
         operation = CSVOperation.objects.get(pk=operation_id)
-        assert operation.data.name is ''
+        assert operation.data.name == ''
