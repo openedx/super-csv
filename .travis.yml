@@ -1,28 +1,26 @@
 language: python
 python:
-- 3.8
+  - '3.8'
 env:
-- TOXENV=django22-celery44-drf37
-- TOXENV=django22-celery50-drf37
-- TOXENV=django22-celery44-drf38
-- TOXENV=django22-celery50-drf38
-- TOXENV=django22-celery44-drf39
-- TOXENV=django22-celery50-drf39
-- TOXENV=django22-celery44-drflatest
-- TOXENV=django22-celery50-drflatest
-- TOXENV=quality
-- TOXENV=docs
-- TOXENV=pii_check
+  - TOXENV=quality
+  - TOXENV=docs
+  - TOXENV=pii_check
+  - TOXENV=django22-celery44-drflatest
+  - TOXENV=django22-celery50-drflatest
+  - TOXENV=django30-celery44-drflatest
+  - TOXENV=django30-celery50-drflatest
+  - TOXENV=django31-celery44-drflatest
+  - TOXENV=django31-celery50-drflatest
 cache:
-- pip
+  - pip
 before_install:
-- pip install pip==20.0.2
+  - pip install pip==20.0.2
 install:
-- pip install -r requirements/travis.txt
+  - pip install -r requirements/travis.txt
 script:
-- tox
+  - tox
 after_success:
-- codecov
+  - codecov
 deploy:
   provider: pypi
   user: edx
@@ -30,6 +28,6 @@ deploy:
   on:
     tags: true
     python: 3.8
-    condition: "$TOXENV = quality"
+    condition: $TOXENV = quality
   password:
     secure: VtcghD/ccaLfoQy0o1HdEnzuBdE1bwIG1PYd/Yn+xlUxDVD9piKqlq9Gt2XMDlvHdZ2y7QRqe474dZEUacb4kGZhLeBu1GublBGeQorDO0+5S35N2vX/kwtAICZjPx4ufSTn8qmq9eiQWTQcKP2NpPXEdrzdhJInMnUKp3vcOThMvaMz/iFVZ8iwyr+/30P1E050f8Mt1oTJmmrM0cMi7vN1oD9ej63A8dmLxZvVEM1phOTlCak90ki/b1OhCdml8iN5NEQimklaYza/8BwT3+O7uPkjz56LJPFO+amUVDSeh50s2Pw4+Np+OUtN4SBlMIWB+pezr+4h0UjphzyTMa+giGsN+0Se96D9AdSBO8SDFM6EVOos8WZNb/oBc9Ganx3GeC0M3taco7N6e/QaQY0Is8lD0LwnT1Ffojo/ACchG20Iq2kSSvB6Nd+BLfcR/pn6Mpu0LKlvQldus3Bs9oFlOqQ+jhmzTIuJSSbsQGkgu6BfgdMDdj6FKF4QuKZYiIObn4XOgpERsx7elxtowAhrPHeZEURiHCOhrlRf29oUFaaRQzMc0g/HlOU0qqNPjVVR6Dc9qLwc539eRJmQaHp/1+sLIpTBpidR+j7V44k4pzPv5nsCkqnjdTu4grb//rNTH1Q71DpoG20Dgk01ZiDIUWU5YVl6R88FvNt5kTU=

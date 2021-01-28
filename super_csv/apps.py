@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 super_csv Django application initialization.
 """
@@ -13,9 +12,9 @@ class SuperCSVConfig(AppConfig):
 
     name = 'super_csv'
     plugin_app = {
-        u'settings_config': {
-            u'lms.djangoapp': {
-                u'common': {'relative_path': u'common_settings'},
+        'settings_config': {
+            'lms.djangoapp': {
+                'common': {'relative_path': 'common_settings'},
             },
         },
 
