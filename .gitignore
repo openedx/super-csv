@@ -45,6 +45,7 @@ pii_report
 .project
 .pycharm_helpers/
 .pydevproject
+.vscode
 
 # The Silver Searcher
 .agignore
