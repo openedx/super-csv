@@ -82,6 +82,7 @@ default.db
 
 # local virtualenvs
 supercsv-env/
+super-csv-env/
 
 # test output
 csv/
