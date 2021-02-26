@@ -154,14 +154,14 @@ class CSVProcessor:
         """
         Export the CSV as an iterator.
         """
+        columns = columns or self.columns
         if error_data:
             # return an iterator of the original data with an added error column
-            rows = self.result_data
-            columns = self.columns + ['status', 'error']
+            rows = rows or self.result_data
+            columns = columns + ['status', 'error']
         else:
             rows = rows or self.get_rows_to_export()
-            columns = columns or self.columns
-        writer = csv.DictWriter(Echo(), columns)
+        writer = csv.DictWriter(Echo(), columns, extrasaction="ignore")
         header = writer.writerow(dict(zip(writer.fieldnames, writer.fieldnames)))
         yield header
         for row in rows:
