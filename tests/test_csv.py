@@ -133,6 +133,36 @@ class CSVTestCase(TestCase):
         if message:
             assert status["error_messages"][0] == message
 
+    def test_column_overrides(self):
+        # Given an existing file to export
+        processor = DummyProcessor()
+        processor.process_file(self.dummy_csv)
+
+        # When I restrict the columns with the "columns" kwarg
+        output_buf = io.StringIO()
+        processor.write_file(output_buf, columns=['foo'])
+
+        # Then only the filtered columns appear in the output
+        data = output_buf.getvalue()
+        assert data == 'foo\r\n1\r\n2\r\n'
+
+    def test_row_overrides(self):
+        # Given an existing file to export
+        processor = DummyProcessor()
+        processor.process_file(self.dummy_csv)
+
+        # When I override the rows with the "rows" kwarg
+        output_buf = io.StringIO()
+        rows = [
+            {'foo': 'a', 'bar': 'b'},
+            {'foo': 'c', 'bar': 'd'}
+        ]
+        processor.write_file(output_buf, rows=rows)
+
+        # Then the modified rows end up in the exported data
+        data = output_buf.getvalue()
+        assert data == 'foo,bar\r\na,b\r\nc,d\r\n'
+
     def test_get_iterator_error_data(self):
         # Given a request for error data
         processor = DummyProcessor()
