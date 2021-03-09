@@ -152,6 +152,25 @@ class CSVTestCase(TestCase):
             'c,d,Failure,Error'
         ]
 
+    def test_get_iterator_error_column_override(self):
+        # Given a request for error data with input column overrides
+        processor = DummyProcessor()
+        processor.result_data = [
+            {'foo': 'a', 'bar': 'b', 'status': 'Success', 'error': ''},
+            {'foo': 'c', 'bar': 'd', 'status': 'Failure', 'error': 'Error'}
+        ]
+
+        # When I get data from the iterator
+        iterator = processor.get_iterator(error_data='1', columns=['bar'])
+
+        # Then columns are filtered before adding error data
+        output = [row.strip() for row in iterator]
+        assert output == [
+            'bar,status,error',
+            'b,Success,',
+            'd,Failure,Error'
+        ]
+
     def test_checksum(self):
         processor = DummyChecksumProcessor()
         row = {
