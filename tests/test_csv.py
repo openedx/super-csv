@@ -133,6 +133,25 @@ class CSVTestCase(TestCase):
         if message:
             assert status["error_messages"][0] == message
 
+    def test_get_iterator_error_data(self):
+        # Given a request for error data
+        processor = DummyProcessor()
+        processor.result_data = [
+            {'foo': 'a', 'bar': 'b', 'status': 'Success', 'error': ''},
+            {'foo': 'c', 'bar': 'd', 'status': 'Failure', 'error': 'Error'}
+        ]
+
+        # When I get data from the iterator
+        iterator = processor.get_iterator(error_data='1')
+
+        # Extra error data is returned in the output file
+        output = [row.strip() for row in iterator]
+        assert output == [
+            'foo,bar,status,error',
+            'a,b,Success,',
+            'c,d,Failure,Error'
+        ]
+
     def test_checksum(self):
         processor = DummyChecksumProcessor()
         row = {
