@@ -152,15 +152,24 @@ class CSVProcessor:
 
     def get_iterator(self, rows=None, columns=None, error_data=False):
         """
-        Export the CSV as an iterator.
+        Generate row data for writing to an output CSV file.
+
+        Supply rows (dict array) to override output row data.
+        Supply columns (string array) to override output columns from processor.
+        Set error_data to a truthy value to return error and status info per-row.
         """
-        columns = columns or self.columns
         if error_data:
-            # return an iterator of the original data with an added error column
-            rows = rows or self.result_data
+            if columns is None:
+                columns = self.columns
             columns = columns + ['status', 'error']
+            if rows is None:
+                rows = self.result_data
         else:
-            rows = rows or self.get_rows_to_export()
+            if columns is None:
+                columns = self.columns
+            if rows is None:
+                rows = self.get_rows_to_export()
+
         writer = csv.DictWriter(Echo(), columns, extrasaction="ignore")
         header = writer.writerow(dict(zip(writer.fieldnames, writer.fieldnames)))
         yield header
