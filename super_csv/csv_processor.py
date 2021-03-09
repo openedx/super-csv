@@ -143,11 +143,11 @@ class CSVProcessor:
         """
         self.error_messages[message].append(row)
 
-    def write_file(self, thefile, rows=None):
+    def write_file(self, thefile, rows=None, columns=None):
         """
         Write the rows to the file.
         """
-        for row in self.get_iterator(rows):
+        for row in self.get_iterator(rows, columns):
             thefile.write(row)
 
     def get_iterator(self, rows=None, columns=None, error_data=False):
