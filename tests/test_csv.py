@@ -133,8 +133,8 @@ class CSVTestCase(TestCase):
         if message:
             assert status["error_messages"][0] == message
 
-    def test_column_overrides(self):
-        # Given an existing file to export
+    def test_write_column_overrides(self):
+        # Given existing data to write
         processor = DummyProcessor()
         processor.process_file(self.dummy_csv)
 
@@ -146,8 +146,8 @@ class CSVTestCase(TestCase):
         data = output_buf.getvalue()
         assert data == 'foo\r\n1\r\n2\r\n'
 
-    def test_row_overrides(self):
-        # Given an existing file to export
+    def test_write_row_overrides(self):
+        # Given existing data to write
         processor = DummyProcessor()
         processor.process_file(self.dummy_csv)
 
