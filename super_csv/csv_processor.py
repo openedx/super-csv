@@ -143,25 +143,34 @@ class CSVProcessor:
         """
         self.error_messages[message].append(row)
 
-    def write_file(self, thefile, rows=None):
+    def write_file(self, thefile, rows=None, columns=None):
         """
         Write the rows to the file.
         """
-        for row in self.get_iterator(rows):
+        for row in self.get_iterator(rows, columns):
             thefile.write(row)
 
     def get_iterator(self, rows=None, columns=None, error_data=False):
         """
-        Export the CSV as an iterator.
+        Generate row data for writing to an output CSV file.
+
+        Supply rows (dict array) to override output row data.
+        Supply columns (string array) to override output columns from processor.
+        Set error_data to a truthy value to return error and status info per-row.
         """
         if error_data:
-            # return an iterator of the original data with an added error column
-            rows = self.result_data
-            columns = self.columns + ['status', 'error']
+            if columns is None:
+                columns = self.columns
+            columns = columns + ['status', 'error']
+            if rows is None:
+                rows = self.result_data
         else:
-            rows = rows or self.get_rows_to_export()
-            columns = columns or self.columns
-        writer = csv.DictWriter(Echo(), columns)
+            if columns is None:
+                columns = self.columns
+            if rows is None:
+                rows = self.get_rows_to_export()
+
+        writer = csv.DictWriter(Echo(), columns, extrasaction="ignore")
         header = writer.writerow(dict(zip(writer.fieldnames, writer.fieldnames)))
         yield header
         for row in rows:

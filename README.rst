@@ -41,8 +41,9 @@ and are on a command prompt inside the LMS container.
 #. Clone this repo into ``../src/`` directory (relative to your "devstack" repo location). This will mount the directory
    in a way that is accessible to the lms container.
 
-#. Clone inside the lms, uninstall super-csv and reinstall your local copy. You can just copy the following line. This
-   is necessary if one wants to use latest version for testing/development purposes::
+#. Clone inside the lms, uninstall super-csv and reinstall your local copy.
+   You can run the following line from inside the lms, or from the host machine run ``make install-local``.
+   This is necessary if one wants to use latest version for testing/development purposes::
 
     pip uninstall super-csv -y; pip install -e /edx/src/super-csv
 
@@ -51,7 +52,7 @@ and are on a command prompt inside the LMS container.
 
     cd /edx/src/super-csv
     virtualenv super-csv-env
-    source super-csv-env/activate
+    source super-csv-env/bin/activate
     make requirements
 
 #. That's it.

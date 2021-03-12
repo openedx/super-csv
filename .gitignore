@@ -45,6 +45,7 @@ pii_report
 .project
 .pycharm_helpers/
 .pydevproject
+.vscode
 
 # The Silver Searcher
 .agignore
@@ -81,6 +82,7 @@ default.db
 
 # local virtualenvs
 supercsv-env/
+super-csv-env/
 
 # test output
 csv/

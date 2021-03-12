@@ -14,9 +14,15 @@ Change Log
 Unreleased
 ~~~~~~~~~~
 
-[1.2.0] - 2020-12-10
+[2.0.1] - 2020-03-12
 ~~~~~~~~~~~~~~~~~~~~
 
+* Update write_file and get_iterator to allow row/column overrides
+
+[2.0.0] - 2020-12-23
+~~~~~~~~~~~~~~~~~~~~
+
+* Removed python 3.5 support
 * Adds support for celery 5
 
 [1.1.0] - 2020-12-02
@@ -30,14 +36,17 @@ Unreleased
 
 [1.0.2] - 2020-09-14
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 * Move to Apache License
 
 [1.0.1] - 2020-09-14
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 * Minor updates to attrs, code-annotations, and freezegun dependencies
 
 [1.0.0] - 2020-09-02
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 * Upgrade celery to 4.2.2
 
 [0.9.9] - 2020-05-28
