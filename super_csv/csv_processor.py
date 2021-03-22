@@ -190,6 +190,7 @@ class CSVProcessor:
             if autocommit and self.can_commit:
                 self.commit()
 
+    # pylint: disable=inconsistent-return-statements
     def read_file(self, thefile):
         """
         Create a CSV reader and validate the file.
