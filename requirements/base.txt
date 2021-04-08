@@ -10,22 +10,22 @@ billiard==3.6.3.0
     # via celery
 celery==4.4.7
     # via
-    #   -c requirements/constraints.txt
+    #   -c constraints.txt
     #   edx-celeryutils
 django-crum==0.7.9
     # via
-    #   -r requirements/base.in
+    #   -r base.in
     #   edx-django-utils
 django-model-utils==4.1.1
     # via
-    #   -r requirements/base.in
+    #   -r base.in
     #   edx-celeryutils
 django-waffle==2.1.0
     # via edx-django-utils
-django==2.2.19
+django==2.2.20
     # via
-    #   -c requirements/constraints.txt
-    #   -r requirements/base.in
+    #   -c constraints.txt
+    #   -r base.in
     #   django-crum
     #   django-model-utils
     #   djangorestframework
@@ -33,11 +33,11 @@ django==2.2.19
     #   edx-django-utils
     #   jsonfield2
 djangorestframework==3.12.2
-    # via -r requirements/base.in
+    # via -r base.in
 edx-celeryutils==1.0.0
-    # via -r requirements/base.in
+    # via -r base.in
 edx-django-utils==3.15.0
-    # via -r requirements/base.in
+    # via -r base.in
 future==0.18.2
     # via edx-celeryutils
 jsonfield2==4.0.0.post0
@@ -55,7 +55,7 @@ pytz==2021.1
     #   celery
     #   django
 simplejson==3.17.2
-    # via -r requirements/base.in
+    # via -r base.in
 sqlparse==0.4.1
     # via django
 stevedore==3.3.0
