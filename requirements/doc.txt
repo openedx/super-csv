@@ -16,7 +16,7 @@ attrs==20.3.0
     #   pytest
 babel==2.9.0
     # via sphinx
-billiard==3.6.3.0
+billiard==3.6.4.0
     # via
     #   -r requirements/test.txt
     #   celery
@@ -37,7 +37,7 @@ click==7.1.2
     # via
     #   -r requirements/test.txt
     #   code-annotations
-code-annotations==1.1.0
+code-annotations==1.1.1
     # via -r requirements/test.txt
 coverage==5.5
     # via
@@ -57,7 +57,7 @@ django-waffle==2.1.0
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
-django==2.2.19
+django==2.2.20
     # via
     #   -c requirements/constraints.txt
     #   -r requirements/test.txt
@@ -68,7 +68,7 @@ django==2.2.19
     #   edx-celeryutils
     #   edx-django-utils
     #   jsonfield2
-djangorestframework==3.12.2
+djangorestframework==3.12.4
     # via -r requirements/test.txt
 doc8==0.8.1
     # via -r requirements/doc.in
@@ -80,9 +80,9 @@ docutils==0.16
     #   sphinx
 edx-celeryutils==1.0.0
     # via -r requirements/test.txt
-edx-django-utils==3.15.0
+edx-django-utils==3.16.0
     # via -r requirements/test.txt
-edx-sphinx-theme==2.0.0
+edx-sphinx-theme==2.1.0
     # via -r requirements/doc.in
 freezegun==1.1.0
     # via -r requirements/test.txt
@@ -158,9 +158,9 @@ pyparsing==2.4.7
     #   packaging
 pytest-cov==2.11.1
     # via -r requirements/test.txt
-pytest-django==4.1.0
+pytest-django==4.2.0
     # via -r requirements/test.txt
-pytest==6.2.2
+pytest==6.2.3
     # via
     #   -r requirements/test.txt
     #   pytest-cov
@@ -201,7 +201,7 @@ six==1.15.0
     #   readme-renderer
 snowballstemmer==2.1.0
     # via sphinx
-sphinx==3.5.3
+sphinx==3.5.4
     # via
     #   -r requirements/doc.in
     #   edx-sphinx-theme
@@ -217,7 +217,7 @@ sphinxcontrib-qthelp==1.0.3
     # via sphinx
 sphinxcontrib-serializinghtml==1.1.4
     # via sphinx
-sqlalchemy==1.4.2
+sqlalchemy==1.4.7
     # via -r requirements/test.txt
 sqlparse==0.4.1
     # via

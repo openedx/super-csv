@@ -8,7 +8,7 @@ amqp==2.6.1
     # via
     #   -r requirements/test.txt
     #   kombu
-astroid==2.5.1
+astroid==2.5.3
     # via
     #   pylint
     #   pylint-celery
@@ -16,7 +16,7 @@ attrs==20.3.0
     # via
     #   -r requirements/test.txt
     #   pytest
-billiard==3.6.3.0
+billiard==3.6.4.0
     # via
     #   -r requirements/test.txt
     #   celery
@@ -33,7 +33,7 @@ click==7.1.2
     #   click-log
     #   code-annotations
     #   edx-lint
-code-annotations==1.1.0
+code-annotations==1.1.1
     # via
     #   -r requirements/test.txt
     #   edx-lint
@@ -55,7 +55,7 @@ django-waffle==2.1.0
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
-django==2.2.19
+django==2.2.20
     # via
     #   -c requirements/constraints.txt
     #   -r requirements/test.txt
@@ -67,11 +67,11 @@ django==2.2.19
     #   edx-django-utils
     #   edx-lint
     #   jsonfield2
-djangorestframework==3.12.2
+djangorestframework==3.12.4
     # via -r requirements/test.txt
 edx-celeryutils==1.0.0
     # via -r requirements/test.txt
-edx-django-utils==3.15.0
+edx-django-utils==3.16.0
     # via -r requirements/test.txt
 edx-lint==5.0.0
     # via -r requirements/quality.in
@@ -105,7 +105,7 @@ kombu==4.6.11
     # via
     #   -r requirements/test.txt
     #   celery
-lazy-object-proxy==1.5.2
+lazy-object-proxy==1.6.0
     # via astroid
 markupsafe==1.1.1
     # via
@@ -145,13 +145,13 @@ pydocstyle==6.0.0
     # via -r requirements/quality.in
 pylint-celery==0.3
     # via edx-lint
-pylint-django==2.4.2
+pylint-django==2.4.3
     # via edx-lint
 pylint-plugin-utils==0.6
     # via
     #   pylint-celery
     #   pylint-django
-pylint==2.7.2
+pylint==2.7.4
     # via
     #   edx-lint
     #   pylint-celery
@@ -163,9 +163,9 @@ pyparsing==2.4.7
     #   packaging
 pytest-cov==2.11.1
     # via -r requirements/test.txt
-pytest-django==4.1.0
+pytest-django==4.2.0
     # via -r requirements/test.txt
-pytest==6.2.2
+pytest==6.2.3
     # via
     #   -r requirements/test.txt
     #   pytest-cov
@@ -196,7 +196,7 @@ six==1.15.0
     #   python-dateutil
 snowballstemmer==2.1.0
     # via pydocstyle
-sqlalchemy==1.4.2
+sqlalchemy==1.4.7
     # via -r requirements/test.txt
 sqlparse==0.4.1
     # via
