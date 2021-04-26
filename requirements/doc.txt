@@ -217,7 +217,7 @@ sphinxcontrib-qthelp==1.0.3
     # via sphinx
 sphinxcontrib-serializinghtml==1.1.4
     # via sphinx
-sqlalchemy==1.4.7
+sqlalchemy==1.4.11
     # via -r requirements/test.txt
 sqlparse==0.4.1
     # via

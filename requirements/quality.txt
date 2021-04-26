@@ -8,7 +8,7 @@ amqp==2.6.1
     # via
     #   -r requirements/test.txt
     #   kombu
-astroid==2.5.3
+astroid==2.5.6
     # via
     #   pylint
     #   pylint-celery
@@ -196,7 +196,7 @@ six==1.15.0
     #   python-dateutil
 snowballstemmer==2.1.0
     # via pydocstyle
-sqlalchemy==1.4.7
+sqlalchemy==1.4.11
     # via -r requirements/test.txt
 sqlparse==0.4.1
     # via
