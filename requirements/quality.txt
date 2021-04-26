@@ -151,7 +151,7 @@ pylint-plugin-utils==0.6
     # via
     #   pylint-celery
     #   pylint-django
-pylint==2.8.1
+pylint==2.7.4
     # via
     #   edx-lint
     #   pylint-celery

@@ -227,7 +227,7 @@ pylint-plugin-utils==0.6
     #   -r requirements/quality.txt
     #   pylint-celery
     #   pylint-django
-pylint==2.8.1
+pylint==2.7.4
     # via
     #   -r requirements/quality.txt
     #   edx-lint
