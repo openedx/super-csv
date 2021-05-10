@@ -12,7 +12,7 @@ astroid==2.5.6
     # via
     #   pylint
     #   pylint-celery
-attrs==20.3.0
+attrs==21.2.0
     # via
     #   -r requirements/test.txt
     #   pytest
@@ -55,7 +55,7 @@ django-waffle==2.1.0
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
-django==2.2.20
+django==2.2.22
     # via
     #   -c requirements/constraints.txt
     #   -r requirements/test.txt
@@ -71,7 +71,7 @@ djangorestframework==3.12.4
     # via -r requirements/test.txt
 edx-celeryutils==1.0.0
     # via -r requirements/test.txt
-edx-django-utils==3.16.0
+edx-django-utils==4.0.0
     # via -r requirements/test.txt
 edx-lint==5.0.0
     # via -r requirements/quality.in
@@ -81,7 +81,7 @@ future==0.18.2
     # via
     #   -r requirements/test.txt
     #   edx-celeryutils
-greenlet==1.0.0
+greenlet==1.1.0
     # via
     #   -r requirements/test.txt
     #   sqlalchemy
@@ -123,7 +123,7 @@ packaging==20.9
     # via
     #   -r requirements/test.txt
     #   pytest
-pbr==5.5.1
+pbr==5.6.0
     # via
     #   -r requirements/test.txt
     #   stevedore
@@ -145,7 +145,7 @@ pydocstyle==6.0.0
     # via -r requirements/quality.in
 pylint-celery==0.3
     # via edx-lint
-pylint-django==2.4.3
+pylint-django==2.4.4
     # via edx-lint
 pylint-plugin-utils==0.6
     # via
@@ -153,6 +153,7 @@ pylint-plugin-utils==0.6
     #   pylint-django
 pylint==2.7.4
     # via
+    #   -c requirements/constraints.txt
     #   edx-lint
     #   pylint-celery
     #   pylint-django
@@ -165,7 +166,7 @@ pytest-cov==2.11.1
     # via -r requirements/test.txt
 pytest-django==4.2.0
     # via -r requirements/test.txt
-pytest==6.2.3
+pytest==6.2.4
     # via
     #   -r requirements/test.txt
     #   pytest-cov
@@ -174,7 +175,7 @@ python-dateutil==2.8.1
     # via
     #   -r requirements/test.txt
     #   freezegun
-python-slugify==4.0.1
+python-slugify==5.0.2
     # via
     #   -r requirements/test.txt
     #   code-annotations
@@ -189,14 +190,14 @@ pyyaml==5.4.1
     #   code-annotations
 simplejson==3.17.2
     # via -r requirements/test.txt
-six==1.15.0
+six==1.16.0
     # via
     #   -r requirements/test.txt
     #   edx-lint
     #   python-dateutil
 snowballstemmer==2.1.0
     # via pydocstyle
-sqlalchemy==1.4.11
+sqlalchemy==1.4.14
     # via -r requirements/test.txt
 sqlparse==0.4.1
     # via
