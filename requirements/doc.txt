@@ -33,13 +33,13 @@ chardet==4.0.0
     # via
     #   doc8
     #   requests
-click==7.1.2
+click==8.0.1
     # via
     #   -r requirements/test.txt
     #   code-annotations
-code-annotations==1.1.1
+code-annotations==1.1.2
     # via -r requirements/test.txt
-coverage==5.5
+coverage[toml]==5.5
     # via
     #   -r requirements/test.txt
     #   pytest-cov
@@ -53,15 +53,14 @@ django-model-utils==4.1.1
     # via
     #   -r requirements/test.txt
     #   edx-celeryutils
-django-waffle==2.1.0
+django-waffle==2.2.0
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
-django==2.2.22
+django==2.2.23
     # via
     #   -c requirements/constraints.txt
     #   -r requirements/test.txt
-    #   code-annotations
     #   django-crum
     #   django-model-utils
     #   djangorestframework
@@ -102,7 +101,7 @@ iniconfig==1.1.1
     # via
     #   -r requirements/test.txt
     #   pytest
-jinja2==2.11.3
+jinja2==3.0.1
     # via
     #   -r requirements/test.txt
     #   code-annotations
@@ -115,11 +114,10 @@ kombu==4.6.11
     # via
     #   -r requirements/test.txt
     #   celery
-markupsafe==1.1.1
+markupsafe==2.0.1
     # via
     #   -r requirements/test.txt
     #   jinja2
-    #   sphinx
 mock==4.0.3
     # via -r requirements/test.txt
 newrelic==6.2.0.156
@@ -157,9 +155,9 @@ pyparsing==2.4.7
     # via
     #   -r requirements/test.txt
     #   packaging
-pytest-cov==2.11.1
+pytest-cov==2.12.0
     # via -r requirements/test.txt
-pytest-django==4.2.0
+pytest-django==4.3.0
     # via -r requirements/test.txt
 pytest==6.2.4
     # via
@@ -202,7 +200,7 @@ six==1.16.0
     #   readme-renderer
 snowballstemmer==2.1.0
     # via sphinx
-sphinx==4.0.0
+sphinx==4.0.2
     # via
     #   -r requirements/doc.in
     #   edx-sphinx-theme
@@ -210,15 +208,15 @@ sphinxcontrib-applehelp==1.0.2
     # via sphinx
 sphinxcontrib-devhelp==1.0.2
     # via sphinx
-sphinxcontrib-htmlhelp==1.0.3
+sphinxcontrib-htmlhelp==2.0.0
     # via sphinx
 sphinxcontrib-jsmath==1.0.1
     # via sphinx
 sphinxcontrib-qthelp==1.0.3
     # via sphinx
-sphinxcontrib-serializinghtml==1.1.4
+sphinxcontrib-serializinghtml==1.1.5
     # via sphinx
-sqlalchemy==1.4.14
+sqlalchemy==1.4.15
     # via -r requirements/test.txt
 sqlparse==0.4.1
     # via
@@ -237,6 +235,7 @@ text-unidecode==1.3
 toml==0.10.2
     # via
     #   -r requirements/test.txt
+    #   coverage
     #   pytest
 urllib3==1.26.4
     # via requests
