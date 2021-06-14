@@ -22,7 +22,7 @@ django-model-utils==4.1.1
     #   edx-celeryutils
 django-waffle==2.2.0
     # via edx-django-utils
-django==2.2.23
+django==2.2.24
     # via
     #   -c requirements/constraints.txt
     #   -r requirements/base.in
@@ -36,7 +36,7 @@ djangorestframework==3.12.4
     # via -r requirements/base.in
 edx-celeryutils==1.0.0
     # via -r requirements/base.in
-edx-django-utils==4.0.0
+edx-django-utils==4.1.0
     # via -r requirements/base.in
 future==0.18.2
     # via edx-celeryutils
@@ -44,7 +44,7 @@ jsonfield2==4.0.0.post0
     # via edx-celeryutils
 kombu==4.6.11
     # via celery
-newrelic==6.2.0.156
+newrelic==6.4.1.158
     # via edx-django-utils
 pbr==5.6.0
     # via stevedore
