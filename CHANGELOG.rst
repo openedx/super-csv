@@ -12,7 +12,12 @@ Change Log
 .. There should always be an "Unreleased" section for changes pending release.
 
 Unreleased
-~~~~~~~~~~
+----------
+
+[2.1.1] - 2021-09-01
+~~~~~~~~~~~~~~~~~~~~
+
+* Fix missing file error for bulk grade. Some of the files were expired but the code still expect to read it without `try/catch`.
 
 [2.1.0] - 2020-07-26
 ~~~~~~~~~~~~~~~~~~~~
