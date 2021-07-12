@@ -8,7 +8,7 @@ amqp==2.6.1
     # via
     #   -r requirements/test.txt
     #   kombu
-astroid==2.5.8
+astroid==2.6.2
     # via
     #   pylint
     #   pylint-celery
@@ -88,7 +88,7 @@ iniconfig==1.1.1
     # via
     #   -r requirements/test.txt
     #   pytest
-isort==5.9.1
+isort==5.9.2
     # via
     #   -r requirements/quality.in
     #   pylint
@@ -114,11 +114,11 @@ mccabe==0.6.1
     # via pylint
 mock==4.0.3
     # via -r requirements/test.txt
-newrelic==6.4.1.158
+newrelic==6.4.4.161
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
-packaging==20.9
+packaging==21.0
     # via
     #   -r requirements/test.txt
     #   pytest
@@ -187,7 +187,7 @@ pyyaml==5.4.1
     # via
     #   -r requirements/test.txt
     #   code-annotations
-simplejson==3.17.2
+simplejson==3.17.3
     # via -r requirements/test.txt
 six==1.16.0
     # via
@@ -196,7 +196,7 @@ six==1.16.0
     #   python-dateutil
 snowballstemmer==2.1.0
     # via pydocstyle
-sqlalchemy==1.4.18
+sqlalchemy==1.4.20
     # via -r requirements/test.txt
 sqlparse==0.4.1
     # via
