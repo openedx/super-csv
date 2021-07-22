@@ -218,7 +218,7 @@ class CSVProcessor:
             result = ResultDict(row)
             try:
                 self.validate_row(row)
-                row = self.preprocess_row(row)
+                row = self.preprocess_row(row, rownum)
                 if row:
                     self.stage.append((rownum, row))
                     processed_rows += 1
@@ -260,7 +260,7 @@ class CSVProcessor:
         Returns a row.
         """
 
-    def preprocess_row(self, row):
+    def preprocess_row(self, row, rownum):
         """
         Preprocess the row.
         Returns the same row or new row, or None.
