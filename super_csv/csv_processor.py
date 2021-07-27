@@ -211,14 +211,14 @@ class CSVProcessor:
         Preprocess the rows, saving them to the staging list.
         """
         rownum = processed_rows = 0
-        snapshot = []
         failure = _('Failure')
         no_action = _('No Action')
+        self.result_data = []
         for rownum, row in enumerate(reader, 1):
             result = ResultDict(row)
             try:
                 self.validate_row(row)
-                row = self.preprocess_row(row, rownum)
+                row = self.preprocess_row(row)
                 if row:
                     self.stage.append((rownum, row))
                     processed_rows += 1
@@ -228,8 +228,7 @@ class CSVProcessor:
                 self.add_error(str(e), rownum)
                 result['error'] = str(e)
                 result['status'] = failure
-            snapshot.append(result)
-        self.result_data = snapshot
+            self.result_data.append(result)
         self.total_rows = rownum
         self.processed_rows = processed_rows
 
@@ -260,7 +259,7 @@ class CSVProcessor:
         Returns a row.
         """
 
-    def preprocess_row(self, row, rownum):
+    def preprocess_row(self, row):
         """
         Preprocess the row.
         Returns the same row or new row, or None.
