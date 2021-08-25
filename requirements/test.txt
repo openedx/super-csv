@@ -18,7 +18,7 @@ attrs==21.2.0
     #   edx-celeryutils
 click==8.0.1
     # via code-annotations
-code-annotations==1.1.2
+code-annotations==1.2.0
     # via -r requirements/test.in
 coverage==5.5
     # via pytest-cov
@@ -48,7 +48,7 @@ django-waffle==2.2.1
     # via -r requirements/base.txt
 edx-celeryutils==1.1.0
     # via -r requirements/base.txt
-edx-django-utils==4.2.0
+edx-django-utils==4.3.0
     # via -r requirements/base.txt
 freezegun==1.1.0
     # via -r requirements/test.in
@@ -56,7 +56,7 @@ future==0.18.2
     # via
     #   -r requirements/base.txt
     #   edx-celeryutils
-greenlet==1.1.0
+greenlet==1.1.1
     # via sqlalchemy
 iniconfig==1.1.1
     # via pytest
@@ -73,7 +73,7 @@ markupsafe==2.0.1
     # via jinja2
 mock==4.0.3
     # via -r requirements/test.in
-newrelic==6.4.4.161
+newrelic==6.8.1.164
     # via
     #   -r requirements/base.txt
     #   edx-django-utils
@@ -112,17 +112,17 @@ pytz==2021.1
     #   django
 pyyaml==5.4.1
     # via code-annotations
-simplejson==3.17.3
+simplejson==3.17.5
     # via -r requirements/base.txt
 six==1.16.0
     # via python-dateutil
-sqlalchemy==1.4.22
+sqlalchemy==1.4.23
     # via -r requirements/test.in
 sqlparse==0.4.1
     # via
     #   -r requirements/base.txt
     #   django
-stevedore==3.3.0
+stevedore==3.4.0
     # via
     #   -r requirements/base.txt
     #   code-annotations

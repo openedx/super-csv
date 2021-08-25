@@ -20,7 +20,7 @@ billiard==3.6.4.0
     # via
     #   -r requirements/test.txt
     #   celery
-bleach==3.3.1
+bleach==4.0.0
     # via readme-renderer
 celery==4.4.7
     # via
@@ -29,13 +29,13 @@ celery==4.4.7
     #   edx-celeryutils
 certifi==2021.5.30
     # via requests
-charset-normalizer==2.0.3
+charset-normalizer==2.0.4
     # via requests
 click==8.0.1
     # via
     #   -r requirements/test.txt
     #   code-annotations
-code-annotations==1.1.2
+code-annotations==1.2.0
     # via -r requirements/test.txt
 coverage==5.5
     # via
@@ -77,7 +77,7 @@ docutils==0.17.1
     #   sphinx
 edx-celeryutils==1.1.0
     # via -r requirements/test.txt
-edx-django-utils==4.2.0
+edx-django-utils==4.3.0
     # via -r requirements/test.txt
 edx-sphinx-theme==3.0.0
     # via -r requirements/doc.in
@@ -87,7 +87,7 @@ future==0.18.2
     # via
     #   -r requirements/test.txt
     #   edx-celeryutils
-greenlet==1.1.0
+greenlet==1.1.1
     # via
     #   -r requirements/test.txt
     #   sqlalchemy
@@ -118,7 +118,7 @@ markupsafe==2.0.1
     #   jinja2
 mock==4.0.3
     # via -r requirements/test.txt
-newrelic==6.4.4.161
+newrelic==6.8.1.164
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
@@ -144,7 +144,7 @@ py==1.10.0
     # via
     #   -r requirements/test.txt
     #   pytest
-pygments==2.9.0
+pygments==2.10.0
     # via
     #   doc8
     #   readme-renderer
@@ -186,7 +186,7 @@ requests==2.26.0
     # via sphinx
 restructuredtext-lint==1.3.2
     # via doc8
-simplejson==3.17.3
+simplejson==3.17.5
     # via -r requirements/test.txt
 six==1.16.0
     # via
@@ -197,7 +197,7 @@ six==1.16.0
     #   readme-renderer
 snowballstemmer==2.1.0
     # via sphinx
-sphinx==4.1.1
+sphinx==4.1.2
     # via
     #   -r requirements/doc.in
     #   edx-sphinx-theme
@@ -213,13 +213,13 @@ sphinxcontrib-qthelp==1.0.3
     # via sphinx
 sphinxcontrib-serializinghtml==1.1.5
     # via sphinx
-sqlalchemy==1.4.22
+sqlalchemy==1.4.23
     # via -r requirements/test.txt
 sqlparse==0.4.1
     # via
     #   -r requirements/test.txt
     #   django
-stevedore==3.3.0
+stevedore==3.4.0
     # via
     #   -r requirements/test.txt
     #   code-annotations
