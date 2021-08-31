@@ -1,7 +1,7 @@
 super-csv
 =============================
 
-|pypi-badge| |travis-badge| |codecov-badge| |doc-badge| |pyversions-badge|
+|pypi-badge| |CI| |codecov-badge| |doc-badge| |pyversions-badge|
 |license-badge|
 
 Generic CSV Processing for Django Apps
@@ -100,9 +100,9 @@ refer to this `list of resources`_ if you need any assistance.
     :target: https://pypi.python.org/pypi/super-csv/
     :alt: PyPI
 
-.. |travis-badge| image:: https://travis-ci.com/edx/super-csv.svg?branch=master
-    :target: https://travis-ci.com/edx/super-csv
-    :alt: Travis
+.. |CI| image:: image:: https://github.com/edx/super-csv/workflows/Python%20CI/badge.svg?branch=master
+    :target: https://github.com/edx/super-csv/actions?query=workflow%3A%22Python+CI%22
+    :alt: CI
 
 .. |codecov-badge| image:: http://codecov.io/github/edx/super-csv/coverage.svg?branch=master
     :target: http://codecov.io/github/edx/super-csv?branch=master
