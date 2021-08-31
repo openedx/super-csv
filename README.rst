@@ -100,7 +100,7 @@ refer to this `list of resources`_ if you need any assistance.
     :target: https://pypi.python.org/pypi/super-csv/
     :alt: PyPI
 
-.. |CI| image:: image:: https://github.com/edx/super-csv/workflows/Python%20CI/badge.svg?branch=master
+.. |CI| image:: https://github.com/edx/super-csv/workflows/Python%20CI/badge.svg?branch=master
     :target: https://github.com/edx/super-csv/actions?query=workflow%3A%22Python+CI%22
     :alt: CI
 
