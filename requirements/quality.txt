@@ -8,7 +8,7 @@ amqp==2.6.1
     # via
     #   -r requirements/test.txt
     #   kombu
-astroid==2.6.5
+astroid==2.6.6
     # via
     #   pylint
     #   pylint-celery
@@ -33,7 +33,7 @@ click==8.0.1
     #   edx-lint
 click-log==0.3.2
     # via edx-lint
-code-annotations==1.1.2
+code-annotations==1.2.0
     # via
     #   -r requirements/test.txt
     #   edx-lint
@@ -80,7 +80,7 @@ future==0.18.2
     # via
     #   -r requirements/test.txt
     #   edx-celeryutils
-greenlet==1.1.0
+greenlet==1.1.1
     # via
     #   -r requirements/test.txt
     #   sqlalchemy
@@ -88,7 +88,7 @@ iniconfig==1.1.1
     # via
     #   -r requirements/test.txt
     #   pytest
-isort==5.9.2
+isort==5.9.3
     # via
     #   -r requirements/quality.in
     #   pylint
@@ -114,7 +114,7 @@ mccabe==0.6.1
     # via pylint
 mock==4.0.3
     # via -r requirements/test.txt
-newrelic==6.4.4.161
+newrelic==6.8.0.163
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
