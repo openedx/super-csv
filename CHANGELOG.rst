@@ -14,6 +14,8 @@ Change Log
 Unreleased
 ----------
 
+* Fix `dev.in` to pull from `ci.txt` rather than `travis.txt`.
+
 [2.1.1] - 2021-09-01
 ~~~~~~~~~~~~~~~~~~~~
 
