@@ -37,7 +37,7 @@ django-crum==0.7.9
     # via
     #   -r requirements/base.txt
     #   edx-django-utils
-django-model-utils==4.1.1
+django-model-utils==4.2.0
     # via
     #   -r requirements/base.txt
     #   edx-celeryutils
@@ -73,7 +73,7 @@ markupsafe==2.0.1
     # via jinja2
 mock==4.0.3
     # via -r requirements/test.in
-newrelic==7.2.1.168
+newrelic==7.2.2.169
     # via
     #   -r requirements/base.txt
     #   edx-django-utils
@@ -110,7 +110,7 @@ pytz==2021.3
     #   -r requirements/base.txt
     #   celery
     #   django
-pyyaml==5.4.1
+pyyaml==6.0
     # via code-annotations
 simplejson==3.17.5
     # via -r requirements/base.txt
@@ -122,7 +122,7 @@ sqlparse==0.4.2
     # via
     #   -r requirements/base.txt
     #   django
-stevedore==3.4.0
+stevedore==3.5.0
     # via
     #   -r requirements/base.txt
     #   code-annotations

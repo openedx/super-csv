@@ -87,7 +87,7 @@ django-crum==0.7.9
     # via
     #   -r requirements/quality.txt
     #   edx-django-utils
-django-model-utils==4.1.1
+django-model-utils==4.2.0
     # via
     #   -r requirements/quality.txt
     #   edx-celeryutils
@@ -105,7 +105,7 @@ edx-i18n-tools==0.8.1
     # via -r requirements/dev.in
 edx-lint==5.2.0
     # via -r requirements/quality.txt
-filelock==3.3.0
+filelock==3.3.1
     # via
     #   -r requirements/ci.txt
     #   tox
@@ -164,7 +164,7 @@ mccabe==0.6.1
     #   pylint
 mock==4.0.3
     # via -r requirements/quality.txt
-newrelic==7.2.1.168
+newrelic==7.2.2.169
     # via
     #   -r requirements/quality.txt
     #   edx-django-utils
@@ -180,7 +180,7 @@ pbr==5.6.0
     # via
     #   -r requirements/quality.txt
     #   stevedore
-pep517==0.11.0
+pep517==0.12.0
     # via
     #   -r requirements/pip-tools.txt
     #   pip-tools
@@ -263,7 +263,7 @@ pytz==2021.3
     #   -r requirements/quality.txt
     #   celery
     #   django
-pyyaml==5.4.1
+pyyaml==6.0
     # via
     #   -r requirements/quality.txt
     #   code-annotations
@@ -292,7 +292,7 @@ sqlparse==0.4.2
     # via
     #   -r requirements/quality.txt
     #   django
-stevedore==3.4.0
+stevedore==3.5.0
     # via
     #   -r requirements/quality.txt
     #   code-annotations
