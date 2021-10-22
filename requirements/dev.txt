@@ -286,7 +286,7 @@ snowballstemmer==2.1.0
     # via
     #   -r requirements/quality.txt
     #   pydocstyle
-sqlalchemy==1.4.25
+sqlalchemy==1.4.26
     # via -r requirements/quality.txt
 sqlparse==0.4.2
     # via
