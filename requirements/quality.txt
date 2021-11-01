@@ -195,7 +195,7 @@ six==1.16.0
     #   python-dateutil
 snowballstemmer==2.1.0
     # via pydocstyle
-sqlalchemy==1.4.25
+sqlalchemy==1.4.26
     # via -r requirements/test.txt
 sqlparse==0.4.2
     # via

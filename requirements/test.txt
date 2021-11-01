@@ -116,7 +116,7 @@ simplejson==3.17.5
     # via -r requirements/base.txt
 six==1.16.0
     # via python-dateutil
-sqlalchemy==1.4.25
+sqlalchemy==1.4.26
     # via -r requirements/test.in
 sqlparse==0.4.2
     # via
