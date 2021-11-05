@@ -37,7 +37,7 @@ code-annotations==1.2.0
     # via
     #   -r requirements/test.txt
     #   edx-lint
-coverage[toml]==6.0.2
+coverage[toml]==6.1.1
     # via
     #   -r requirements/test.txt
     #   pytest-cov
@@ -71,7 +71,7 @@ edx-celeryutils==1.1.1
     # via -r requirements/test.txt
 edx-django-utils==4.4.0
     # via -r requirements/test.txt
-edx-lint==5.2.0
+edx-lint==5.2.1
     # via -r requirements/quality.in
 freezegun==1.1.0
     # via -r requirements/test.txt
@@ -87,7 +87,7 @@ iniconfig==1.1.1
     # via
     #   -r requirements/test.txt
     #   pytest
-isort==5.9.3
+isort==5.10.0
     # via
     #   -r requirements/quality.in
     #   pylint
@@ -113,15 +113,15 @@ mccabe==0.6.1
     # via pylint
 mock==4.0.3
     # via -r requirements/test.txt
-newrelic==7.2.2.169
+newrelic==7.2.3.170
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
-packaging==21.0
+packaging==21.2
     # via
     #   -r requirements/test.txt
     #   pytest
-pbr==5.6.0
+pbr==5.7.0
     # via
     #   -r requirements/test.txt
     #   stevedore
@@ -133,7 +133,7 @@ psutil==5.8.0
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
-py==1.10.0
+py==1.11.0
     # via
     #   -r requirements/test.txt
     #   pytest
@@ -215,7 +215,7 @@ toml==0.10.2
     #   -r requirements/test.txt
     #   pylint
     #   pytest
-tomli==1.2.1
+tomli==1.2.2
     # via
     #   -r requirements/test.txt
     #   coverage
