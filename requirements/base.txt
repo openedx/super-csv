@@ -44,9 +44,9 @@ jsonfield==3.1.0
     # via edx-celeryutils
 kombu==4.6.11
     # via celery
-newrelic==7.2.3.170
+newrelic==7.2.4.171
     # via edx-django-utils
-pbr==5.7.0
+pbr==5.8.0
     # via stevedore
 psutil==5.8.0
     # via edx-django-utils
@@ -54,7 +54,7 @@ pytz==2021.3
     # via
     #   celery
     #   django
-simplejson==3.17.5
+simplejson==3.17.6
     # via -r requirements/base.in
 sqlparse==0.4.2
     # via django
