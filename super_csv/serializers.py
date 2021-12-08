@@ -6,7 +6,7 @@ import logging
 
 import simplejson as json
 from django.contrib.auth import get_user_model
-from django.utils.translation import ugettext as _
+from django.utils.translation import gettext as _
 from rest_framework import serializers
 
 from .models import CSVOperation
