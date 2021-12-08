@@ -7,7 +7,7 @@ import logging
 from collections import defaultdict
 from io import StringIO
 
-from django.utils.translation import ugettext as _
+from django.utils.translation import gettext as _
 
 from .exceptions import ValidationError
 from .mixins import ChecksumMixin, DeferrableMixin

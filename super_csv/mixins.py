@@ -17,7 +17,7 @@ from celery_utils.logged_task import LoggedTask
 from crum import get_current_user
 from django.conf import settings
 from django.db import DatabaseError, transaction
-from django.utils.translation import ugettext as _
+from django.utils.translation import gettext as _
 from edx_django_utils.monitoring import set_code_owner_attribute
 
 from .exceptions import ValidationError
