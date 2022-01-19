@@ -12,7 +12,7 @@ celery==4.4.7
     # via
     #   -c requirements/constraints.txt
     #   edx-celeryutils
-django==2.2.25
+django==2.2.26
     # via
     #   -c requirements/constraints.txt
     #   -r requirements/base.in
@@ -30,13 +30,13 @@ django-model-utils==4.2.0
     # via
     #   -r requirements/base.in
     #   edx-celeryutils
-django-waffle==2.2.1
+django-waffle==2.3.0
     # via edx-django-utils
 djangorestframework==3.13.1
     # via -r requirements/base.in
 edx-celeryutils==1.1.1
     # via -r requirements/base.in
-edx-django-utils==4.4.0
+edx-django-utils==4.4.1
     # via -r requirements/base.in
 future==0.18.2
     # via edx-celeryutils
@@ -48,7 +48,7 @@ newrelic==7.2.4.171
     # via edx-django-utils
 pbr==5.8.0
     # via stevedore
-psutil==5.8.0
+psutil==5.9.0
     # via edx-django-utils
 pytz==2021.3
     # via
