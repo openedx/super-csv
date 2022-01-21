@@ -16,7 +16,7 @@ def get_version(*file_paths):
     Extract the version string from the file at the given relative path fragments.
     """
     filename = os.path.join(os.path.dirname(__file__), *file_paths)
-    version_file = open_as_of_py3(filename, encoding='utf-8').read()
+    version_file = open_as_of_py3(filename, encoding='utf-8').read()  # pylint: disable=consider-using-with
     version_match = re.search(r"^__version__ = ['\"]([^'\"]*)['\"]",
                               version_file, re.M)
     if version_match:
@@ -34,6 +34,7 @@ def load_requirements(*requirements_paths):
     requirements = set()
     for path in requirements_paths:
         requirements.update(
+            # pylint: disable-next=consider-using-with
             line.split('#')[0].strip() for line in open_as_of_py3(path, encoding='utf-8').readlines()
             if is_requirement(line.strip())
         )
@@ -54,11 +55,13 @@ VERSION = get_version('super_csv', '__init__.py')
 
 if sys.argv[-1] == 'tag':
     print("Tagging the version on github:")
-    os.system("git tag -a %s -m 'version %s'" % (VERSION, VERSION))
+    os.system(f'git tag -a {VERSION!s} -m \'version {VERSION!s}\'')
     os.system("git push --tags")
     sys.exit()
 
+# pylint: disable-next=consider-using-with
 README = open_as_of_py3(os.path.join(os.path.dirname(__file__), 'README.rst'), encoding='utf-8').read()
+# pylint: disable-next=consider-using-with
 CHANGELOG = open_as_of_py3(os.path.join(os.path.dirname(__file__), 'CHANGELOG.rst'), encoding='utf-8').read()
 
 setup(

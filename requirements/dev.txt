@@ -8,7 +8,7 @@ amqp==2.6.1
     # via
     #   -r requirements/quality.txt
     #   kombu
-astroid==2.6.6
+astroid==2.9.3
     # via
     #   -r requirements/quality.txt
     #   pylint
@@ -180,6 +180,8 @@ pip-tools==6.4.0
 platformdirs==2.4.1
     # via
     #   -r requirements/ci.txt
+    #   -r requirements/quality.txt
+    #   pylint
     #   virtualenv
 pluggy==1.0.0
     # via
@@ -206,9 +208,8 @@ pydocstyle==6.1.1
     # via -r requirements/quality.txt
 pygments==2.11.2
     # via diff-cover
-pylint==2.7.4
+pylint==2.12.2
     # via
-    #   -c requirements/constraints.txt
     #   -r requirements/quality.txt
     #   edx-lint
     #   pylint-celery
@@ -312,6 +313,11 @@ tox==3.24.5
     #   tox-battery
 tox-battery==0.6.1
     # via -r requirements/ci.txt
+typing-extensions==4.0.1
+    # via
+    #   -r requirements/quality.txt
+    #   astroid
+    #   pylint
 urllib3==1.26.8
     # via
     #   -r requirements/ci.txt

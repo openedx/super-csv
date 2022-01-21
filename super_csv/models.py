@@ -38,7 +38,7 @@ class CSVOperation(TimeStampedModel):
     @classmethod
     def _get_class_name(cls, obj):
         if not isinstance(obj, str):
-            obj = '%s.%s' % (obj.__class__.__module__, obj.__class__.__name__)
+            obj = f'{obj.__class__.__module__!s}.{obj.__class__.__name__!s}'
         return obj
 
     @classmethod

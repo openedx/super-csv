@@ -12,5 +12,3 @@
 django< 2.3
 
 celery<5.0     # we still want to support celery 4
-pylint<2.8     # version 2.8 introduced breaking changes
-               # that have not yet been resolved, can be removed when version 2.8.2 is released
