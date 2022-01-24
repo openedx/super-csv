@@ -69,7 +69,7 @@ class UnicodeDictWriter(csv.DictWriter):
         self.fieldnames = fieldnames    # list of keys for the dict
         self.restval = restval          # for writing short dicts
         if extrasaction.lower() not in ("raise", "ignore"):
-            raise ValueError("extrasaction (%s) must be 'raise' or 'ignore'" % extrasaction)
+            raise ValueError(f'extrasaction ({extrasaction!s}) must be \'raise\' or \'ignore\'')
         self.extrasaction = extrasaction
         self.writer = UnicodeWriter(f, dialect, *args, **kwds)
 

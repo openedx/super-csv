@@ -40,7 +40,8 @@ class ChecksumMixin:
     def _get_checksum(self, row):
         to_check = ''.join(str(row[key] if row[key] is not None else '') for key in self.checksum_columns)
         to_check += self.secret
-        return '@%s' % hashlib.md5(to_check.encode('utf8')).hexdigest()[:self.checksum_size]
+        checksum = hashlib.md5(to_check.encode('utf8')).hexdigest()[:self.checksum_size]
+        return f'@{checksum!s}'
 
     def preprocess_export_row(self, row):
         """
@@ -136,7 +137,7 @@ class DeferrableMixin:
         if classname != cls.__name__:
             if not load_subclasses:
                 # this could indicate tampering
-                raise ValueError("%s != %s" % (classname, cls.__name__))
+                raise ValueError(f'{classname!s} != {cls.__name__!s}')
             cls = getattr(importlib.import_module(module_name), classname)  # pylint: disable=self-cls-assignment
         instance = cls(**state)
         return instance
@@ -186,7 +187,7 @@ class DeferrableMixin:
                     # current transaction.
                     operation = self.save()
             except DatabaseError:
-                log.exception('Error saving DeferrableMixin {}'.format(self))
+                log.exception("Error saving DeferrableMixin: %s", self)
                 raise
 
             # Now enqueue the async task.

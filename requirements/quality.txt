@@ -8,11 +8,11 @@ amqp==2.6.1
     # via
     #   -r requirements/test.txt
     #   kombu
-astroid==2.6.6
+astroid==2.9.3
     # via
     #   pylint
     #   pylint-celery
-attrs==21.2.0
+attrs==21.4.0
     # via
     #   -r requirements/test.txt
     #   pytest
@@ -43,7 +43,7 @@ coverage[toml]==6.2
     #   pytest-cov
 ddt==1.4.4
     # via -r requirements/test.txt
-django==2.2.25
+django==2.2.26
     # via
     #   -c requirements/constraints.txt
     #   -r requirements/test.txt
@@ -61,7 +61,7 @@ django-model-utils==4.2.0
     # via
     #   -r requirements/test.txt
     #   edx-celeryutils
-django-waffle==2.2.1
+django-waffle==2.3.0
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
@@ -69,7 +69,7 @@ djangorestframework==3.13.1
     # via -r requirements/test.txt
 edx-celeryutils==1.1.1
     # via -r requirements/test.txt
-edx-django-utils==4.4.0
+edx-django-utils==4.4.1
     # via -r requirements/test.txt
 edx-lint==5.2.1
     # via -r requirements/quality.in
@@ -125,11 +125,13 @@ pbr==5.8.0
     # via
     #   -r requirements/test.txt
     #   stevedore
+platformdirs==2.4.1
+    # via pylint
 pluggy==1.0.0
     # via
     #   -r requirements/test.txt
     #   pytest
-psutil==5.8.0
+psutil==5.9.0
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
@@ -141,18 +143,17 @@ pycodestyle==2.8.0
     # via -r requirements/quality.in
 pydocstyle==6.1.1
     # via -r requirements/quality.in
-pylint==2.7.4
+pylint==2.12.2
     # via
-    #   -c requirements/constraints.txt
     #   edx-lint
     #   pylint-celery
     #   pylint-django
     #   pylint-plugin-utils
 pylint-celery==0.3
     # via edx-lint
-pylint-django==2.4.4
+pylint-django==2.5.0
     # via edx-lint
-pylint-plugin-utils==0.6
+pylint-plugin-utils==0.7
     # via
     #   pylint-celery
     #   pylint-django
@@ -196,7 +197,7 @@ six==1.16.0
     #   python-dateutil
 snowballstemmer==2.2.0
     # via pydocstyle
-sqlalchemy==1.4.28
+sqlalchemy==1.4.29
     # via -r requirements/test.txt
 sqlparse==0.4.2
     # via
@@ -220,6 +221,10 @@ tomli==2.0.0
     # via
     #   -r requirements/test.txt
     #   coverage
+typing-extensions==4.0.1
+    # via
+    #   astroid
+    #   pylint
 vine==1.3.0
     # via
     #   -r requirements/test.txt
