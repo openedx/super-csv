@@ -17,7 +17,8 @@ jobs:
         python-version: ['3.8']
         toxenv: [django22-celery44-drflatest, django22-celery50-drflatest, django30-celery44-drflatest,
                  django30-celery50-drflatest, django31-celery44-drflatest, django31-celery50-drflatest,
-                 django32-celery44-drflatest, django32-celery50-drflatest, quality, docs, pii_check]
+                 django32-celery44-drflatest, django32-celery50-drflatest, quality, docs, pii_check,
+                 check_keywords]
 
     steps:
     - uses: actions/checkout@v2
