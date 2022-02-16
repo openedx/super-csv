@@ -8,6 +8,10 @@ amqp==2.6.1
     # via
     #   -r requirements/test.txt
     #   kombu
+asgiref==3.5.0
+    # via
+    #   -r requirements/test.txt
+    #   django
 astroid==2.9.3
     # via
     #   pylint
@@ -33,19 +37,19 @@ click==8.0.3
     #   edx-lint
 click-log==0.3.2
     # via edx-lint
-code-annotations==1.2.0
+code-annotations==1.3.0
     # via
     #   -r requirements/test.txt
     #   edx-lint
-coverage[toml]==6.2
+coverage[toml]==6.3.1
     # via
     #   -r requirements/test.txt
     #   pytest-cov
 ddt==1.4.4
     # via -r requirements/test.txt
-django==2.2.26
+django==3.2.12
     # via
-    #   -c requirements/constraints.txt
+    #   -c requirements/common_constraints.txt
     #   -r requirements/test.txt
     #   django-crum
     #   django-model-utils
@@ -67,9 +71,9 @@ django-waffle==2.3.0
     #   edx-django-utils
 djangorestframework==3.13.1
     # via -r requirements/test.txt
-edx-celeryutils==1.1.1
+edx-celeryutils==1.2.1
     # via -r requirements/test.txt
-edx-django-utils==4.4.1
+edx-django-utils==4.5.0
     # via -r requirements/test.txt
 edx-lint==5.2.1
     # via -r requirements/quality.in
@@ -113,7 +117,7 @@ mccabe==0.6.1
     # via pylint
 mock==4.0.3
     # via -r requirements/test.txt
-newrelic==7.2.4.171
+newrelic==7.4.0.172
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
@@ -121,11 +125,11 @@ packaging==21.3
     # via
     #   -r requirements/test.txt
     #   pytest
-pbr==5.8.0
+pbr==5.8.1
     # via
     #   -r requirements/test.txt
     #   stevedore
-platformdirs==2.4.1
+platformdirs==2.5.0
     # via pylint
 pluggy==1.0.0
     # via
@@ -157,11 +161,11 @@ pylint-plugin-utils==0.7
     # via
     #   pylint-celery
     #   pylint-django
-pyparsing==3.0.6
+pyparsing==3.0.7
     # via
     #   -r requirements/test.txt
     #   packaging
-pytest==6.2.5
+pytest==7.0.1
     # via
     #   -r requirements/test.txt
     #   pytest-cov
@@ -197,7 +201,7 @@ six==1.16.0
     #   python-dateutil
 snowballstemmer==2.2.0
     # via pydocstyle
-sqlalchemy==1.4.29
+sqlalchemy==1.4.31
     # via -r requirements/test.txt
 sqlparse==0.4.2
     # via
@@ -213,15 +217,13 @@ text-unidecode==1.3
     #   -r requirements/test.txt
     #   python-slugify
 toml==0.10.2
-    # via
-    #   -r requirements/test.txt
-    #   pylint
-    #   pytest
-tomli==2.0.0
+    # via pylint
+tomli==2.0.1
     # via
     #   -r requirements/test.txt
     #   coverage
-typing-extensions==4.0.1
+    #   pytest
+typing-extensions==4.1.1
     # via
     #   astroid
     #   pylint
@@ -230,7 +232,7 @@ vine==1.3.0
     #   -r requirements/test.txt
     #   amqp
     #   celery
-wrapt==1.12.1
+wrapt==1.13.3
     # via astroid
 
 # The following packages are considered to be unsafe in a requirements file:

@@ -6,15 +6,17 @@
 #
 amqp==2.6.1
     # via kombu
+asgiref==3.5.0
+    # via django
 billiard==3.6.4.0
     # via celery
 celery==4.4.7
     # via
     #   -c requirements/constraints.txt
     #   edx-celeryutils
-django==2.2.26
+django==3.2.12
     # via
-    #   -c requirements/constraints.txt
+    #   -c requirements/common_constraints.txt
     #   -r requirements/base.in
     #   django-crum
     #   django-model-utils
@@ -34,9 +36,9 @@ django-waffle==2.3.0
     # via edx-django-utils
 djangorestframework==3.13.1
     # via -r requirements/base.in
-edx-celeryutils==1.1.1
+edx-celeryutils==1.2.1
     # via -r requirements/base.in
-edx-django-utils==4.4.1
+edx-django-utils==4.5.0
     # via -r requirements/base.in
 future==0.18.2
     # via edx-celeryutils
@@ -44,9 +46,9 @@ jsonfield==3.1.0
     # via edx-celeryutils
 kombu==4.6.11
     # via celery
-newrelic==7.2.4.171
+newrelic==7.4.0.172
     # via edx-django-utils
-pbr==5.8.0
+pbr==5.8.1
     # via stevedore
 psutil==5.9.0
     # via edx-django-utils
