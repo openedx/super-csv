@@ -14,7 +14,11 @@ Change Log
 Unreleased
 ----------
 
+[3.0.0] - 2022-02-17
+
 * Fix `dev.in` to pull from `ci.txt` rather than `travis.txt`.
+* Dropped Django22, 30 and 31 support.
+* Added Django40 support.
 
 [2.1.1] - 2021-09-01
 ~~~~~~~~~~~~~~~~~~~~
