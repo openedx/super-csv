@@ -46,7 +46,7 @@ jsonfield==3.1.0
     # via edx-celeryutils
 kombu==4.6.11
     # via celery
-newrelic==7.4.0.172
+newrelic==7.6.0.173
     # via edx-django-utils
 pbr==5.8.1
     # via stevedore

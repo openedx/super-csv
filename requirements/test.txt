@@ -20,11 +20,11 @@ attrs==21.4.0
     #   -c requirements/constraints.txt
     #   -r requirements/base.txt
     #   edx-celeryutils
-click==8.0.3
+click==8.0.4
     # via code-annotations
 code-annotations==1.3.0
     # via -r requirements/test.in
-coverage[toml]==6.3.1
+coverage[toml]==6.3.2
     # via pytest-cov
 ddt==1.4.4
     # via -r requirements/test.in
@@ -54,7 +54,7 @@ edx-celeryutils==1.2.1
     # via -r requirements/base.txt
 edx-django-utils==4.5.0
     # via -r requirements/base.txt
-freezegun==1.1.0
+freezegun==1.2.0
     # via -r requirements/test.in
 future==0.18.2
     # via
@@ -73,11 +73,11 @@ jsonfield==3.1.0
     # via
     #   -r requirements/base.txt
     #   celery
-markupsafe==2.0.1
+markupsafe==2.1.0
     # via jinja2
 mock==4.0.3
     # via -r requirements/test.in
-newrelic==7.4.0.172
+newrelic==7.6.0.173
     # via
     #   -r requirements/base.txt
     #   edx-django-utils
@@ -107,7 +107,7 @@ pytest-django==4.5.2
     # via -r requirements/test.in
 python-dateutil==2.8.2
     # via freezegun
-python-slugify==5.0.2
+python-slugify==6.1.1
     # via code-annotations
 pytz==2021.3
     # via
