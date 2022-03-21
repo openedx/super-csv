@@ -52,9 +52,9 @@ django-waffle==2.3.0
     # via -r requirements/base.txt
 edx-celeryutils==1.2.1
     # via -r requirements/base.txt
-edx-django-utils==4.5.0
+edx-django-utils==4.6.0
     # via -r requirements/base.txt
-freezegun==1.2.0
+freezegun==1.2.1
     # via -r requirements/test.in
 future==0.18.2
     # via
@@ -73,7 +73,7 @@ jsonfield==3.1.0
     # via
     #   -r requirements/base.txt
     #   celery
-markupsafe==2.1.0
+markupsafe==2.1.1
     # via jinja2
 mock==4.0.3
     # via -r requirements/test.in
@@ -97,7 +97,7 @@ py==1.11.0
     # via pytest
 pyparsing==3.0.7
     # via packaging
-pytest==7.0.1
+pytest==7.1.1
     # via
     #   pytest-cov
     #   pytest-django
@@ -121,7 +121,7 @@ simplejson==3.17.6
     # via -r requirements/base.txt
 six==1.16.0
     # via python-dateutil
-sqlalchemy==1.4.31
+sqlalchemy==1.4.32
     # via -r requirements/test.in
 sqlparse==0.4.2
     # via
