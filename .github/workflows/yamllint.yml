@@ -16,6 +16,7 @@ jobs:
       - name: yaml-lint
         uses: ibiqlik/action-yamllint@v3
 
+      - run: echo ${{ steps.yaml-lint.outputs.logfile }}
       - uses: actions/upload-artifact@v2
         if: always()
         with:
