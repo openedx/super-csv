@@ -47,6 +47,7 @@ class CSVOperationSerializer(serializers.ModelSerializer):
         """
         Get data
         """
+        data = None
         try:
             data = json.load(operation.data)
         except (FileNotFoundError, ValueError):
