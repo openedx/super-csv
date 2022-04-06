@@ -35,7 +35,7 @@ certifi==2021.10.8
     # via requests
 charset-normalizer==2.0.12
     # via requests
-click==8.0.4
+click==8.1.2
     # via
     #   -r requirements/test.txt
     #   code-annotations
@@ -65,13 +65,13 @@ django-model-utils==4.2.0
     # via
     #   -r requirements/test.txt
     #   edx-celeryutils
-django-waffle==2.3.0
+django-waffle==2.4.1
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
 djangorestframework==3.13.1
     # via -r requirements/test.txt
-doc8==0.10.1
+doc8==0.11.1
     # via -r requirements/doc.in
 docutils==0.17.1
     # via
@@ -105,7 +105,7 @@ iniconfig==1.1.1
     # via
     #   -r requirements/test.txt
     #   pytest
-jinja2==3.0.3
+jinja2==3.1.1
     # via
     #   -r requirements/test.txt
     #   code-annotations
@@ -124,7 +124,7 @@ markupsafe==2.1.1
     #   jinja2
 mock==4.0.3
     # via -r requirements/test.txt
-newrelic==7.6.0.173
+newrelic==7.8.0.174
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
@@ -176,7 +176,7 @@ python-slugify==6.1.1
     # via
     #   -r requirements/test.txt
     #   code-annotations
-pytz==2021.3
+pytz==2022.1
     # via
     #   -r requirements/test.txt
     #   babel
@@ -203,7 +203,7 @@ six==1.16.0
     #   python-dateutil
 snowballstemmer==2.2.0
     # via sphinx
-sphinx==4.4.0
+sphinx==4.5.0
     # via
     #   -r requirements/doc.in
     #   edx-sphinx-theme
@@ -219,7 +219,7 @@ sphinxcontrib-qthelp==1.0.3
     # via sphinx
 sphinxcontrib-serializinghtml==1.1.5
     # via sphinx
-sqlalchemy==1.4.32
+sqlalchemy==1.4.34
     # via -r requirements/test.txt
 sqlparse==0.4.2
     # via
@@ -249,5 +249,5 @@ vine==1.3.0
     #   celery
 webencodings==0.5.1
     # via bleach
-zipp==3.7.0
+zipp==3.8.0
     # via importlib-metadata
