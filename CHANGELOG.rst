@@ -13,6 +13,9 @@ Change Log
 
 Unreleased
 ----------
+[3.0.1] - 2022-02-17
+
+* fix: encode the csv data before save
 
 [3.0.0] - 2022-02-17
 
