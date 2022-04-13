@@ -69,7 +69,7 @@ class CSVOperation(TimeStampedModel):
             original_filename=original_filename,
             user=user,
         )
-        instance.data.save(uuid.uuid4(), ContentFile(data))
+        instance.data.save(uuid.uuid4(), ContentFile(data.encode()))
         return instance
 
     @classmethod
