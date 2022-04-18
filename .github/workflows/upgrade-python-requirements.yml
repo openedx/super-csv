@@ -13,7 +13,7 @@ jobs:
    call-upgrade-python-requirements-workflow:
     with:
        branch: ${{ github.event.inputs.branch || 'master' }}
-       email_address: masters-requirements-update@edx.opsgenie.net
+       email_address: masters-requirements-update@2u-internal.opsgenie.net
        send_success_notification: true
     secrets:
        requirements_bot_github_token: ${{ secrets.REQUIREMENTS_BOT_GITHUB_TOKEN }}
