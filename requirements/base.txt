@@ -14,7 +14,7 @@ celery==4.4.7
     # via
     #   -c requirements/constraints.txt
     #   edx-celeryutils
-django==3.2.12
+django==3.2.13
     # via
     #   -c requirements/common_constraints.txt
     #   -r requirements/base.in
@@ -46,7 +46,7 @@ jsonfield==3.1.0
     # via edx-celeryutils
 kombu==4.6.11
     # via celery
-newrelic==7.8.0.174
+newrelic==7.10.0.175
     # via edx-django-utils
 pbr==5.8.1
     # via stevedore
