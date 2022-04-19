@@ -24,7 +24,7 @@ billiard==3.6.4.0
     # via
     #   -r requirements/test.txt
     #   celery
-bleach==4.1.0
+bleach==5.0.0
     # via readme-renderer
 celery==4.4.7
     # via
@@ -47,7 +47,7 @@ coverage[toml]==6.3.2
     #   pytest-cov
 ddt==1.4.4
     # via -r requirements/test.txt
-django==3.2.12
+django==3.2.13
     # via
     #   -c requirements/common_constraints.txt
     #   -r requirements/test.txt
@@ -124,14 +124,13 @@ markupsafe==2.1.1
     #   jinja2
 mock==4.0.3
     # via -r requirements/test.txt
-newrelic==7.8.0.174
+newrelic==7.10.0.175
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
 packaging==21.3
     # via
     #   -r requirements/test.txt
-    #   bleach
     #   pytest
     #   sphinx
 pbr==5.8.1
@@ -155,7 +154,7 @@ pygments==2.11.2
     #   doc8
     #   readme-renderer
     #   sphinx
-pyparsing==3.0.7
+pyparsing==3.0.8
     # via
     #   -r requirements/test.txt
     #   packaging
@@ -219,7 +218,7 @@ sphinxcontrib-qthelp==1.0.3
     # via sphinx
 sphinxcontrib-serializinghtml==1.1.5
     # via sphinx
-sqlalchemy==1.4.34
+sqlalchemy==1.4.35
     # via -r requirements/test.txt
 sqlparse==0.4.2
     # via
