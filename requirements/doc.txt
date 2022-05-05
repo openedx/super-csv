@@ -10,7 +10,7 @@ amqp==2.6.1
     # via
     #   -r requirements/test.txt
     #   kombu
-asgiref==3.5.0
+asgiref==3.5.1
     # via
     #   -r requirements/test.txt
     #   django
@@ -18,7 +18,7 @@ attrs==21.4.0
     # via
     #   -r requirements/test.txt
     #   pytest
-babel==2.9.1
+babel==2.10.1
     # via sphinx
 billiard==3.6.4.0
     # via
@@ -33,12 +33,17 @@ celery==4.4.7
     #   edx-celeryutils
 certifi==2021.10.8
     # via requests
+cffi==1.15.0
+    # via
+    #   -r requirements/test.txt
+    #   pynacl
 charset-normalizer==2.0.12
     # via requests
-click==8.1.2
+click==8.1.3
     # via
     #   -r requirements/test.txt
     #   code-annotations
+    #   edx-django-utils
 code-annotations==1.3.0
     # via -r requirements/test.txt
 coverage[toml]==6.3.2
@@ -81,7 +86,7 @@ docutils==0.17.1
     #   sphinx
 edx-celeryutils==1.2.1
     # via -r requirements/test.txt
-edx-django-utils==4.6.0
+edx-django-utils==4.7.0
     # via -r requirements/test.txt
 edx-sphinx-theme==3.0.0
     # via -r requirements/doc.in
@@ -105,7 +110,7 @@ iniconfig==1.1.1
     # via
     #   -r requirements/test.txt
     #   pytest
-jinja2==3.1.1
+jinja2==3.1.2
     # via
     #   -r requirements/test.txt
     #   code-annotations
@@ -133,7 +138,7 @@ packaging==21.3
     #   -r requirements/test.txt
     #   pytest
     #   sphinx
-pbr==5.8.1
+pbr==5.9.0
     # via
     #   -r requirements/test.txt
     #   stevedore
@@ -149,16 +154,24 @@ py==1.11.0
     # via
     #   -r requirements/test.txt
     #   pytest
-pygments==2.11.2
+pycparser==2.21
+    # via
+    #   -r requirements/test.txt
+    #   cffi
+pygments==2.12.0
     # via
     #   doc8
     #   readme-renderer
     #   sphinx
+pynacl==1.5.0
+    # via
+    #   -r requirements/test.txt
+    #   edx-django-utils
 pyparsing==3.0.8
     # via
     #   -r requirements/test.txt
     #   packaging
-pytest==7.1.1
+pytest==7.1.2
     # via
     #   -r requirements/test.txt
     #   pytest-cov
@@ -171,7 +184,7 @@ python-dateutil==2.8.2
     # via
     #   -r requirements/test.txt
     #   freezegun
-python-slugify==6.1.1
+python-slugify==6.1.2
     # via
     #   -r requirements/test.txt
     #   code-annotations
@@ -186,7 +199,7 @@ pyyaml==6.0
     # via
     #   -r requirements/test.txt
     #   code-annotations
-readme-renderer==34.0
+readme-renderer==35.0
     # via -r requirements/doc.in
 requests==2.27.1
     # via sphinx
@@ -218,7 +231,7 @@ sphinxcontrib-qthelp==1.0.3
     # via sphinx
 sphinxcontrib-serializinghtml==1.1.5
     # via sphinx
-sqlalchemy==1.4.35
+sqlalchemy==1.4.36
     # via -r requirements/test.txt
 sqlparse==0.4.2
     # via
