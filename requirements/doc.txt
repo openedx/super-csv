@@ -18,7 +18,7 @@ attrs==21.4.0
     # via
     #   -r requirements/test.txt
     #   pytest
-babel==2.10.1
+babel==2.10.3
     # via sphinx
 billiard==3.6.4.0
     # via
@@ -31,7 +31,7 @@ celery==4.4.7
     #   -c requirements/constraints.txt
     #   -r requirements/test.txt
     #   edx-celeryutils
-certifi==2022.5.18.1
+certifi==2022.6.15
     # via requests
 cffi==1.15.0
     # via
@@ -129,7 +129,7 @@ markupsafe==2.1.1
     #   jinja2
 mock==4.0.3
     # via -r requirements/test.txt
-newrelic==7.10.0.175
+newrelic==7.12.0.176
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
@@ -201,7 +201,7 @@ pyyaml==6.0
     #   code-annotations
 readme-renderer==35.0
     # via -r requirements/doc.in
-requests==2.27.1
+requests==2.28.0
     # via sphinx
 restructuredtext-lint==1.4.0
     # via doc8
@@ -215,7 +215,7 @@ six==1.16.0
     #   python-dateutil
 snowballstemmer==2.2.0
     # via sphinx
-sphinx==5.0.1
+sphinx==5.0.2
     # via
     #   -r requirements/doc.in
     #   edx-sphinx-theme
