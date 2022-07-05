@@ -29,7 +29,7 @@ celery==4.4.7
     #   -c requirements/constraints.txt
     #   -r requirements/test.txt
     #   edx-celeryutils
-cffi==1.15.0
+cffi==1.15.1
     # via
     #   -r requirements/test.txt
     #   pynacl
@@ -54,7 +54,7 @@ ddt==1.5.0
     # via -r requirements/test.txt
 dill==0.3.5.1
     # via pylint
-django==3.2.13
+django==3.2.14
     # via
     #   -c requirements/common_constraints.txt
     #   -r requirements/test.txt
@@ -124,7 +124,7 @@ mccabe==0.7.0
     # via pylint
 mock==4.0.3
     # via -r requirements/test.txt
-newrelic==7.12.0.176
+newrelic==7.14.0.177
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
@@ -158,7 +158,7 @@ pycparser==2.21
     #   cffi
 pydocstyle==6.1.1
     # via -r requirements/quality.in
-pylint==2.14.3
+pylint==2.14.4
     # via
     #   edx-lint
     #   pylint-celery
@@ -216,7 +216,7 @@ six==1.16.0
     #   python-dateutil
 snowballstemmer==2.2.0
     # via pydocstyle
-sqlalchemy==1.4.37
+sqlalchemy==1.4.39
     # via -r requirements/test.txt
 sqlparse==0.4.2
     # via
@@ -239,7 +239,7 @@ tomli==2.0.1
     #   pytest
 tomlkit==0.11.0
     # via pylint
-typing-extensions==4.2.0
+typing-extensions==4.3.0
     # via
     #   astroid
     #   pylint

@@ -20,7 +20,7 @@ attrs==21.4.0
     #   -c requirements/constraints.txt
     #   -r requirements/base.txt
     #   edx-celeryutils
-cffi==1.15.0
+cffi==1.15.1
     # via
     #   -r requirements/base.txt
     #   pynacl
@@ -84,7 +84,7 @@ markupsafe==2.1.1
     # via jinja2
 mock==4.0.3
     # via -r requirements/test.in
-newrelic==7.12.0.176
+newrelic==7.14.0.177
     # via
     #   -r requirements/base.txt
     #   edx-django-utils
@@ -136,7 +136,7 @@ simplejson==3.17.6
     # via -r requirements/base.txt
 six==1.16.0
     # via python-dateutil
-sqlalchemy==1.4.37
+sqlalchemy==1.4.39
     # via -r requirements/test.in
 sqlparse==0.4.2
     # via
