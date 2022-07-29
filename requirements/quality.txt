@@ -72,7 +72,7 @@ django-model-utils==4.2.0
     # via
     #   -r requirements/test.txt
     #   edx-celeryutils
-django-waffle==2.5.0
+django-waffle==2.6.0
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
@@ -124,7 +124,7 @@ mccabe==0.7.0
     # via pylint
 mock==4.0.3
     # via -r requirements/test.txt
-newrelic==7.14.0.177
+newrelic==7.16.0.178
     # via
     #   -r requirements/test.txt
     #   edx-django-utils

@@ -36,7 +36,7 @@ django-model-utils==4.2.0
     # via
     #   -r requirements/base.in
     #   edx-celeryutils
-django-waffle==2.5.0
+django-waffle==2.6.0
     # via edx-django-utils
 djangorestframework==3.13.1
     # via -r requirements/base.in
@@ -50,7 +50,7 @@ jsonfield==3.1.0
     # via edx-celeryutils
 kombu==4.6.11
     # via celery
-newrelic==7.14.0.177
+newrelic==7.16.0.178
     # via edx-django-utils
 pbr==5.9.0
     # via stevedore
