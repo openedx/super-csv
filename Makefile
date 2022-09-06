@@ -43,11 +43,11 @@ upgrade: $(COMMON_CONSTRAINTS_TXT)  ## update the requirements/*.txt files with 
 	pip install -qr requirements/pip.txt
 	pip install -qr requirements/pip-tools.txt
 	pip-compile --upgrade -o requirements/base.txt requirements/base.in
-	pip-compile --upgrade -o requirements/test.txt requirements/test.in
-	pip-compile --upgrade -o requirements/doc.txt requirements/doc.in
-	pip-compile --upgrade -o requirements/quality.txt requirements/quality.in
+	pip-compile --upgrade -o requirements/test_layer.txt requirements/test_layer.in
+	pip-compile --upgrade -o requirements/doc_layer.txt requirements/doc_layer.in
+	pip-compile --upgrade -o requirements/quality_layer.txt requirements/quality_layer.in
 	pip-compile --upgrade -o requirements/ci.txt requirements/ci.in
-	pip-compile --upgrade -o requirements/dev.txt requirements/dev.in
+	pip-compile --upgrade -o requirements/dev_layer.txt requirements/dev_layer.in
 	grep -e "^amqp==\|^anyjson==\|^billiard==\|^celery==\|^kombu==\|^click-didyoumean==\|^click-repl==\|^click==\|^prompt-toolkit==\|^vine==" requirements/base.txt > requirements/celery44.txt
 	# Let tox control the versions for Django, DRF and celery for testing
 	sed -i.tmp '/^django==/d' requirements/test.txt

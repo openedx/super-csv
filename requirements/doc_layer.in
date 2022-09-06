@@ -1,7 +1,7 @@
 # Requirements for documentation validation
 -c constraints.txt
 
--r test.txt               # Core and testing dependencies for this package
+-c test.txt               # Core and testing dependencies for this package
 
 doc8                      # reStructuredText style checker
 edx_sphinx_theme          # edX theme for Sphinx output

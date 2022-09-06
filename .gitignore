@@ -86,3 +86,6 @@ super-csv-env/
 
 # test output
 csv/
+
+venv
+
