@@ -59,7 +59,7 @@ django-waffle==3.0.0
     # via -r requirements/base.txt
 edx-celeryutils==1.2.1
     # via -r requirements/base.txt
-edx-django-utils==5.0.0
+edx-django-utils==5.0.1
     # via -r requirements/base.txt
 freezegun==1.2.2
     # via -r requirements/test.in
@@ -84,7 +84,7 @@ markupsafe==2.1.1
     # via jinja2
 mock==4.0.3
     # via -r requirements/test.in
-newrelic==8.0.0.179
+newrelic==8.1.0.180
     # via
     #   -r requirements/base.txt
     #   edx-django-utils
@@ -136,7 +136,7 @@ simplejson==3.17.6
     # via -r requirements/base.txt
 six==1.16.0
     # via python-dateutil
-sqlalchemy==1.4.40
+sqlalchemy==1.4.41
     # via -r requirements/test.in
 sqlparse==0.4.2
     # via
