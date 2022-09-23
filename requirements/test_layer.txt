@@ -56,7 +56,7 @@ pyyaml==6.0
     # via code-annotations
 six==1.16.0
     # via python-dateutil
-sqlalchemy==1.4.40
+sqlalchemy==1.4.41
     # via -r requirements/test_layer.in
 stevedore==4.0.0
     # via

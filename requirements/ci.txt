@@ -40,11 +40,12 @@ tox==3.26.0
     # via
     #   -r requirements/ci.in
     #   tox-battery
+    #   tox-run-before
 tox-battery==0.6.1
+    # via -r requirements/ci.in
+tox-run-before==0.1
     # via -r requirements/ci.in
 urllib3==1.26.12
     # via requests
 virtualenv==20.16.5
     # via tox
-tox-run-before==0.1.0
-    # via -r requirements/ci.in

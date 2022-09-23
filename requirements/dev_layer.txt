@@ -14,7 +14,7 @@ asgiref==3.5.2
     #   -r requirements/base.txt
     #   -r requirements/quality_layer.txt
     #   django
-astroid==2.12.7
+astroid==2.12.10
     # via
     #   -r requirements/quality_layer.txt
     #   pylint
@@ -71,7 +71,7 @@ ddt==1.6.0
     # via
     #   -r requirements/quality_layer.txt
     #   -r requirements/test_layer.txt
-diff-cover==6.5.1
+diff-cover==7.0.1
     # via -r requirements/dev_layer.in
 dill==0.3.5.1
     # via
@@ -104,7 +104,7 @@ django-waffle==3.0.0
     #   -r requirements/base.txt
     #   -r requirements/quality_layer.txt
     #   edx-django-utils
-djangorestframework==3.13.1
+djangorestframework==3.14.0
     # via
     #   -r requirements/base.txt
     #   -r requirements/quality_layer.txt
@@ -112,13 +112,13 @@ edx-celeryutils==1.2.1
     # via
     #   -r requirements/base.txt
     #   -r requirements/quality_layer.txt
-edx-django-utils==5.0.1
+edx-django-utils==5.1.0
     # via
     #   -r requirements/base.txt
     #   -r requirements/quality_layer.txt
 edx-i18n-tools==0.9.1
     # via -r requirements/dev_layer.in
-edx-lint==5.2.4
+edx-lint==5.3.0
     # via -r requirements/quality_layer.txt
 freezegun==1.2.2
     # via
@@ -176,7 +176,7 @@ mock==4.0.3
     # via
     #   -r requirements/quality_layer.txt
     #   -r requirements/test_layer.txt
-newrelic==8.0.0.179
+newrelic==8.1.0.180
     # via
     #   -r requirements/base.txt
     #   -r requirements/quality_layer.txt
@@ -232,7 +232,7 @@ pydocstyle==6.1.1
     # via -r requirements/quality_layer.txt
 pygments==2.13.0
     # via diff-cover
-pylint==2.15.0
+pylint==2.15.3
     # via
     #   -r requirements/quality_layer.txt
     #   edx-lint
@@ -316,7 +316,7 @@ snowballstemmer==2.2.0
     # via
     #   -r requirements/quality_layer.txt
     #   pydocstyle
-sqlalchemy==1.4.40
+sqlalchemy==1.4.41
     # via
     #   -r requirements/quality_layer.txt
     #   -r requirements/test_layer.txt
@@ -339,6 +339,7 @@ text-unidecode==1.3
     #   python-slugify
 tomli==2.0.1
     # via
+    #   -c requirements/ci.txt
     #   -c requirements/pip-tools.txt
     #   -r requirements/quality_layer.txt
     #   -r requirements/test_layer.txt
