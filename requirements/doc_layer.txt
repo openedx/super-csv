@@ -89,7 +89,7 @@ docutils==0.19
     #   sphinx
 edx-celeryutils==1.2.1
     # via -r requirements/base.txt
-edx-django-utils==5.0.0
+edx-django-utils==5.0.1
     # via -r requirements/base.txt
 edx-sphinx-theme==3.0.0
     # via -r requirements/doc_layer.in

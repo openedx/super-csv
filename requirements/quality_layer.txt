@@ -81,7 +81,7 @@ djangorestframework==3.13.1
     # via -r requirements/base.txt
 edx-celeryutils==1.2.1
     # via -r requirements/base.txt
-edx-django-utils==5.0.0
+edx-django-utils==5.0.1
     # via -r requirements/base.txt
 edx-lint==5.2.4
     # via -r requirements/quality_layer.in
