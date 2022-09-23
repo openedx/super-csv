@@ -10,4 +10,3 @@ ddt
 freezegun
 mock
 sqlalchemy                # For SQLite in-memory Celery results DB
-tox-run-before
