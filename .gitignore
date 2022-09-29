@@ -73,6 +73,10 @@ docs/super_csv.*.rst
 requirements/private.in
 requirements/private.txt
 requirements/test.txt.tmp
+requirements/tox_temp.txt.tmp
+requirements/django32.txt
+requirements/drf.txt
+requirements/tox_temp.txt
 
 # tox environment temporary artifacts
 tests/__init__.py
@@ -83,9 +87,8 @@ default.db
 # local virtualenvs
 supercsv-env/
 super-csv-env/
+venv/
 
 # test output
 csv/
-
-venv
 
