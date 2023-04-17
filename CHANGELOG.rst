@@ -13,6 +13,11 @@ Change Log
 
 Unreleased
 ----------
+
+* Switch from ``edx-sphinx-theme`` to ``sphinx-book-theme`` since the former is
+  deprecated.  See https://github.com/openedx/edx-sphinx-theme/issues/184 for
+  more details.
+
 [3.0.1] - 2022-02-17
 
 * fix: encode the csv data before save
