@@ -17,10 +17,8 @@ jobs:
         python-version: ["3.8"]
         toxenv:
           [
-            django32-celery44-drflatest,
-            django32-celery50-drflatest,
-            django40-celery44-drflatest,
-            django40-celery50-drflatest,
+            django32-celery53-drflatest,
+            django42-celery53-drflatest,
             quality,
             docs,
             pii_check,
@@ -45,7 +43,7 @@ jobs:
         run: tox
 
       - name: Run Coverage
-        if: matrix.python-version == '3.8' && matrix.toxenv=='django32-celery44-drflatest'
+        if: matrix.python-version == '3.8' && matrix.toxenv=='django42-celery53-drflatest'
         uses: codecov/codecov-action@v3
         with:
           flags: unittests
