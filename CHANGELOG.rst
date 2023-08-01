@@ -14,15 +14,21 @@ Change Log
 Unreleased
 ----------
 
+[3.1.0] - 2023-07-31
+~~~~~~~~~~~~~~~~~~~~
+
 * Switch from ``edx-sphinx-theme`` to ``sphinx-book-theme`` since the former is
   deprecated.  See https://github.com/openedx/edx-sphinx-theme/issues/184 for
   more details.
+* Added support of Django 4.2
 
 [3.0.1] - 2022-02-17
+~~~~~~~~~~~~~~~~~~~~
 
 * fix: encode the csv data before save
 
 [3.0.0] - 2022-02-17
+~~~~~~~~~~~~~~~~~~~~
 
 * Fix `dev.in` to pull from `ci.txt` rather than `travis.txt`.
 * Dropped Django22, 30 and 31 support.
