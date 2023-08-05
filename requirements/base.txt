@@ -43,7 +43,7 @@ djangorestframework==3.14.0
     # via -r requirements/base.in
 edx-celeryutils==1.2.3
     # via -r requirements/base.in
-edx-django-utils==5.6.0
+edx-django-utils==5.7.0
     # via -r requirements/base.in
 jsonfield==3.1.0
     # via edx-celeryutils
