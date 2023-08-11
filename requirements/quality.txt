@@ -77,7 +77,7 @@ djangorestframework==3.14.0
     # via -r requirements/test.txt
 edx-celeryutils==1.2.3
     # via -r requirements/test.txt
-edx-django-utils==5.6.0
+edx-django-utils==5.7.0
     # via -r requirements/test.txt
 edx-lint==5.3.4
     # via -r requirements/quality.in

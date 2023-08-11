@@ -58,7 +58,7 @@ django-waffle==4.0.0
     # via -r requirements/base.txt
 edx-celeryutils==1.2.3
     # via -r requirements/base.txt
-edx-django-utils==5.6.0
+edx-django-utils==5.7.0
     # via -r requirements/base.txt
 exceptiongroup==1.1.2
     # via pytest
