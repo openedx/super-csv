@@ -16,7 +16,7 @@ celery==4.4.7
     #   edx-celeryutils
 cffi==1.15.1
     # via pynacl
-click==8.1.6
+click==8.1.7
     # via edx-django-utils
 django==3.2.20
     # via
@@ -49,7 +49,7 @@ jsonfield==3.1.0
     # via edx-celeryutils
 kombu==4.6.11
     # via celery
-newrelic==8.9.0
+newrelic==8.10.1
     # via edx-django-utils
 pbr==5.11.1
     # via stevedore
