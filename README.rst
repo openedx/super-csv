@@ -83,7 +83,7 @@ can find it at `ISSUE_TEMPLATE.md <https://github.com/openedx/super-csv/blob/mas
 Reporting Security Issues
 -------------------------
 
-Please do not report security issues in public. Please email security@edx.org.
+Please do not report security issues in public. Please email security@openedx.org.
 
 Getting Help
 ------------
