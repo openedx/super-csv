@@ -18,7 +18,7 @@ cffi==1.16.0
     # via pynacl
 click==8.1.7
     # via edx-django-utils
-django==3.2.23
+django==3.2.24
     # via
     #   -c requirements/common_constraints.txt
     #   -r requirements/base.in
@@ -33,7 +33,7 @@ django-crum==0.7.9
     # via
     #   -r requirements/base.in
     #   edx-django-utils
-django-model-utils==4.3.1
+django-model-utils==4.4.0
     # via
     #   -r requirements/base.in
     #   edx-celeryutils

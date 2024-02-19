@@ -30,9 +30,7 @@ click==8.1.7
 code-annotations==1.6.0
     # via -r requirements/test.in
 coverage[toml]==7.4.1
-    # via
-    #   coverage
-    #   pytest-cov
+    # via pytest-cov
 ddt==1.7.1
     # via -r requirements/test.in
     # via
@@ -49,7 +47,7 @@ django-crum==0.7.9
     # via
     #   -r requirements/base.txt
     #   edx-django-utils
-django-model-utils==4.3.1
+django-model-utils==4.4.0
     # via
     #   -r requirements/base.txt
     #   edx-celeryutils
@@ -107,7 +105,7 @@ pynacl==1.5.0
     # via
     #   -r requirements/base.txt
     #   edx-django-utils
-pytest==8.0.0
+pytest==8.0.1
     # via
     #   pytest-cov
     #   pytest-django
@@ -117,7 +115,7 @@ pytest-django==4.8.0
     # via -r requirements/test.in
 python-dateutil==2.8.2
     # via freezegun
-python-slugify==8.0.3
+python-slugify==8.0.4
     # via code-annotations
 pytz==2024.1
     # via
@@ -131,7 +129,7 @@ simplejson==3.19.2
     # via -r requirements/base.txt
 six==1.16.0
     # via python-dateutil
-sqlalchemy==2.0.25
+sqlalchemy==2.0.27
     # via -r requirements/test.in
 sqlparse==0.4.4
     # via
