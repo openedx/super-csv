@@ -293,7 +293,7 @@ class CSVProcessor:
                     saved += 1
                     if rollback_row:
                         self.rollback_rows.append((rownum, rollback_row))
-            except Exception as e:  # pylint: disable=broad-except
+            except Exception as e:
                 log.exception('Committing %r', self)
                 self.add_error(str(e), row=rownum)
                 if self.result_data:
@@ -313,7 +313,7 @@ class CSVProcessor:
                 did_save, __ = self.process_row(row)
                 if did_save:
                     saved += 1
-            except Exception as e:  # pylint: disable=broad-except
+            except Exception as e:
                 log.exception('Rolling back %r', self)
                 self.add_error(str(e), row=rownum)
         self.saved_rows = saved
