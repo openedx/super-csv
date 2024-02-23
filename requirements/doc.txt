@@ -25,6 +25,7 @@ backports-zoneinfo[tzdata]==0.2.1 ; python_version < "3.9"
     #   -c requirements/constraints.txt
     #   -r requirements/test.txt
     #   celery
+    #   django
     #   kombu
 beautifulsoup4==4.12.3
     # via pydata-sphinx-theme
@@ -74,9 +75,8 @@ coverage[toml]==7.4.2
     #   pytest-cov
 ddt==1.7.1
     # via -r requirements/test.txt
-django==3.2.24
+django==4.2.10
     # via
-    #   -c requirements/common_constraints.txt
     #   -r requirements/test.txt
     #   django-crum
     #   django-model-utils
@@ -162,7 +162,7 @@ mock==5.1.0
     # via -r requirements/test.txt
 more-itertools==10.2.0
     # via jaraco-classes
-newrelic==9.6.0
+newrelic==9.7.0
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
@@ -232,7 +232,6 @@ pytz==2024.1
     # via
     #   -r requirements/test.txt
     #   babel
-    #   django
     #   djangorestframework
 pyyaml==6.0.1
     # via
@@ -288,7 +287,7 @@ sqlparse==0.4.4
     # via
     #   -r requirements/test.txt
     #   django
-stevedore==5.1.0
+stevedore==5.2.0
     # via
     #   -r requirements/test.txt
     #   code-annotations
