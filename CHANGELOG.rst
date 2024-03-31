@@ -16,7 +16,7 @@ Unreleased
 [3.2.0] - 2023-07-31
 ~~~~~~~~~~~~~~~~~~~~
 
-* Added support of python3.12
+* Added support of python 3.11 and 3.12
 * Dropped django32 support.
 
 
