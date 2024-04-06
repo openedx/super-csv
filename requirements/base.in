@@ -8,5 +8,3 @@ djangorestframework
 edx-celeryutils
 edx-django-utils>=3.12.0   # Utilities for caching and monitoring
 simplejson
-setuptools
-wheel
