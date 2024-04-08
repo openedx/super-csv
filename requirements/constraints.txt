@@ -11,4 +11,9 @@
 # Common constraints for edx repos
 -c common_constraints.txt
 
-celery<5.0 # we still want to support celery 4
+# As it is not clarified what exact breaking changes will be introduced as per
+# the next major release, ensure the installed version is within boundaries.
+celery>=5.2.2,<6.0.0
+
+
+backports.zoneinfo;python_version<"3.9"
