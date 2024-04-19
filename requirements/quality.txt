@@ -28,7 +28,7 @@ billiard==4.2.0
     # via
     #   -r requirements/test.txt
     #   celery
-celery==5.3.6
+celery==5.4.0
     # via
     #   -c requirements/constraints.txt
     #   -r requirements/test.txt
@@ -105,7 +105,7 @@ edx-django-utils==5.12.0
     # via -r requirements/test.txt
 edx-lint==5.3.6
     # via -r requirements/quality.in
-exceptiongroup==1.2.0
+exceptiongroup==1.2.1
     # via
     #   -r requirements/test.txt
     #   pytest
@@ -131,7 +131,7 @@ jsonfield==3.1.0
     # via
     #   -r requirements/test.txt
     #   edx-celeryutils
-kombu==5.3.6
+kombu==5.3.7
     # via
     #   -r requirements/test.txt
     #   celery
@@ -143,7 +143,7 @@ mccabe==0.7.0
     # via pylint
 mock==5.1.0
     # via -r requirements/test.txt
-newrelic==9.8.0
+newrelic==9.9.0
     # via
     #   -r requirements/test.txt
     #   edx-django-utils
@@ -228,7 +228,7 @@ snowballstemmer==2.2.0
     # via pydocstyle
 sqlalchemy==2.0.29
     # via -r requirements/test.txt
-sqlparse==0.4.4
+sqlparse==0.5.0
     # via
     #   -r requirements/test.txt
     #   django
