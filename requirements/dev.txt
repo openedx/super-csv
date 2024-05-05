@@ -37,7 +37,7 @@ cachetools==5.3.3
     # via
     #   -r requirements/ci.txt
     #   tox
-celery==5.3.6
+celery==5.4.0
     # via
     #   -c requirements/constraints.txt
     #   -r requirements/quality.txt
@@ -88,13 +88,13 @@ colorama==0.4.6
     # via
     #   -r requirements/ci.txt
     #   tox
-coverage[toml]==7.4.4
+coverage[toml]==7.5.1
     # via
     #   -r requirements/quality.txt
     #   pytest-cov
 ddt==1.7.2
     # via -r requirements/quality.txt
-diff-cover==8.0.3
+diff-cover==9.0.0
     # via -r requirements/dev.in
 dill==0.3.8
     # via
@@ -120,7 +120,7 @@ django-crum==0.7.9
     # via
     #   -r requirements/quality.txt
     #   edx-django-utils
-django-model-utils==4.5.0
+django-model-utils==4.5.1
     # via
     #   -r requirements/quality.txt
     #   edx-celeryutils
@@ -132,22 +132,22 @@ djangorestframework==3.15.1
     # via -r requirements/quality.txt
 edx-celeryutils==1.3.0
     # via -r requirements/quality.txt
-edx-django-utils==5.12.0
+edx-django-utils==5.13.0
     # via -r requirements/quality.txt
-edx-i18n-tools==1.3.0
+edx-i18n-tools==1.6.0
     # via -r requirements/dev.in
 edx-lint==5.3.6
     # via -r requirements/quality.txt
-exceptiongroup==1.2.0
+exceptiongroup==1.2.1
     # via
     #   -r requirements/quality.txt
     #   pytest
-filelock==3.13.3
+filelock==3.14.0
     # via
     #   -r requirements/ci.txt
     #   tox
     #   virtualenv
-freezegun==1.4.0
+freezegun==1.5.0
     # via -r requirements/quality.txt
 greenlet==3.0.3
     # via
@@ -175,12 +175,16 @@ jsonfield==3.1.0
     # via
     #   -r requirements/quality.txt
     #   edx-celeryutils
-kombu==5.3.6
+kombu==5.3.7
     # via
     #   -r requirements/quality.txt
     #   celery
-lxml==5.2.1
-    # via edx-i18n-tools
+lxml[html-clean,html_clean]==5.2.1
+    # via
+    #   edx-i18n-tools
+    #   lxml-html-clean
+lxml-html-clean==0.1.1
+    # via lxml
 markupsafe==2.1.5
     # via
     #   -r requirements/quality.txt
@@ -191,7 +195,7 @@ mccabe==0.7.0
     #   pylint
 mock==5.1.0
     # via -r requirements/quality.txt
-newrelic==9.8.0
+newrelic==9.9.0
     # via
     #   -r requirements/quality.txt
     #   edx-django-utils
@@ -204,7 +208,7 @@ packaging==24.0
     #   pyproject-api
     #   pytest
     #   tox
-path==16.12.1
+path==16.14.0
     # via edx-i18n-tools
 pbr==6.0.0
     # via
@@ -212,14 +216,14 @@ pbr==6.0.0
     #   stevedore
 pip-tools==7.4.1
     # via -r requirements/pip-tools.txt
-platformdirs==4.2.0
+platformdirs==4.2.1
     # via
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
     #   pylint
     #   tox
     #   virtualenv
-pluggy==1.4.0
+pluggy==1.5.0
     # via
     #   -r requirements/ci.txt
     #   -r requirements/quality.txt
@@ -244,7 +248,7 @@ pycparser==2.22
     #   cffi
 pydocstyle==6.3.0
     # via -r requirements/quality.txt
-pygments==2.17.2
+pygments==2.18.0
     # via diff-cover
 pylint==3.1.0
     # via
@@ -274,12 +278,12 @@ pyproject-api==1.6.1
     # via
     #   -r requirements/ci.txt
     #   tox
-pyproject-hooks==1.0.0
+pyproject-hooks==1.1.0
     # via
     #   -r requirements/pip-tools.txt
     #   build
     #   pip-tools
-pytest==8.1.1
+pytest==8.2.0
     # via
     #   -r requirements/quality.txt
     #   pytest-cov
@@ -315,7 +319,7 @@ snowballstemmer==2.2.0
     #   pydocstyle
 sqlalchemy==2.0.29
     # via -r requirements/quality.txt
-sqlparse==0.4.4
+sqlparse==0.5.0
     # via
     #   -r requirements/quality.txt
     #   django
@@ -338,14 +342,13 @@ tomli==2.0.1
     #   pip-tools
     #   pylint
     #   pyproject-api
-    #   pyproject-hooks
     #   pytest
     #   tox
 tomlkit==0.12.4
     # via
     #   -r requirements/quality.txt
     #   pylint
-tox==4.14.2
+tox==4.15.0
     # via -r requirements/ci.txt
 typing-extensions==4.11.0
     # via
@@ -366,7 +369,7 @@ vine==5.1.0
     #   amqp
     #   celery
     #   kombu
-virtualenv==20.25.1
+virtualenv==20.26.1
     # via
     #   -r requirements/ci.txt
     #   tox
