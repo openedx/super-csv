@@ -1,7 +1,7 @@
 # openedx.yaml
 
 ---
-owner: mattcarter
+owner: ''
 nick: super-csv
 tags:
     - library
@@ -15,5 +15,3 @@ oeps:
         reason: TODO - Implement for this application if appropriate
     oep-30:
         state: True
-supporting_teams:
-  - masters-devs
