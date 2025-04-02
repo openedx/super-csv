@@ -63,7 +63,7 @@ class UnicodeDictWriter(csv.DictWriter):
     which is encoded in the given encoding.
     """
 
-    # pylint: disable=super-init-not-called, keyword-arg-before-vararg
+    # pylint: disable=super-init-not-called, keyword-arg-before-vararg, too-many-positional-arguments
     def __init__(self, f, fieldnames, restval="", extrasaction="raise",
                  dialect="excel", *args, **kwds):
         self.fieldnames = fieldnames    # list of keys for the dict
@@ -293,7 +293,7 @@ class CSVProcessor:
                     saved += 1
                     if rollback_row:
                         self.rollback_rows.append((rownum, rollback_row))
-            except Exception as e:
+            except Exception as e:  # pylint: disable=broad-exception-caught
                 log.exception('Committing %r', self)
                 self.add_error(str(e), row=rownum)
                 if self.result_data:
@@ -313,7 +313,7 @@ class CSVProcessor:
                 did_save, __ = self.process_row(row)
                 if did_save:
                     saved += 1
-            except Exception as e:
+            except Exception as e:  # pylint: disable=broad-exception-caught
                 log.exception('Rolling back %r', self)
                 self.add_error(str(e), row=rownum)
         self.saved_rows = saved

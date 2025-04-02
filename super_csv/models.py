@@ -57,6 +57,7 @@ class CSVOperation(TimeStampedModel):
         except IndexError:
             return None
 
+    # pylint: disable=too-many-positional-arguments
     @classmethod
     def record_operation(cls, class_name_or_obj, unique_id, operation, data, original_filename='', user=None):
         """
