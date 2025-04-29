@@ -18,6 +18,7 @@ jobs:
         toxenv:
           [
             django42-celery53-drflatest,
+            django52-celery53-drflatest,
             quality,
             docs,
             pii_check,
