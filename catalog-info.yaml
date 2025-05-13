@@ -15,7 +15,6 @@ metadata:
       icon: "Article"
   annotations:
     openedx.org/arch-interest-groups: "angonz"
-    openedx.org/release: "master"
 spec:
   owner: user:angonz
   type: 'service'
