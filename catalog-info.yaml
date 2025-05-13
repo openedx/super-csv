@@ -1,0 +1,25 @@
+# This file records information about this repo. Its use is described in OEP-55:
+# https://open-edx-proposals.readthedocs.io/en/latest/processes/oep-0055-proc-project-maintainers.html
+
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: 'super-csv'
+  description: >
+    This library provides a CSVProcessor class which should be subclassed 
+    to implement your own per-row processing of CSV files. 
+    At minimum, override process_row(row).
+  links:
+    - url: "https://github.com/openedx/super-csv/blob/master/README.rst"
+      title: "Documentation"
+      icon: "Article"
+  annotations:
+    openedx.org/arch-interest-groups: "angonz"
+    openedx.org/release: "master"
+spec:
+  owner: user:angonz
+  type: 'service'
+  lifecycle: 'production'
+  subcomponentOf: 'edx-platform'
+  dependsOn:
+  - 'edx-platform'
