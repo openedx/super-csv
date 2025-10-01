@@ -61,7 +61,7 @@ ddt==1.7.2
     # via -r test.txt
 dill==0.4.0
     # via pylint
-django==4.2.21
+django==4.2.25
     # via
     #   -c common_constraints.txt
     #   django-crum
