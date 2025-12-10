@@ -45,7 +45,7 @@ jobs:
 
       - name: Run Coverage
         if: matrix.python-version == '3.12' && matrix.toxenv=='django42-celery53-drflatest'
-        uses: codecov/codecov-action@v4
+        uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           flags: unittests
