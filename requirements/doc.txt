@@ -68,7 +68,7 @@ cryptography==46.0.3
     # via secretstorage
 ddt==1.7.2
     # via -r test.txt
-django==4.2.25
+django==4.2.27
     # via
     #   -c common_constraints.txt
     #   django-crum
