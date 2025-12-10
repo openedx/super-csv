@@ -12,7 +12,7 @@ billiard==4.2.2
     # via celery
 celery==5.5.3
     # via
-    #   -c requirements/constraints.txt
+    #   -c constraints.txt
     #   edx-celeryutils
 cffi==2.0.0
     # via pynacl
@@ -29,10 +29,10 @@ click-plugins==1.1.1.2
     # via celery
 click-repl==0.3.0
     # via celery
-django==4.2.25
+django==4.2.27
     # via
-    #   -c requirements/common_constraints.txt
-    #   -r requirements/base.in
+    #   -c common_constraints.txt
+    #   -r base.in
     #   django-crum
     #   django-model-utils
     #   django-waffle
@@ -42,20 +42,20 @@ django==4.2.25
     #   jsonfield
 django-crum==0.7.9
     # via
-    #   -r requirements/base.in
+    #   -r base.in
     #   edx-django-utils
 django-model-utils==5.0.0
     # via
-    #   -r requirements/base.in
+    #   -r base.in
     #   edx-celeryutils
 django-waffle==5.0.0
     # via edx-django-utils
 djangorestframework==3.16.1
-    # via -r requirements/base.in
+    # via -r base.in
 edx-celeryutils==1.4.0
-    # via -r requirements/base.in
+    # via -r base.in
 edx-django-utils==8.0.1
-    # via -r requirements/base.in
+    # via -r base.in
 jsonfield==3.2.0
     # via edx-celeryutils
 kombu==5.5.4
@@ -73,7 +73,7 @@ pynacl==1.6.0
 python-dateutil==2.9.0.post0
     # via celery
 simplejson==3.20.2
-    # via -r requirements/base.in
+    # via -r base.in
 six==1.17.0
     # via python-dateutil
 sqlparse==0.5.3
