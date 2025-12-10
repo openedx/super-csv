@@ -6,47 +6,47 @@
 #
 amqp==5.3.1
     # via
-    #   -r requirements/quality.txt
+    #   -r quality.txt
     #   kombu
 asgiref==3.10.0
     # via
-    #   -r requirements/quality.txt
+    #   -r quality.txt
     #   django
 astroid==3.3.11
     # via
-    #   -r requirements/quality.txt
+    #   -r quality.txt
     #   pylint
     #   pylint-celery
 billiard==4.2.2
     # via
-    #   -r requirements/quality.txt
+    #   -r quality.txt
     #   celery
 build==1.3.0
     # via
-    #   -r requirements/pip-tools.txt
+    #   -r pip-tools.txt
     #   pip-tools
 cachetools==6.2.1
     # via
-    #   -r requirements/ci.txt
+    #   -r ci.txt
     #   tox
 celery==5.5.3
     # via
-    #   -c requirements/constraints.txt
-    #   -r requirements/quality.txt
+    #   -c constraints.txt
+    #   -r quality.txt
     #   edx-celeryutils
 cffi==2.0.0
     # via
-    #   -r requirements/quality.txt
+    #   -r quality.txt
     #   pynacl
 chardet==5.2.0
     # via
-    #   -r requirements/ci.txt
+    #   -r ci.txt
     #   diff-cover
     #   tox
 click==8.3.0
     # via
-    #   -r requirements/pip-tools.txt
-    #   -r requirements/quality.txt
+    #   -r pip-tools.txt
+    #   -r quality.txt
     #   celery
     #   click-didyoumean
     #   click-log
@@ -58,111 +58,108 @@ click==8.3.0
     #   pip-tools
 click-didyoumean==0.3.1
     # via
-    #   -r requirements/quality.txt
+    #   -r quality.txt
     #   celery
 click-log==0.4.0
     # via
-    #   -r requirements/quality.txt
+    #   -r quality.txt
     #   edx-lint
 click-plugins==1.1.1.2
     # via
-    #   -r requirements/quality.txt
+    #   -r quality.txt
     #   celery
 click-repl==0.3.0
     # via
-    #   -r requirements/quality.txt
+    #   -r quality.txt
     #   celery
 code-annotations==2.3.0
     # via
-    #   -r requirements/quality.txt
+    #   -r quality.txt
     #   edx-lint
 colorama==0.4.6
     # via
-    #   -r requirements/ci.txt
+    #   -r ci.txt
     #   tox
 coverage[toml]==7.11.0
     # via
-    #   -r requirements/quality.txt
+    #   -r quality.txt
     #   pytest-cov
 ddt==1.7.2
-    # via -r requirements/quality.txt
+    # via -r quality.txt
 diff-cover==9.7.1
-    # via -r requirements/dev.in
+    # via -r dev.in
 dill==0.4.0
     # via
-    #   -r requirements/quality.txt
+    #   -r quality.txt
     #   pylint
 distlib==0.4.0
     # via
-    #   -r requirements/ci.txt
+    #   -r ci.txt
     #   virtualenv
-django==4.2.25
+django==4.2.27
     # via
-    #   -c requirements/common_constraints.txt
-    #   -r requirements/quality.txt
+    #   -c common_constraints.txt
+    #   -r quality.txt
     #   django-crum
     #   django-model-utils
     #   django-waffle
-    #   djangorestframework
     #   edx-celeryutils
     #   edx-django-utils
     #   edx-i18n-tools
     #   jsonfield
 django-crum==0.7.9
     # via
-    #   -r requirements/quality.txt
+    #   -r quality.txt
     #   edx-django-utils
 django-model-utils==5.0.0
     # via
-    #   -r requirements/quality.txt
+    #   -r quality.txt
     #   edx-celeryutils
 django-waffle==5.0.0
     # via
-    #   -r requirements/quality.txt
+    #   -r quality.txt
     #   edx-django-utils
-djangorestframework==3.16.1
-    # via -r requirements/quality.txt
 edx-celeryutils==1.4.0
-    # via -r requirements/quality.txt
+    # via -r quality.txt
 edx-django-utils==8.0.1
-    # via -r requirements/quality.txt
+    # via -r quality.txt
 edx-i18n-tools==1.9.0
-    # via -r requirements/dev.in
+    # via -r dev.in
 edx-lint==5.6.0
-    # via -r requirements/quality.txt
+    # via -r quality.txt
 filelock==3.20.0
     # via
-    #   -r requirements/ci.txt
+    #   -r ci.txt
     #   tox
     #   virtualenv
 freezegun==1.5.5
-    # via -r requirements/quality.txt
+    # via -r quality.txt
 greenlet==3.2.4
     # via
-    #   -r requirements/quality.txt
+    #   -r quality.txt
     #   sqlalchemy
 iniconfig==2.3.0
     # via
-    #   -r requirements/quality.txt
+    #   -r quality.txt
     #   pytest
 isort==6.1.0
     # via
-    #   -r requirements/quality.txt
+    #   -r quality.txt
     #   pylint
 jinja2==3.1.6
     # via
-    #   -r requirements/quality.txt
+    #   -r quality.txt
     #   code-annotations
     #   diff-cover
 jsonfield==3.2.0
     # via
-    #   -r requirements/quality.txt
+    #   -r quality.txt
     #   edx-celeryutils
 kombu==5.5.4
     # via
-    #   -r requirements/quality.txt
+    #   -r quality.txt
     #   celery
-lxml[html-clean]==6.0.2
+lxml[html-clean,html_clean]==6.0.2
     # via
     #   edx-i18n-tools
     #   lxml-html-clean
@@ -170,19 +167,19 @@ lxml-html-clean==0.4.3
     # via lxml
 markupsafe==3.0.3
     # via
-    #   -r requirements/quality.txt
+    #   -r quality.txt
     #   jinja2
 mccabe==0.7.0
     # via
-    #   -r requirements/quality.txt
+    #   -r quality.txt
     #   pylint
 mock==5.2.0
-    # via -r requirements/quality.txt
+    # via -r quality.txt
 packaging==25.0
     # via
-    #   -r requirements/ci.txt
-    #   -r requirements/pip-tools.txt
-    #   -r requirements/quality.txt
+    #   -r ci.txt
+    #   -r pip-tools.txt
+    #   -r quality.txt
     #   build
     #   kombu
     #   pyproject-api
@@ -191,18 +188,18 @@ packaging==25.0
 path==16.16.0
     # via edx-i18n-tools
 pip-tools==7.5.1
-    # via -r requirements/pip-tools.txt
+    # via -r pip-tools.txt
 platformdirs==4.5.0
     # via
-    #   -r requirements/ci.txt
-    #   -r requirements/quality.txt
+    #   -r ci.txt
+    #   -r quality.txt
     #   pylint
     #   tox
     #   virtualenv
 pluggy==1.6.0
     # via
-    #   -r requirements/ci.txt
-    #   -r requirements/quality.txt
+    #   -r ci.txt
+    #   -r quality.txt
     #   diff-cover
     #   pytest
     #   pytest-cov
@@ -211,138 +208,138 @@ polib==1.2.0
     # via edx-i18n-tools
 prompt-toolkit==3.0.52
     # via
-    #   -r requirements/quality.txt
+    #   -r quality.txt
     #   click-repl
 psutil==7.1.0
     # via
-    #   -r requirements/quality.txt
+    #   -r quality.txt
     #   edx-django-utils
 pycodestyle==2.14.0
-    # via -r requirements/quality.txt
+    # via -r quality.txt
 pycparser==2.23
     # via
-    #   -r requirements/quality.txt
+    #   -r quality.txt
     #   cffi
 pydocstyle==6.3.0
-    # via -r requirements/quality.txt
+    # via -r quality.txt
 pygments==2.19.2
     # via
-    #   -r requirements/quality.txt
+    #   -r quality.txt
     #   diff-cover
     #   pytest
 pylint==3.3.9
     # via
-    #   -r requirements/quality.txt
+    #   -r quality.txt
     #   edx-lint
     #   pylint-celery
     #   pylint-django
     #   pylint-plugin-utils
 pylint-celery==0.3
     # via
-    #   -r requirements/quality.txt
+    #   -r quality.txt
     #   edx-lint
 pylint-django==2.6.1
     # via
-    #   -r requirements/quality.txt
+    #   -r quality.txt
     #   edx-lint
 pylint-plugin-utils==0.9.0
     # via
-    #   -r requirements/quality.txt
+    #   -r quality.txt
     #   pylint-celery
     #   pylint-django
 pynacl==1.6.0
     # via
-    #   -r requirements/quality.txt
+    #   -r quality.txt
     #   edx-django-utils
 pyproject-api==1.10.0
     # via
-    #   -r requirements/ci.txt
+    #   -r ci.txt
     #   tox
 pyproject-hooks==1.2.0
     # via
-    #   -r requirements/pip-tools.txt
+    #   -r pip-tools.txt
     #   build
     #   pip-tools
 pytest==8.4.2
     # via
-    #   -r requirements/quality.txt
+    #   -r quality.txt
     #   pytest-cov
     #   pytest-django
 pytest-cov==7.0.0
-    # via -r requirements/quality.txt
+    # via -r quality.txt
 pytest-django==4.11.1
-    # via -r requirements/quality.txt
+    # via -r quality.txt
 python-dateutil==2.9.0.post0
     # via
-    #   -r requirements/quality.txt
+    #   -r quality.txt
     #   celery
     #   freezegun
 python-slugify==8.0.4
     # via
-    #   -r requirements/quality.txt
+    #   -r quality.txt
     #   code-annotations
 pyyaml==6.0.3
     # via
-    #   -r requirements/quality.txt
+    #   -r quality.txt
     #   code-annotations
     #   edx-i18n-tools
 simplejson==3.20.2
-    # via -r requirements/quality.txt
+    # via -r quality.txt
 six==1.17.0
     # via
-    #   -r requirements/quality.txt
+    #   -r quality.txt
     #   edx-lint
     #   python-dateutil
 snowballstemmer==3.0.1
     # via
-    #   -r requirements/quality.txt
+    #   -r quality.txt
     #   pydocstyle
 sqlalchemy==2.0.44
-    # via -r requirements/quality.txt
+    # via -r quality.txt
 sqlparse==0.5.3
     # via
-    #   -r requirements/quality.txt
+    #   -r quality.txt
     #   django
 stevedore==5.5.0
     # via
-    #   -r requirements/quality.txt
+    #   -r quality.txt
     #   code-annotations
     #   edx-django-utils
 text-unidecode==1.3
     # via
-    #   -r requirements/quality.txt
+    #   -r quality.txt
     #   python-slugify
 tomlkit==0.13.3
     # via
-    #   -r requirements/quality.txt
+    #   -r quality.txt
     #   pylint
 tox==4.31.0
-    # via -r requirements/ci.txt
+    # via -r ci.txt
 typing-extensions==4.15.0
     # via
-    #   -r requirements/quality.txt
+    #   -r quality.txt
     #   sqlalchemy
 tzdata==2025.2
     # via
-    #   -r requirements/quality.txt
+    #   -r quality.txt
     #   kombu
 vine==5.1.0
     # via
-    #   -r requirements/quality.txt
+    #   -r quality.txt
     #   amqp
     #   celery
     #   kombu
 virtualenv==20.35.3
     # via
-    #   -r requirements/ci.txt
+    #   -r ci.txt
     #   tox
 wcwidth==0.2.14
     # via
-    #   -r requirements/quality.txt
+    #   -r quality.txt
     #   prompt-toolkit
 wheel==0.45.1
     # via
-    #   -r requirements/pip-tools.txt
+    #   -r pip-tools.txt
     #   pip-tools
 
 # The following packages are considered to be unsafe in a requirements file:
