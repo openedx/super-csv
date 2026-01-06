@@ -5,7 +5,9 @@
 #    make upgrade
 #
 amqp==5.3.1
-    # via kombu
+    # via
+    #   -r test.txt
+    #   kombu
 asgiref==3.10.0
     # via
     #   -r test.txt
@@ -15,10 +17,13 @@ astroid==3.3.11
     #   pylint
     #   pylint-celery
 billiard==4.2.2
-    # via celery
+    # via
+    #   -r test.txt
+    #   celery
 celery==5.5.3
     # via
     #   -c constraints.txt
+    #   -r test.txt
     #   edx-celeryutils
 cffi==2.0.0
     # via
@@ -64,9 +69,11 @@ dill==0.4.0
 django==4.2.27
     # via
     #   -c common_constraints.txt
+    #   -r test.txt
     #   django-crum
     #   django-model-utils
     #   django-waffle
+    #   djangorestframework
     #   edx-celeryutils
     #   edx-django-utils
     #   jsonfield
@@ -82,6 +89,8 @@ django-waffle==5.0.0
     # via
     #   -r test.txt
     #   edx-django-utils
+djangorestframework==3.16.1
+    # via -r test.txt
 edx-celeryutils==1.4.0
     # via -r test.txt
 edx-django-utils==8.0.1
@@ -111,7 +120,9 @@ jsonfield==3.2.0
     #   -r test.txt
     #   edx-celeryutils
 kombu==5.5.4
-    # via celery
+    # via
+    #   -r test.txt
+    #   celery
 markupsafe==3.0.3
     # via
     #   -r test.txt
@@ -166,7 +177,7 @@ pylint-plugin-utils==0.9.0
     # via
     #   pylint-celery
     #   pylint-django
-pynacl==1.6.0
+pynacl==1.6.2
     # via
     #   -r test.txt
     #   edx-django-utils
@@ -228,6 +239,7 @@ tzdata==2025.2
     #   kombu
 vine==5.1.0
     # via
+    #   -r test.txt
     #   amqp
     #   celery
     #   kombu

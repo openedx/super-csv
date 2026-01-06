@@ -103,6 +103,7 @@ django==4.2.27
     #   django-crum
     #   django-model-utils
     #   django-waffle
+    #   djangorestframework
     #   edx-celeryutils
     #   edx-django-utils
     #   edx-i18n-tools
@@ -119,6 +120,8 @@ django-waffle==5.0.0
     # via
     #   -r quality.txt
     #   edx-django-utils
+djangorestframework==3.16.1
+    # via -r quality.txt
 edx-celeryutils==1.4.0
     # via -r quality.txt
 edx-django-utils==8.0.1
@@ -247,7 +250,7 @@ pylint-plugin-utils==0.9.0
     #   -r quality.txt
     #   pylint-celery
     #   pylint-django
-pynacl==1.6.0
+pynacl==1.6.2
     # via
     #   -r quality.txt
     #   edx-django-utils

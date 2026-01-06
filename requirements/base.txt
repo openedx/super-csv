@@ -68,7 +68,7 @@ psutil==7.1.0
     # via edx-django-utils
 pycparser==2.23
     # via cffi
-pynacl==1.6.0
+pynacl==1.6.2
     # via edx-django-utils
 python-dateutil==2.9.0.post0
     # via celery
