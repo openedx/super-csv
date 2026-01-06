@@ -4,27 +4,30 @@
 #
 #    make upgrade
 #
+amqp==5.3.1
     # via
-    #   -r requirements/base.txt
+    #   -r base.txt
     #   kombu
 asgiref==3.10.0
     # via
-    #   -r requirements/base.txt
+    #   -r base.txt
     #   django
+billiard==4.2.2
     # via
-    #   -r requirements/base.txt
+    #   -r base.txt
     #   celery
+celery==5.5.3
     # via
-    #   -c requirements/constraints.txt
-    #   -r requirements/base.txt
+    #   -c constraints.txt
+    #   -r base.txt
     #   edx-celeryutils
 cffi==2.0.0
     # via
-    #   -r requirements/base.txt
+    #   -r base.txt
     #   pynacl
 click==8.3.0
     # via
-    #   -r requirements/base.txt
+    #   -r base.txt
     #   celery
     #   click-didyoumean
     #   click-plugins
@@ -33,25 +36,26 @@ click==8.3.0
     #   edx-django-utils
 click-didyoumean==0.3.1
     # via
-    #   -r requirements/base.txt
+    #   -r base.txt
     #   celery
 click-plugins==1.1.1.2
     # via
-    #   -r requirements/base.txt
+    #   -r base.txt
     #   celery
 click-repl==0.3.0
     # via
-    #   -r requirements/base.txt
+    #   -r base.txt
     #   celery
 code-annotations==2.3.0
-    # via -r requirements/test.in
+    # via -r test.in
 coverage[toml]==7.11.0
     # via pytest-cov
 ddt==1.7.2
-    # via -r requirements/test.in
+    # via -r test.in
+django==4.2.27
     # via
-    #   -c requirements/common_constraints.txt
-    #   -r requirements/base.txt
+    #   -c common_constraints.txt
+    #   -r base.txt
     #   django-crum
     #   django-model-utils
     #   django-waffle
@@ -61,23 +65,24 @@ ddt==1.7.2
     #   jsonfield
 django-crum==0.7.9
     # via
-    #   -r requirements/base.txt
+    #   -r base.txt
     #   edx-django-utils
 django-model-utils==5.0.0
     # via
-    #   -r requirements/base.txt
+    #   -r base.txt
     #   edx-celeryutils
 django-waffle==5.0.0
     # via
-    #   -r requirements/base.txt
+    #   -r base.txt
     #   edx-django-utils
-    # via -r requirements/base.txt
+djangorestframework==3.16.1
+    # via -r base.txt
 edx-celeryutils==1.4.0
-    # via -r requirements/base.txt
+    # via -r base.txt
 edx-django-utils==8.0.1
-    # via -r requirements/base.txt
+    # via -r base.txt
 freezegun==1.5.5
-    # via -r requirements/test.in
+    # via -r test.in
 greenlet==3.2.4
     # via sqlalchemy
 iniconfig==2.3.0
@@ -86,18 +91,19 @@ jinja2==3.1.6
     # via code-annotations
 jsonfield==3.2.0
     # via
-    #   -r requirements/base.txt
+    #   -r base.txt
     #   edx-celeryutils
+kombu==5.5.4
     # via
-    #   -r requirements/base.txt
+    #   -r base.txt
     #   celery
 markupsafe==3.0.3
     # via jinja2
 mock==5.2.0
-    # via -r requirements/test.in
+    # via -r test.in
 packaging==25.0
     # via
-    #   -r requirements/base.txt
+    #   -r base.txt
     #   kombu
     #   pytest
 pluggy==1.6.0
@@ -106,33 +112,33 @@ pluggy==1.6.0
     #   pytest-cov
 prompt-toolkit==3.0.52
     # via
-    #   -r requirements/base.txt
+    #   -r base.txt
     #   click-repl
 psutil==7.1.0
     # via
-    #   -r requirements/base.txt
+    #   -r base.txt
     #   edx-django-utils
 pycparser==2.23
     # via
-    #   -r requirements/base.txt
+    #   -r base.txt
     #   cffi
 pygments==2.19.2
     # via pytest
-pynacl==1.6.0
+pynacl==1.6.2
     # via
-    #   -r requirements/base.txt
+    #   -r base.txt
     #   edx-django-utils
 pytest==8.4.2
     # via
     #   pytest-cov
     #   pytest-django
 pytest-cov==7.0.0
-    # via -r requirements/test.in
+    # via -r test.in
 pytest-django==4.11.1
-    # via -r requirements/test.in
+    # via -r test.in
 python-dateutil==2.9.0.post0
     # via
-    #   -r requirements/base.txt
+    #   -r base.txt
     #   celery
     #   freezegun
 python-slugify==8.0.4
@@ -140,20 +146,20 @@ python-slugify==8.0.4
 pyyaml==6.0.3
     # via code-annotations
 simplejson==3.20.2
-    # via -r requirements/base.txt
+    # via -r base.txt
 six==1.17.0
     # via
-    #   -r requirements/base.txt
+    #   -r base.txt
     #   python-dateutil
 sqlalchemy==2.0.44
-    # via -r requirements/test.in
+    # via -r test.in
 sqlparse==0.5.3
     # via
-    #   -r requirements/base.txt
+    #   -r base.txt
     #   django
 stevedore==5.5.0
     # via
-    #   -r requirements/base.txt
+    #   -r base.txt
     #   code-annotations
     #   edx-django-utils
 text-unidecode==1.3
@@ -162,14 +168,15 @@ typing-extensions==4.15.0
     # via sqlalchemy
 tzdata==2025.2
     # via
-    #   -r requirements/base.txt
+    #   -r base.txt
     #   kombu
+vine==5.1.0
     # via
-    #   -r requirements/base.txt
+    #   -r base.txt
     #   amqp
     #   celery
     #   kombu
 wcwidth==0.2.14
     # via
-    #   -r requirements/base.txt
+    #   -r base.txt
     #   prompt-toolkit
