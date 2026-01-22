@@ -185,6 +185,7 @@ packaging==25.0
     #   pyproject-api
     #   pytest
     #   tox
+    #   wheel
 path==16.16.0
     # via edx-i18n-tools
 pip-tools==7.5.1
@@ -337,7 +338,7 @@ wcwidth==0.2.14
     # via
     #   -r quality.txt
     #   prompt-toolkit
-wheel==0.45.1
+wheel==0.46.2
     # via
     #   -r pip-tools.txt
     #   pip-tools
