@@ -103,6 +103,7 @@ django==4.2.27
     #   django-crum
     #   django-model-utils
     #   django-waffle
+    #   djangorestframework
     #   edx-celeryutils
     #   edx-django-utils
     #   edx-i18n-tools
@@ -119,6 +120,8 @@ django-waffle==5.0.0
     # via
     #   -r quality.txt
     #   edx-django-utils
+djangorestframework==3.16.1
+    # via -r quality.txt
 edx-celeryutils==1.4.0
     # via -r quality.txt
 edx-django-utils==8.0.1
@@ -296,7 +299,7 @@ snowballstemmer==3.0.1
     #   pydocstyle
 sqlalchemy==2.0.44
     # via -r quality.txt
-sqlparse==0.5.3
+sqlparse==0.5.4
     # via
     #   -r quality.txt
     #   django
