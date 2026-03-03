@@ -159,11 +159,11 @@ kombu==5.5.4
     # via
     #   -r quality.txt
     #   celery
-lxml[html-clean,html_clean]==6.0.2
+lxml[html-clean]==6.0.2
     # via
     #   edx-i18n-tools
     #   lxml-html-clean
-lxml-html-clean==0.4.3
+lxml-html-clean==0.4.4
     # via lxml
 markupsafe==3.0.3
     # via
