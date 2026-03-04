@@ -96,7 +96,7 @@ distlib==0.4.0
     # via
     #   -r ci.txt
     #   virtualenv
-django==4.2.27
+django==4.2.29
     # via
     #   -c common_constraints.txt
     #   -r quality.txt
@@ -159,7 +159,7 @@ kombu==5.5.4
     # via
     #   -r quality.txt
     #   celery
-lxml[html-clean,html_clean]==6.0.2
+lxml[html-clean]==6.0.2
     # via
     #   edx-i18n-tools
     #   lxml-html-clean
