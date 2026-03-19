@@ -50,7 +50,7 @@ django-model-utils==5.0.0
     #   edx-celeryutils
 django-waffle==5.0.0
     # via edx-django-utils
-djangorestframework==3.16.1
+djangorestframework==3.17.0
     # via -r requirements/base.in
 edx-celeryutils==1.4.0
     # via -r requirements/base.in
