@@ -10,13 +10,13 @@ asgiref==3.11.1
     # via django
 billiard==4.2.4
     # via celery
-celery==5.6.2
+celery==5.6.3
     # via
     #   -c requirements/constraints.txt
     #   edx-celeryutils
 cffi==2.0.0
     # via pynacl
-click==8.3.1
+click==8.3.2
     # via
     #   celery
     #   click-didyoumean
@@ -50,7 +50,7 @@ django-model-utils==5.0.0
     #   edx-celeryutils
 django-waffle==5.0.0
     # via edx-django-utils
-djangorestframework==3.16.1
+djangorestframework==3.17.1
     # via -r requirements/base.in
 edx-celeryutils==1.4.0
     # via -r requirements/base.in
@@ -80,7 +80,7 @@ sqlparse==0.5.5
     # via django
 stevedore==5.7.0
     # via edx-django-utils
-tzdata==2025.3
+tzdata==2026.1
     # via kombu
 tzlocal==5.3.1
     # via celery
