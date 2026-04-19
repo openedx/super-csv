@@ -10,13 +10,13 @@ asgiref==3.11.1
     # via django
 billiard==4.2.4
     # via celery
-celery==5.6.2
+celery==5.6.3
     # via
     #   -c requirements/constraints.txt
     #   edx-celeryutils
 cffi==2.0.0
     # via pynacl
-click==8.3.1
+click==8.3.2
     # via
     #   celery
     #   click-didyoumean
@@ -29,7 +29,7 @@ click-plugins==1.1.1.2
     # via celery
 click-repl==0.3.0
     # via celery
-django==5.2.12
+django==5.2.13
     # via
     #   -c requirements/common_constraints.txt
     #   -r requirements/base.in
@@ -50,9 +50,9 @@ django-model-utils==5.0.0
     #   edx-celeryutils
 django-waffle==5.0.0
     # via edx-django-utils
-djangorestframework==3.16.1
+djangorestframework==3.17.1
     # via -r requirements/base.in
-edx-celeryutils==1.4.0
+edx-celeryutils==2.0.0
     # via -r requirements/base.in
 edx-django-utils==8.0.1
     # via -r requirements/base.in
@@ -60,7 +60,7 @@ jsonfield==3.2.0
     # via edx-celeryutils
 kombu==5.6.2
     # via celery
-packaging==26.0
+packaging==26.1
     # via kombu
 prompt-toolkit==3.0.52
     # via click-repl
@@ -72,7 +72,7 @@ pynacl==1.6.2
     # via edx-django-utils
 python-dateutil==2.9.0.post0
     # via celery
-simplejson==3.20.2
+simplejson==4.0.1
     # via -r requirements/base.in
 six==1.17.0
     # via python-dateutil
@@ -80,7 +80,7 @@ sqlparse==0.5.5
     # via django
 stevedore==5.7.0
     # via edx-django-utils
-tzdata==2025.3
+tzdata==2026.1
     # via kombu
 tzlocal==5.3.1
     # via celery
