@@ -22,7 +22,7 @@ cffi==2.0.0
     # via
     #   -r requirements/base.txt
     #   pynacl
-click==8.3.1
+click==8.3.2
     # via
     #   -r requirements/base.txt
     #   celery
@@ -43,9 +43,9 @@ click-repl==0.3.0
     # via
     #   -r requirements/base.txt
     #   celery
-code-annotations==2.3.2
+code-annotations==3.0.0
     # via -r requirements/test.in
-coverage[toml]==7.13.4
+coverage[toml]==7.13.5
     # via pytest-cov
 ddt==1.7.2
     # via -r requirements/test.in
@@ -72,13 +72,13 @@ django-waffle==5.0.0
     #   -r requirements/base.txt
     #   edx-django-utils
     # via -r requirements/base.txt
-edx-celeryutils==1.4.0
+edx-celeryutils==2.0.0
     # via -r requirements/base.txt
 edx-django-utils==8.0.1
     # via -r requirements/base.txt
 freezegun==1.5.5
     # via -r requirements/test.in
-greenlet==3.3.2
+greenlet==3.4.0
     # via sqlalchemy
 iniconfig==2.3.0
     # via pytest
@@ -95,7 +95,7 @@ markupsafe==3.0.3
     # via jinja2
 mock==5.2.0
     # via -r requirements/test.in
-packaging==26.0
+packaging==26.1
     # via
     #   -r requirements/base.txt
     #   kombu
@@ -116,17 +116,17 @@ pycparser==3.0
     # via
     #   -r requirements/base.txt
     #   cffi
-pygments==2.19.2
+pygments==2.20.0
     # via pytest
 pynacl==1.6.2
     # via
     #   -r requirements/base.txt
     #   edx-django-utils
-pytest==9.0.2
+pytest==9.0.3
     # via
     #   pytest-cov
     #   pytest-django
-pytest-cov==7.0.0
+pytest-cov==7.1.0
     # via -r requirements/test.in
 pytest-django==4.12.0
     # via -r requirements/test.in
@@ -139,13 +139,13 @@ python-slugify==8.0.4
     # via code-annotations
 pyyaml==6.0.3
     # via code-annotations
-simplejson==3.20.2
+simplejson==4.0.1
     # via -r requirements/base.txt
 six==1.17.0
     # via
     #   -r requirements/base.txt
     #   python-dateutil
-sqlalchemy==2.0.48
+sqlalchemy==2.0.49
     # via -r requirements/test.in
 sqlparse==0.5.5
     # via
@@ -160,7 +160,7 @@ text-unidecode==1.3
     # via python-slugify
 typing-extensions==4.15.0
     # via sqlalchemy
-tzdata==2025.3
+tzdata==2026.1
     # via
     #   -r requirements/base.txt
     #   kombu
