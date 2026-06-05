@@ -31,7 +31,7 @@ celery==5.6.3
     #   -c requirements/constraints.txt
     #   -r requirements/test.txt
     #   edx-celeryutils
-certifi==2026.4.22
+certifi==2026.5.20
     # via requests
 cffi==2.0.0
     # via
@@ -40,7 +40,7 @@ cffi==2.0.0
     #   pynacl
 charset-normalizer==3.4.7
     # via requests
-click==8.4.0
+click==8.4.1
     # via
     #   -r requirements/test.txt
     #   celery
@@ -63,7 +63,7 @@ click-repl==0.3.0
     #   celery
 code-annotations==3.0.0
     # via -r requirements/test.txt
-coverage[toml]==7.14.0
+coverage[toml]==7.14.1
     # via
     #   -r requirements/test.txt
     #   pytest-cov
@@ -71,7 +71,7 @@ cryptography==48.0.0
     # via secretstorage
 ddt==1.7.2
     # via -r requirements/test.txt
-django==5.2.14
+django==5.2.15
     # via
     #   -c requirements/common_constraints.txt
     #   -r requirements/test.txt
@@ -111,13 +111,13 @@ edx-django-utils==8.0.1
     # via -r requirements/test.txt
 freezegun==1.5.5
     # via -r requirements/test.txt
-greenlet==3.5.0
+greenlet==3.5.1
     # via
     #   -r requirements/test.txt
     #   sqlalchemy
 id==1.6.1
     # via twine
-idna==3.15
+idna==3.18
     # via requests
 imagesize==2.0.0
     # via sphinx
@@ -160,7 +160,7 @@ mdurl==0.1.2
     # via markdown-it-py
 mock==5.2.0
     # via -r requirements/test.txt
-more-itertools==11.0.2
+more-itertools==11.1.0
     # via
     #   jaraco-classes
     #   jaraco-functools
@@ -253,9 +253,9 @@ six==1.17.0
     # via
     #   -r requirements/test.txt
     #   python-dateutil
-snowballstemmer==3.0.1
+snowballstemmer==3.1.1
     # via sphinx
-soupsieve==2.8.3
+soupsieve==2.8.4
     # via beautifulsoup4
 sphinx==9.1.0
     # via
@@ -276,7 +276,7 @@ sphinxcontrib-qthelp==2.0.0
     # via sphinx
 sphinxcontrib-serializinghtml==2.0.0
     # via sphinx
-sqlalchemy==2.0.49
+sqlalchemy==2.0.50
     # via -r requirements/test.txt
 sqlparse==0.5.5
     # via

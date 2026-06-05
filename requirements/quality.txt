@@ -29,7 +29,7 @@ cffi==2.0.0
     # via
     #   -r requirements/test.txt
     #   pynacl
-click==8.4.0
+click==8.4.1
     # via
     #   -r requirements/test.txt
     #   celery
@@ -58,7 +58,7 @@ code-annotations==3.0.0
     # via
     #   -r requirements/test.txt
     #   edx-lint
-coverage[toml]==7.14.0
+coverage[toml]==7.14.1
     # via
     #   -r requirements/test.txt
     #   pytest-cov
@@ -66,7 +66,7 @@ ddt==1.7.2
     # via -r requirements/test.txt
 dill==0.4.1
     # via pylint
-django==5.2.14
+django==5.2.15
     # via
     #   -c requirements/common_constraints.txt
     #   -r requirements/test.txt
@@ -99,7 +99,7 @@ edx-lint==6.1.0
     # via -r requirements/quality.in
 freezegun==1.5.5
     # via -r requirements/test.txt
-greenlet==3.5.0
+greenlet==3.5.1
     # via
     #   -r requirements/test.txt
     #   sqlalchemy
@@ -136,7 +136,7 @@ packaging==26.2
     #   -r requirements/test.txt
     #   kombu
     #   pytest
-platformdirs==4.9.6
+platformdirs==4.10.0
     # via pylint
 pluggy==1.6.0
     # via
@@ -210,9 +210,9 @@ six==1.17.0
     #   -r requirements/test.txt
     #   edx-lint
     #   python-dateutil
-snowballstemmer==3.0.1
+snowballstemmer==3.1.1
     # via pydocstyle
-sqlalchemy==2.0.49
+sqlalchemy==2.0.50
     # via -r requirements/test.txt
 sqlparse==0.5.5
     # via
