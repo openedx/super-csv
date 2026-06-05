@@ -22,7 +22,7 @@ cffi==2.0.0
     # via
     #   -r requirements/base.txt
     #   pynacl
-click==8.4.0
+click==8.4.1
     # via
     #   -r requirements/base.txt
     #   celery
@@ -45,7 +45,7 @@ click-repl==0.3.0
     #   celery
 code-annotations==3.0.0
     # via -r requirements/test.in
-coverage[toml]==7.14.0
+coverage[toml]==7.14.1
     # via pytest-cov
 ddt==1.7.2
     # via -r requirements/test.in
@@ -78,7 +78,7 @@ edx-django-utils==8.0.1
     # via -r requirements/base.txt
 freezegun==1.5.5
     # via -r requirements/test.in
-greenlet==3.5.0
+greenlet==3.5.1
     # via sqlalchemy
 iniconfig==2.3.0
     # via pytest
@@ -145,7 +145,7 @@ six==1.17.0
     # via
     #   -r requirements/base.txt
     #   python-dateutil
-sqlalchemy==2.0.49
+sqlalchemy==2.0.50
     # via -r requirements/test.in
 sqlparse==0.5.5
     # via
