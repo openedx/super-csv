@@ -82,12 +82,12 @@ stevedore==5.8.0
     # via edx-django-utils
 tzdata==2026.2
     # via kombu
-tzlocal==5.3.1
+tzlocal==5.4.3
     # via celery
 vine==5.1.0
     # via
     #   amqp
     #   celery
     #   kombu
-wcwidth==0.7.0
+wcwidth==0.8.1
     # via prompt-toolkit
