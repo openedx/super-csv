@@ -89,7 +89,7 @@ dill==0.4.1
     # via
     #   -r requirements/quality.txt
     #   pylint
-distlib==0.4.1
+distlib==0.4.3
     # via
     #   -r requirements/ci.txt
     #   virtualenv
@@ -127,7 +127,7 @@ edx-i18n-tools==2.0.0
     # via -r requirements/dev.in
 edx-lint==6.1.0
     # via -r requirements/quality.txt
-filelock==3.29.1
+filelock==3.29.4
     # via
     #   -r requirements/ci.txt
     #   python-discovery
@@ -135,7 +135,7 @@ filelock==3.29.1
     #   virtualenv
 freezegun==1.5.5
     # via -r requirements/quality.txt
-greenlet==3.5.1
+greenlet==3.5.2
     # via
     #   -r requirements/quality.txt
     #   sqlalchemy
@@ -230,7 +230,7 @@ pygments==2.20.0
     #   -r requirements/quality.txt
     #   diff-cover
     #   pytest
-pylint==4.0.5
+pylint==4.0.6
     # via
     #   -r requirements/quality.txt
     #   edx-lint
@@ -263,7 +263,7 @@ pyproject-hooks==1.2.0
     #   -r requirements/pip-tools.txt
     #   build
     #   pip-tools
-pytest==9.0.3
+pytest==9.1.1
     # via
     #   -r requirements/quality.txt
     #   pytest-cov
@@ -277,7 +277,7 @@ python-dateutil==2.9.0.post0
     #   -r requirements/quality.txt
     #   celery
     #   freezegun
-python-discovery==1.4.0
+python-discovery==1.4.2
     # via
     #   -r requirements/ci.txt
     #   tox
@@ -302,7 +302,7 @@ snowballstemmer==3.1.1
     # via
     #   -r requirements/quality.txt
     #   pydocstyle
-sqlalchemy==2.0.50
+sqlalchemy==2.0.51
     # via -r requirements/quality.txt
 sqlparse==0.5.5
     # via
@@ -336,7 +336,7 @@ tzdata==2026.2
     # via
     #   -r requirements/quality.txt
     #   kombu
-tzlocal==5.3.1
+tzlocal==5.4.3
     # via
     #   -r requirements/quality.txt
     #   celery
@@ -346,11 +346,11 @@ vine==5.1.0
     #   amqp
     #   celery
     #   kombu
-virtualenv==21.4.2
+virtualenv==21.5.1
     # via
     #   -r requirements/ci.txt
     #   tox
-wcwidth==0.7.0
+wcwidth==0.8.1
     # via
     #   -r requirements/quality.txt
     #   prompt-toolkit
