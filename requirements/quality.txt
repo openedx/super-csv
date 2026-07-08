@@ -29,7 +29,7 @@ cffi==2.0.0
     # via
     #   -r requirements/test.txt
     #   pynacl
-click==8.4.1
+click==8.4.2
     # via
     #   -r requirements/test.txt
     #   celery
@@ -58,7 +58,7 @@ code-annotations==3.0.0
     # via
     #   -r requirements/test.txt
     #   edx-lint
-coverage[toml]==7.14.1
+coverage[toml]==7.15.0
     # via
     #   -r requirements/test.txt
     #   pytest-cov
@@ -99,7 +99,7 @@ edx-lint==6.1.0
     # via -r requirements/quality.in
 freezegun==1.5.5
     # via -r requirements/test.txt
-greenlet==3.5.2
+greenlet==3.5.3
     # via
     #   -r requirements/test.txt
     #   sqlalchemy
@@ -218,7 +218,7 @@ sqlparse==0.5.5
     # via
     #   -r requirements/test.txt
     #   django
-stevedore==5.8.0
+stevedore==5.9.0
     # via
     #   -r requirements/test.txt
     #   code-annotations
@@ -231,7 +231,7 @@ tomlkit==0.15.0
     # via
     #   edx-lint
     #   pylint
-typing-extensions==4.15.0
+typing-extensions==4.16.0
     # via
     #   -r requirements/test.txt
     #   sqlalchemy
@@ -239,7 +239,7 @@ tzdata==2026.2
     # via
     #   -r requirements/test.txt
     #   kombu
-tzlocal==5.4.3
+tzlocal==5.4.4
     # via
     #   -r requirements/test.txt
     #   celery
@@ -249,7 +249,7 @@ vine==5.1.0
     #   amqp
     #   celery
     #   kombu
-wcwidth==0.8.1
+wcwidth==0.8.2
     # via
     #   -r requirements/test.txt
     #   prompt-toolkit
