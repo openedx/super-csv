@@ -9,7 +9,9 @@ accessible-pygments==0.0.5
 alabaster==1.0.0
     # via sphinx
 amqp==5.3.1
-    # via kombu
+    # via
+    #   -r test.txt
+    #   kombu
 asgiref==3.12.1
     # via
     #   -r test.txt
@@ -21,10 +23,13 @@ babel==2.18.0
 beautifulsoup4==4.15.0
     # via pydata-sphinx-theme
 billiard==4.2.4
-    # via celery
+    # via
+    #   -r test.txt
+    #   celery
 celery==5.6.3
     # via
     #   -c constraints.txt
+    #   -r test.txt
     #   edx-celeryutils
 certifi==2026.6.17
     # via requests
@@ -69,9 +74,11 @@ ddt==1.7.2
 django==5.2.16
     # via
     #   -c common_constraints.txt
+    #   -r test.txt
     #   django-crum
     #   django-model-utils
     #   django-waffle
+    #   djangorestframework
     #   edx-celeryutils
     #   edx-django-utils
     #   jsonfield
@@ -87,6 +94,8 @@ django-waffle==5.0.0
     # via
     #   -r test.txt
     #   edx-django-utils
+djangorestframework==3.17.1
+    # via -r test.txt
 doc8==2.0.0
     # via -r doc.in
 docutils==0.21.2
@@ -138,7 +147,9 @@ jsonfield==3.2.0
 keyring==25.7.0
     # via twine
 kombu==5.6.2
-    # via celery
+    # via
+    #   -r test.txt
+    #   celery
 markdown-it-py==4.2.0
     # via rich
 markupsafe==3.0.3
@@ -267,7 +278,7 @@ sphinxcontrib-serializinghtml==2.0.0
     # via sphinx
 sqlalchemy==2.0.51
     # via -r test.txt
-sqlparse==0.5.5
+sqlparse==0.6.0
     # via
     #   -r test.txt
     #   django
@@ -304,6 +315,7 @@ urllib3==2.7.0
     #   twine
 vine==5.1.0
     # via
+    #   -r test.txt
     #   amqp
     #   celery
     #   kombu
