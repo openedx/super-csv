@@ -6,11 +6,11 @@
 #
 amqp==5.3.1
     # via
-    #   -r requirements/test.txt
+    #   -r test.txt
     #   kombu
 asgiref==3.12.1
     # via
-    #   -r requirements/test.txt
+    #   -r test.txt
     #   django
 astroid==4.0.4
     # via
@@ -18,20 +18,20 @@ astroid==4.0.4
     #   pylint-celery
 billiard==4.2.4
     # via
-    #   -r requirements/test.txt
+    #   -r test.txt
     #   celery
 celery==5.6.3
     # via
-    #   -c requirements/constraints.txt
-    #   -r requirements/test.txt
+    #   -c constraints.txt
+    #   -r test.txt
     #   edx-celeryutils
 cffi==2.1.0
     # via
-    #   -r requirements/test.txt
+    #   -r test.txt
     #   pynacl
 click==8.4.2
     # via
-    #   -r requirements/test.txt
+    #   -r test.txt
     #   celery
     #   click-didyoumean
     #   click-log
@@ -42,34 +42,34 @@ click==8.4.2
     #   edx-lint
 click-didyoumean==0.3.1
     # via
-    #   -r requirements/test.txt
+    #   -r test.txt
     #   celery
 click-log==0.4.0
     # via edx-lint
 click-plugins==1.1.1.2
     # via
-    #   -r requirements/test.txt
+    #   -r test.txt
     #   celery
 click-repl==0.3.0
     # via
-    #   -r requirements/test.txt
+    #   -r test.txt
     #   celery
 code-annotations==3.0.0
     # via
-    #   -r requirements/test.txt
+    #   -r test.txt
     #   edx-lint
 coverage[toml]==7.15.2
     # via
-    #   -r requirements/test.txt
+    #   -r test.txt
     #   pytest-cov
 ddt==1.7.2
-    # via -r requirements/test.txt
+    # via -r test.txt
 dill==0.4.1
     # via pylint
 django==5.2.16
     # via
-    #   -c requirements/common_constraints.txt
-    #   -r requirements/test.txt
+    #   -c common_constraints.txt
+    #   -r test.txt
     #   django-crum
     #   django-model-utils
     #   django-waffle
@@ -79,89 +79,89 @@ django==5.2.16
     #   jsonfield
 django-crum==0.7.9
     # via
-    #   -r requirements/test.txt
+    #   -r test.txt
     #   edx-django-utils
 django-model-utils==5.0.0
     # via
-    #   -r requirements/test.txt
+    #   -r test.txt
     #   edx-celeryutils
 django-waffle==5.0.0
     # via
-    #   -r requirements/test.txt
+    #   -r test.txt
     #   edx-django-utils
 djangorestframework==3.17.1
-    # via -r requirements/test.txt
+    # via -r test.txt
 edx-celeryutils==2.0.0
-    # via -r requirements/test.txt
+    # via -r test.txt
 edx-django-utils==8.0.1
-    # via -r requirements/test.txt
+    # via -r test.txt
 edx-lint==6.1.0
-    # via -r requirements/quality.in
+    # via -r quality.in
 freezegun==1.5.5
-    # via -r requirements/test.txt
+    # via -r test.txt
 greenlet==3.5.3
     # via
-    #   -r requirements/test.txt
+    #   -r test.txt
     #   sqlalchemy
 iniconfig==2.3.0
     # via
-    #   -r requirements/test.txt
+    #   -r test.txt
     #   pytest
 isort==8.0.1
     # via
-    #   -r requirements/quality.in
+    #   -r quality.in
     #   pylint
 jinja2==3.1.6
     # via
-    #   -r requirements/test.txt
+    #   -r test.txt
     #   code-annotations
 jsonfield==3.2.0
     # via
-    #   -r requirements/test.txt
+    #   -r test.txt
     #   edx-celeryutils
 kombu==5.6.2
     # via
-    #   -r requirements/test.txt
+    #   -r test.txt
     #   celery
 markupsafe==3.0.3
     # via
-    #   -r requirements/test.txt
+    #   -r test.txt
     #   jinja2
 mccabe==0.7.0
     # via pylint
 mock==5.2.0
-    # via -r requirements/test.txt
+    # via -r test.txt
 packaging==26.2
     # via
-    #   -r requirements/test.txt
+    #   -r test.txt
     #   kombu
     #   pytest
 platformdirs==4.10.1
     # via pylint
 pluggy==1.6.0
     # via
-    #   -r requirements/test.txt
+    #   -r test.txt
     #   pytest
     #   pytest-cov
 prompt-toolkit==3.0.52
     # via
-    #   -r requirements/test.txt
+    #   -r test.txt
     #   click-repl
 psutil==7.2.2
     # via
-    #   -r requirements/test.txt
+    #   -r test.txt
     #   edx-django-utils
 pycodestyle==2.14.0
-    # via -r requirements/quality.in
+    # via -r quality.in
 pycparser==3.0
     # via
-    #   -r requirements/test.txt
+    #   -r test.txt
     #   cffi
 pydocstyle==6.3.0
-    # via -r requirements/quality.in
+    # via -r quality.in
 pygments==2.20.0
     # via
-    #   -r requirements/test.txt
+    #   -r test.txt
     #   pytest
 pylint==4.0.6
     # via
@@ -179,53 +179,53 @@ pylint-plugin-utils==0.9.0
     #   pylint-django
 pynacl==1.6.2
     # via
-    #   -r requirements/test.txt
+    #   -r test.txt
     #   edx-django-utils
 pytest==9.1.1
     # via
-    #   -r requirements/test.txt
+    #   -r test.txt
     #   pytest-cov
     #   pytest-django
 pytest-cov==7.1.0
-    # via -r requirements/test.txt
+    # via -r test.txt
 pytest-django==4.12.0
-    # via -r requirements/test.txt
+    # via -r test.txt
 python-dateutil==2.9.0.post0
     # via
-    #   -r requirements/test.txt
+    #   -r test.txt
     #   celery
     #   freezegun
 python-slugify==8.0.4
     # via
-    #   -r requirements/test.txt
+    #   -r test.txt
     #   code-annotations
 pyyaml==6.0.3
     # via
-    #   -r requirements/test.txt
+    #   -r test.txt
     #   code-annotations
 simplejson==4.1.1
-    # via -r requirements/test.txt
+    # via -r test.txt
 six==1.17.0
     # via
-    #   -r requirements/test.txt
+    #   -r test.txt
     #   edx-lint
     #   python-dateutil
 snowballstemmer==3.1.1
     # via pydocstyle
 sqlalchemy==2.0.51
-    # via -r requirements/test.txt
-sqlparse==0.5.5
+    # via -r test.txt
+sqlparse==0.6.0
     # via
-    #   -r requirements/test.txt
+    #   -r test.txt
     #   django
 stevedore==5.9.0
     # via
-    #   -r requirements/test.txt
+    #   -r test.txt
     #   code-annotations
     #   edx-django-utils
 text-unidecode==1.3
     # via
-    #   -r requirements/test.txt
+    #   -r test.txt
     #   python-slugify
 tomlkit==0.15.1
     # via
@@ -233,23 +233,23 @@ tomlkit==0.15.1
     #   pylint
 typing-extensions==4.16.0
     # via
-    #   -r requirements/test.txt
+    #   -r test.txt
     #   sqlalchemy
 tzdata==2026.3
     # via
-    #   -r requirements/test.txt
+    #   -r test.txt
     #   kombu
 tzlocal==5.4.4
     # via
-    #   -r requirements/test.txt
+    #   -r test.txt
     #   celery
 vine==5.1.0
     # via
-    #   -r requirements/test.txt
+    #   -r test.txt
     #   amqp
     #   celery
     #   kombu
 wcwidth==0.8.2
     # via
-    #   -r requirements/test.txt
+    #   -r test.txt
     #   prompt-toolkit
