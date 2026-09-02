@@ -89,7 +89,7 @@ django-waffle==5.0.0
     # via
     #   -r test.txt
     #   edx-django-utils
-djangorestframework==3.17.1
+djangorestframework==3.17.2
     # via -r test.txt
 edx-celeryutils==2.0.0
     # via -r test.txt
