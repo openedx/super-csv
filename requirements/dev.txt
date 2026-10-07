@@ -196,7 +196,6 @@ platformdirs==4.10.1
     #   -r ci.txt
     #   -r quality.txt
     #   pylint
-    #   python-discovery
     #   tox
     #   virtualenv
 pluggy==1.6.0
@@ -277,7 +276,7 @@ python-dateutil==2.9.0.post0
     #   -r quality.txt
     #   celery
     #   freezegun
-python-discovery==1.4.4
+python-discovery==1.6.1
     # via
     #   -r ci.txt
     #   tox
@@ -346,7 +345,7 @@ vine==5.1.0
     #   amqp
     #   celery
     #   kombu
-virtualenv==21.6.1
+virtualenv==21.7.13
     # via
     #   -r ci.txt
     #   tox
