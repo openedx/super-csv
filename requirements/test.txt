@@ -52,7 +52,7 @@ coverage[toml]==7.15.2
     # via pytest-cov
 ddt==1.7.2
     # via -r test.in
-django==5.2.16
+django==5.2.17
     # via
     #   -c common_constraints.txt
     #   -r base.txt
