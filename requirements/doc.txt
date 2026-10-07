@@ -71,7 +71,7 @@ cryptography==50.0.0
     # via secretstorage
 ddt==1.7.2
     # via -r test.txt
-django==5.2.16
+django==5.2.17
     # via
     #   -c common_constraints.txt
     #   -r test.txt
