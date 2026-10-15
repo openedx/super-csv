@@ -96,6 +96,7 @@ dev = [
 include-package-data = false
 
 [tool.setuptools.packages.find]
+where = ["src"]
 include = ["super_csv", "super_csv.*"]
 exclude = ["*tests*"]
 
@@ -141,7 +142,7 @@ norecursedirs = [".*", "docs", "requirements"]
 [tool.coverage.run]
 branch = true
 data_file = ".coverage"
-source = ["super_csv"]
+source_pkgs = ["super_csv"]
 omit = [
     "test_settings",
     "*migrations*",

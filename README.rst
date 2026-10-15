@@ -9,7 +9,7 @@ Generic CSV Processing for Django Apps
 Overview
 ------------------------
 
-This library provides a `CSVProcessor <https://github.com/openedx/super-csv/blob/master/super_csv/csv_processor.py>`_ class
+This library provides a `CSVProcessor <https://github.com/openedx/super-csv/blob/master/src/super_csv/csv_processor.py>`_ class
 which should be subclassed to implement your own per-row processing of CSV files.
 At minimum, override `process_row(row)`.
 
