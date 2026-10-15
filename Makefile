@@ -29,36 +29,9 @@ docs: ## generate Sphinx HTML documentation, including API docs
 	tox -e docs
 	$(BROWSER)docs/_build/html/index.html
 
-COMMON_CONSTRAINTS_TXT=requirements/common_constraints.txt
-.PHONY: $(COMMON_CONSTRAINTS_TXT)
-$(COMMON_CONSTRAINTS_TXT):
-	wget -O "$(@)" https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt || touch "$(@)"
-
-upgrade: export CUSTOM_COMPILE_COMMAND=make upgrade
-upgrade: $(COMMON_CONSTRAINTS_TXT)  ## update the requirements/*.txt files with the latest packages satisfying requirements/*.in
-	pip install -qr requirements/pip-tools.txt
-	# Make sure to compile files after any other files they include!
-	pip-compile --upgrade --allow-unsafe -o requirements/pip.txt requirements/pip.in
-	pip-compile --upgrade -o requirements/pip-tools.txt requirements/pip-tools.in
-	pip install -qr requirements/pip.txt
-	pip install -qr requirements/pip-tools.txt
-	pip-compile --upgrade -o requirements/base.txt requirements/base.in
-	pip-compile --upgrade -o requirements/test.txt requirements/test.in
-	pip-compile --upgrade -o requirements/doc.txt requirements/doc.in
-	pip-compile --upgrade -o requirements/quality.txt requirements/quality.in
-	pip-compile --upgrade -o requirements/ci.txt requirements/ci.in
-	pip-compile --upgrade -o requirements/dev.txt requirements/dev.in
-	grep -e "^amqp==\|^anyjson==\|^billiard==\|^celery==\|^kombu==\|^click-didyoumean==\|^click-repl==\|^click==\|^prompt-toolkit==\|^vine==" requirements/base.txt > requirements/celery53.txt
-	# Let tox control the versions for Django, DRF and celery for testing
-	sed -i.tmp '/^django==/d' requirements/test.txt
-	sed -i.tmp '/^djangorestframework==/d' requirements/test.txt
-	sed -i.tmp '/^amqp==/d' requirements/test.txt
-	sed -i.tmp '/^anyjson==/d' requirements/test.txt
-	sed -i.tmp '/^billiard==/d' requirements/test.txt
-	sed -i.tmp '/^celery==/d' requirements/test.txt
-	sed -i.tmp '/^kombu==/d' requirements/test.txt
-	sed -i.tmp '/^vine==/d' requirements/test.txt
-	rm requirements/test.txt.tmp
+upgrade: ## upgrade all packages in uv.lock and sync constraints from edx-lint
+	uv run --with edx-lint edx_lint write_uv_constraints pyproject.toml
+	uv lock --upgrade
 
 quality: ## check coding style with pycodestyle and pylint
 	tox -e quality
@@ -67,9 +40,7 @@ pii_check: ## check for PII annotations on all Django models
 	tox -e pii_check
 
 requirements: ## install development environment requirements
-	pip install -qr requirements/pip.txt
-	pip install -qr requirements/pip-tools.txt
-	pip-sync requirements/dev.txt requirements/private.*
+	uv sync --group dev
 
 test: clean ## run tests in the current virtualenv
 	pytest
