@@ -1,5 +1,6 @@
 """
 CSV Processor.
 """
+from importlib.metadata import version
 
-__version__ = '5.0.0'
+__version__ = version("super-csv")

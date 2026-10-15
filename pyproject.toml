@@ -1,0 +1,82 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm>8.1"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "super-csv"
+description = "CSV Processor"
+readme = "README.rst"
+requires-python = ">=3.12"
+license = "Apache-2.0"
+license-files = ["LICENSE.txt"]
+authors = [
+    {name = "Open edX Project", email = "oscm@openedx.org"},
+]
+classifiers = [
+    'Development Status :: 3 - Alpha',
+    'Framework :: Django',
+    'Framework :: Django :: 5.2',
+    'Intended Audience :: Developers',
+    'Natural Language :: English',
+    'Programming Language :: Python :: 3',
+    'Programming Language :: Python :: 3.12',
+]
+keywords = [
+    "Django",
+    "edx",
+]
+
+dynamic = ["version"]
+
+dependencies = [
+    "Django",
+    "django-crum",
+    "django-model-utils",
+    "djangorestframework",
+    "edx-celeryutils",
+    "edx-django-utils>=3.12.0",
+    "simplejson",
+]
+
+[project.entry-points."lms.djangoapp"]
+super_csv = "super_csv.apps:SuperCSVConfig"
+
+[project.urls]
+Homepage = "https://github.com/openedx/super-csv"
+Repository = "https://github.com/openedx/super-csv"
+
+[tool.setuptools]
+include-package-data = false
+
+[tool.setuptools.packages.find]
+include = ["super_csv", "super_csv.*"]
+exclude = ["*tests*"]
+
+[tool.setuptools.package-data]
+super_csv = ["templates/**"]
+
+[tool.setuptools_scm]
+version_scheme = "only-version"
+local_scheme = "no-local-version"
+
+[tool.isort]
+indent = '    '
+line_length = 120
+multi_line_output = 3
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "test_settings"
+addopts = "--cov super_csv --cov-report term-missing --cov-report xml"
+norecursedirs = [".*", "docs", "requirements"]
+
+[tool.coverage.run]
+branch = true
+data_file = ".coverage"
+source = ["super_csv"]
+omit = [
+    "test_settings",
+    "*migrations*",
+    "*admin.py",
+    "*static*",
+    "*templates*",
+]
