@@ -5,7 +5,6 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "super-csv"
 description = "CSV Processor"
-readme = "README.rst"
 requires-python = ">=3.12"
 license = "Apache-2.0"
 license-files = ["LICENSE.txt"]
@@ -26,7 +25,7 @@ keywords = [
     "edx",
 ]
 
-dynamic = ["version"]
+dynamic = ["readme", "version"]
 
 dependencies = [
     "Django",
@@ -95,6 +94,9 @@ dev = [
 [tool.setuptools]
 include-package-data = false
 
+[tool.setuptools.dynamic]
+readme = {file = ["README.rst", "CHANGELOG.rst"], content-type = "text/x-rst"}
+
 [tool.setuptools.packages.find]
 where = ["src"]
 include = ["super_csv", "super_csv.*"]
@@ -121,6 +123,9 @@ default-groups = []
 constraint-dependencies = [
     "Django<6.0",
     "elasticsearch<7.14.0",
+    "social-auth-app-django<6.0.0",
+    "social-auth-core<5.0.0",
+    "pip<26.2.1",
     "celery>=5.2.2,<6.0.0",
 ]
 
