@@ -230,7 +230,7 @@ pygments==2.20.0
     #   -r quality.txt
     #   diff-cover
     #   pytest
-pylint==4.0.6
+pylint==4.0.9
     # via
     #   -r quality.txt
     #   edx-lint
