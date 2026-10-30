@@ -9,7 +9,7 @@ Generic CSV Processing for Django Apps
 Overview
 ------------------------
 
-This library provides a `CSVProcessor <https://github.com/openedx/super-csv/blob/master/super_csv/csv_processor.py>`_ class
+This library provides a `CSVProcessor <https://github.com/openedx/super-csv/blob/master/src/super_csv/csv_processor.py>`_ class
 which should be subclassed to implement your own per-row processing of CSV files.
 At minimum, override `process_row(row)`.
 
@@ -47,13 +47,13 @@ and are on a command prompt inside the LMS container.
 
     pip uninstall super-csv -y; pip install -e /edx/src/super-csv
 
-#. Setup dev environment (since virtual environments are recommended for python development, here is an example of using
-   virtualenv. Other tools would work as well). By default, edx containers come with virtualenv preinstalled ::
+#. Setup dev environment. ``make requirements`` uses `uv <https://docs.astral.sh/uv/>`_ to create a ``.venv``
+   directory in the repo and install the dependencies there ::
 
     cd /edx/src/super-csv
-    virtualenv super-csv-env
-    source super-csv-env/bin/activate
+    pip install uv  # if uv isn't already installed in the container
     make requirements
+    source .venv/bin/activate
 
 #. That's it.
 

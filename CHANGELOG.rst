@@ -1,6 +1,9 @@
 Change Log
 ----------
 
+This changelog is no longer maintained. Release notes are published only on
+the `GitHub Releases page <https://github.com/openedx/super-csv/releases>`_.
+
 ..
    All enhancements and patches to super_csv will be documented
    in this file.  It adheres to the structure of http://keepachangelog.com/ ,
