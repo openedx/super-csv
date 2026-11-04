@@ -98,8 +98,8 @@ refer to this `list of resources`_ if you need any assistance.
     :target: https://pypi.python.org/pypi/super-csv/
     :alt: PyPI
 
-.. |CI| image:: https://github.com/openedx/super-csv/workflows/Python%20CI/badge.svg?branch=master
-    :target: https://github.com/openedx/super-csv/actions?query=workflow%3A%22Python+CI%22
+.. |CI| image:: https://github.com/openedx/super-csv/actions/workflows/release.yml/badge.svg?branch=master
+    :target: https://github.com/openedx/super-csv/actions/workflows/release.yml
     :alt: CI
 
 .. |codecov-badge| image:: http://codecov.io/github/edx/super-csv/coverage.svg?branch=master
