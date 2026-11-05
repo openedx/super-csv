@@ -35,7 +35,7 @@ INSTALLED_APPS = (
 )
 
 LOCALE_PATHS = [
-    root('super_csv', 'conf', 'locale'),
+    root('src', 'super_csv', 'conf', 'locale'),
 ]
 
 ROOT_URLCONF = 'super_csv.urls'

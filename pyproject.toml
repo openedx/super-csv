@@ -1,0 +1,162 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm>8.1"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "super-csv"
+description = "CSV Processor"
+requires-python = ">=3.12"
+license = "Apache-2.0"
+license-files = ["LICENSE.txt"]
+authors = [
+    {name = "Open edX Project", email = "oscm@openedx.org"},
+]
+classifiers = [
+    'Development Status :: 3 - Alpha',
+    'Framework :: Django',
+    'Framework :: Django :: 5.2',
+    'Intended Audience :: Developers',
+    'Natural Language :: English',
+    'Programming Language :: Python :: 3',
+    'Programming Language :: Python :: 3.12',
+]
+keywords = [
+    "Django",
+    "edx",
+]
+
+dynamic = ["readme", "version"]
+
+dependencies = [
+    "Django",
+    "django-crum",
+    "django-model-utils",
+    "djangorestframework",
+    "edx-celeryutils",
+    "edx-django-utils>=3.12.0",
+    "simplejson",
+]
+
+[project.entry-points."lms.djangoapp"]
+super_csv = "super_csv.apps:SuperCSVConfig"
+
+[project.urls]
+Homepage = "https://github.com/openedx/super-csv"
+Repository = "https://github.com/openedx/super-csv"
+
+[dependency-groups]
+test-base = [
+    "code-annotations",
+    "ddt",
+    "freezegun",
+    "mock",
+    "pytest-cov",
+    "pytest-django",
+    "sqlalchemy",
+]
+test = [
+    {include-group = "test-base"},
+    "Django>=5.2,<6.0",
+]
+celery53 = [
+    "celery",
+]
+drflatest = [
+    "djangorestframework",
+]
+quality = [
+    {include-group = "test"},
+    "edx-lint",
+    "isort",
+    "pycodestyle",
+    "pydocstyle",
+]
+doc = [
+    {include-group = "test"},
+    "doc8",
+    "sphinx-book-theme",
+    "Sphinx",
+    "twine",
+    "build",
+]
+ci = [
+    "tox",
+    "tox-uv",
+]
+dev = [
+    {include-group = "quality"},
+    {include-group = "doc"},
+    {include-group = "ci"},
+    "diff-cover",
+    "edx-i18n-tools",
+]
+
+[tool.setuptools]
+include-package-data = false
+
+[tool.setuptools.dynamic]
+readme = {file = ["README.rst"], content-type = "text/x-rst"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["super_csv", "super_csv.*"]
+exclude = ["*tests*"]
+
+[tool.setuptools.package-data]
+super_csv = ["templates/**"]
+
+[tool.setuptools_scm]
+version_scheme = "only-version"
+local_scheme = "no-local-version"
+fallback_version = "0.0.0"
+
+[tool.semantic_release]
+# Explicitly set the tag format (same as default).
+tag_format = "v{version}"
+build_command = "pip install build && SETUPTOOLS_SCM_PRETEND_VERSION=$NEW_VERSION python -m build"
+major_on_zero = false
+allow_zero_version = true
+
+[tool.uv]
+package = true
+default-groups = []
+#  DO NOT EDIT constraint-dependencies DIRECTLY.
+#  This list is managed by `edx_lint write_uv_constraints`
+#  and will be overwritten the next time `make upgrade` is run.
+#  - GLOBAL constraints: edit edx_lint/files/common_constraints.txt
+#  - REPO-SPECIFIC constraints: edit [tool.edx_lint].uv_constraints in this file
+constraint-dependencies = [
+    "Django<6.0",
+    "elasticsearch<7.14.0",
+    "social-auth-app-django<6.0.0",
+    "social-auth-core<5.0.0",
+    "pip<26.2.1",
+    "celery>=5.2.2,<6.0.0",
+]
+
+[tool.edx_lint]
+uv_constraints = [
+    "celery>=5.2.2,<6.0.0",
+]
+
+[tool.isort]
+indent = '    '
+line_length = 120
+multi_line_output = 3
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "test_settings"
+addopts = "--cov super_csv --cov-report term-missing --cov-report xml"
+norecursedirs = [".*", "docs", "requirements"]
+
+[tool.coverage.run]
+branch = true
+data_file = ".coverage"
+source_pkgs = ["super_csv"]
+omit = [
+    "test_settings",
+    "*migrations*",
+    "*admin.py",
+    "*static*",
+    "*templates*",
+]
